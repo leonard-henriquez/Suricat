@@ -2,9 +2,18 @@
   "name": "Suricat",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.1",
+    "@fortawesome/free-solid-svg-icons": "^5.4.1",
     "@rails/webpacker": "3.5",
-    "bootstrap": "3",
-    "jquery": "^3.3.1"
+    "autoprefixer": "^9.3.0",
+    "bootstrap": "^4.1.3",
+    "css-loader": "^1.0.0",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.9.4",
+    "popper.js": "^1.14.4",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
