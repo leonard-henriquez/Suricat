@@ -9,9 +9,7 @@ gem 'puma'
 gem 'rails', '5.2.1'
 gem 'redis'
 
-gem 'sass-rails'
 gem 'simple_form'
-gem 'uglifier'
 gem 'webpacker'
 
 group :development do
