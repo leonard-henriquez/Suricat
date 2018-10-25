@@ -1,0 +1,2 @@
+class SectorCategory < ApplicationRecord
+end
