@@ -24,3 +24,6 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
 end
+
+# Gem for the API
+gem "simple_token_authentication"
