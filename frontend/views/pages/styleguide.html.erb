@@ -1,0 +1,129 @@
+<h1>Components Library</h1>
+
+<h2>Button</h2>
+<%= link_to 'Sign in', '#', class: 'btn btn-primary' %>
+<%= link_to 'Sign up', '#', class: 'btn btn-secondary' %>
+
+<h2>Navbar</h2>
+
+<div class="navbar-suricat">
+  <div class="navbar-suricat-right">
+  <!-- Logo -->
+    <%= link_to root_path, class: "navbar-suricat-brand" do %>
+      <%= image_tag "logo_suricat.png", height: 50 %>
+    <% end %>
+
+  <!-- Left Navigation -->
+
+    <% if user_signed_in? %>
+
+      <!-- Links when logged in -->
+      <%= link_to "Home", "#", class: "navbar-suricat-item navbar-suricat-link" %>
+      <%= link_to "Recommandation", "#", class: "navbar-suricat-item navbar-suricat-link" %>
+      <% end %>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-suricat-right d-none d-md-flex">
+
+    <% if user_signed_in? %>
+
+      <!-- Links when logged in -->
+      <%= link_to "John Doe", "#", class: "navbar-suricat-item navbar-suricat-link" %>
+      <%= link_to "Log out", "#", class: "navbar-suricat-item navbar-suricat-link" %>
+
+    <% else %>
+      <!-- Login link (when logged out) -->
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-suricat-item navbar-suricat-link" %>
+    <% end %>
+  </div>
+</div>
+
+<h2>Calendar card</h2>
+<div class="card-calendar">
+  <div class="date">13 Oct</div>
+  <div class="interview">Interview Space X</div>
+  <div class="deadline">Deadline Apple</div>
+</div>
+
+
+<h2>Jobcard Not Reviewed</h2>
+
+<div class="jobcard">
+  <% link_to 'job_details'  %>
+  <div class="jobcard-img"><%= image_tag "logo-fb-noir.png", height: 50 %></div>
+  <div class="jobcard-title">CEO@ Facebook</div>
+  <div>31/10/2018</div>
+  <div>100k$</div>
+  <div class="jobcard-perso-grade">5/5</div>
+  <div class="jobcard-auto-grade">A+</div>
+  <div class="zoom"><%= image_tag "flag-badge.png", height: 30 %></div>
+  <div class="zoom"><%= image_tag "trash.png", height: 30 %></div>
+</div>
+
+<h2>Jobcard Read</h2>
+
+<div class="jobcard" id="jobcard-read">
+  <% link_to 'job_details'  %>
+  <div class="jobcard-img"><%= image_tag "logo-fb-noir.png", height: 50 %></div>
+  <div class="jobcard-title">CEO@ Facebook</div>
+  <div>31/10/2018</div>
+  <div>100k$</div>
+  <div class="jobcard-perso-grade">5/5</div>
+  <div class="jobcard-auto-grade">A+</div>
+  <div class="zoom"><%= image_tag "flag-badge.png", height: 30 %></div>
+  <div class="zoom"><%= image_tag "trash.png", height: 30 %></div>
+</div>
+
+
+<h2>Jobcard Pending</h2>
+
+<div class="jobcard">
+  <% link_to 'job_details'  %>
+  <div class="jobcard-img"><%= image_tag "logo-fb-noir.png", height: 50 %></div>
+  <div class="jobcard-title">CEO@ Facebook</div>
+  <div>31/10/2018</div>
+  <div>100k$</div>
+  <div class="jobcard-perso-grade">5/5</div>
+  <div class="jobcard-auto-grade">A+</div>
+  <div class="zoom"><%= image_tag "badge-apply.png", height: 30 %></div>
+  <div class="zoom"><%= image_tag "trash.png", height: 30 %></div>
+</div>
+
+
+<h2>Jobcard Applied</h2>
+
+<div class="jobcard">
+  <% link_to 'job_details'  %>
+  <div class="jobcard-img"><%= image_tag "logo-fb-noir.png", height: 50 %></div>
+  <div class="jobcard-title">CEO@ Facebook</div>
+  <div>31/10/2018</div>
+  <div>100k$</div>
+  <div class="jobcard-perso-grade">5/5</div>
+  <div class="jobcard-auto-grade">A+</div>
+  <div class="zoom"><%= image_tag "trash.png", height: 30 %></div>
+</div>
+
+<h2>Jobcard Trash</h2>
+
+<div class="jobcard" id="jobcard-read">
+  <% link_to 'job_details'  %>
+  <div class="jobcard-img"><%= image_tag "logo-fb-noir.png", height: 50 %></div>
+  <div class="jobcard-title">CEO@ Facebook</div>
+  <div>31/10/2018</div>
+  <div>100k$</div>
+  <div class="jobcard-perso-grade">5/5</div>
+  <div class="jobcard-auto-grade">A+</div>
+  <div class="zoom"><%= image_tag "plus.png", height: 30 %></div>
+  <div class="zoom"><%= image_tag "trash.png", height: 30 %></div>
+</div>
+
+
+<h2>Left Menu</h2>
+
+<div class="left-menu">
+  <div class="menu-review"><%= image_tag "badge-new.png", height: 20 %> Offers to review (7)</div>
+  <div class="menu-pending"><%= image_tag "flag-badge.png", height: 30 %> Pending (5)</div>
+  <div class="menu-applied"><%= image_tag "badge-apply.png", height: 30 %>     Applied (3)</div>
+  <div class="menu-trash"><%= image_tag "trash.png", height: 30 %> Trash </div>
+  <div class="menu-calendar"><%= image_tag "badge-calendar.png", height: 30 %> Calendar</div>
+</div>
