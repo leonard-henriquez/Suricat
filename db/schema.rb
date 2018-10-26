@@ -44,8 +44,10 @@ ActiveRecord::Schema.define(version: 2018_10_26_110119) do
 
   create_table "importances", force: :cascade do |t|
     t.integer "value"
+    t.bigint "criterium_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["criterium_id"], name: "index_importances_on_criterium_id"
   end
 
   create_table "job_categories", force: :cascade do |t|
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_110119) do
 
   add_foreign_key "criteria", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "importances", "criteria"
   add_foreign_key "jobs", "job_categories"
   add_foreign_key "opportunities", "companies"
   add_foreign_key "opportunities", "jobs"
