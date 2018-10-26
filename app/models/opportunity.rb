@@ -5,4 +5,5 @@ class Opportunity < ApplicationRecord
   belongs_to :sector
   has_many :user_opportunities
   has_many :users, through: :user_opportunities
+  validates :url, presence: true, uniqueness: true
 end
