@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_110405) do
+ActiveRecord::Schema.define(version: 2018_10_26_110119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2018_10_25_110405) do
 
   create_table "criteria", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "criteria_type"
-    t.string "criteria_value"
+    t.integer "type"
+    t.string "value"
     t.integer "rank"
     t.integer "importance"
     t.datetime "created_at", null: false
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2018_10_25_110405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "importances", force: :cascade do |t|
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "job_categories", force: :cascade do |t|
