@@ -1,0 +1,2 @@
+class ImportancesController < ApplicationController
+end
