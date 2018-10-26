@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       # POST 'opportunities/'
       # POST 'users/sign_in'
 
-  # resources 'opportunities', only: :show do
+  resources :opportunities, only: :show do
     # GET 'review'
     # GET 'pending'
     # GET 'applied'
@@ -17,14 +17,13 @@ Rails.application.routes.draw do
     # POST ':id/pending'
     # POST ':id/applied'
     # POST ':id/trash'
-  # end
+  end
 
   # resources 'events'
 
-  # resources 'criteria', except: ;destroy do
-    # GET 'importance'
-    # POST 'importance'
-  # end
+  resources :importances, except: :destroy do
+    resources :criteria, except: :index
+  end
 
 
 end
