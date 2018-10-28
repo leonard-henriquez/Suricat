@@ -1,18 +1,30 @@
 .btn {
   font-family: Raleway;
+  font-weight: 500;
+}
+
+.btn-primary, .btn-secondary {
+  border: 1px solid $primary;
+
   &:hover {
-    color: $white;
-    background: $green;
-    border: 1px solid $white;
+    border: 1px solid $primary;
   }
 }
 
 .btn-primary {
-  color: $white;
-  border: 1px solid $white;
+  color: $body-bg;
+
+  &:hover {
+    color: $primary;
+    background: $body-bg;
+  }
 }
 .btn-secondary {
-  color: $orange;
-  background: $white;
-  border: 1px solid $orange;
+  color: $primary;
+  background: $body-bg;
+
+  &:hover {
+    color: $body-bg;
+    background: $primary;
+  }
 }

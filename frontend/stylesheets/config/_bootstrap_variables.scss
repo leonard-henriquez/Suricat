@@ -1,21 +1,31 @@
 // This is where you override default Bootstrap variables
-// 1. All Bootstrap variables are here => https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+// 1. All Bootstrap variables are here => https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 // 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
 // 3. You can override them below!
-
-//https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-// $font-size-base: 18px;
 
-// Colors
-$primary:       $orange !default;
-$secondary:     $gray-600 !default;
-$success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$body-bg:                 $whiteish !default;
+$input-bg:                inherit !default;
+$body-color:              $gray-900 !default;
+$link-color:              $primary !default;
+$nav-link-disabled-color: $white;
+$font-size-base:          1rem !default;
+
+// Specifics
+$spacer: 1rem !default;
+$headings-margin-bottom:      $spacer !default;
+
+$border-color:                $primary !default;
+$enable-rounded:              false !default;
+$border-radius:               0 !default;
+$border-radius-lg:            0 !default;
+$border-radius-sm:            0 !default;
+
+$navbar-dark-color:                 rgba($white, .6) !default;
+$navbar-dark-hover-color:           rgba($white, .8) !default;
+$navbar-dark-active-color:          $white !default;
+$navbar-dark-disabled-color:        rgba($white, .50) !default;
+$navbar-dark-toggler-border-color:  rgba($white, .3) !default;

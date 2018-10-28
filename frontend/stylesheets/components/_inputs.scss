@@ -1,0 +1,78 @@
+input.form-control, select.form-control {
+  color: $body-color;
+  border: none;
+  border-bottom: 1px solid $gray-700;
+  padding: 4px 6px;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(234, 194, 138, .67);
+    box-shadow: none;
+    border-bottom: 1px solid $gray-700;
+  }
+  &.input-secondary {
+    color: $gray-600;
+  }
+
+  &.input-light {
+    color: $white;
+    border-bottom: 1px solid $white;
+    background-color: initial;
+  }
+}
+
+input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+
+input[type=range]{
+  -webkit-appearance: none;
+    display: inline-block;
+    width: initial;
+    top: -8px;
+    position: relative;
+
+    &::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 5px;
+      background: #ddd;
+      border: none;
+      border-radius: 3px;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: $primary;
+      margin-top: -5px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus::-webkit-slider-runnable-track {
+      background: #ccc;
+    }
+}
+
+select, select:-moz-focusring, select::-moz-focus-inner {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+.slider-button {
+  font-size: 28px;
+  color: $primary;
+  margin: 0 10px;
+}
+
+.form-check label {
+  position: relative;
+  top: -2px;
+}

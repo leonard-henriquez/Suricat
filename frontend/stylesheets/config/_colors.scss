@@ -13,6 +13,8 @@ $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 $beige:   #FFF8EF !default;
 $gold:    #DCAB68 !default;
+$whiteish:#F4F4F6 !default;
+$sand:    rgba(208, 137, 37, 0.67) !default;
 
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
@@ -26,4 +28,15 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
-$orange-light: transparentize($orange, 0.25);
+$sand-light: lighten($sand, 20);
+$sand-dark: darken($sand, 20);
+
+// Colors
+$primary:       $sand !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;

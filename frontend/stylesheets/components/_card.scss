@@ -9,85 +9,33 @@
   padding-top: 10px;
   margin-left: 100px;
   border: 1px solid $gray-300;
-  transition: transform .3s;
+  transition: transform .2s;
+
   &:hover {
-    border: 1px solid $green;
+    border: 1px solid $primary;
     transform: scale(1.05);
   }
-}
 
-.card-calendar .date {
-  text-align: left;
-  font-size: 20px;
-  font-style: italic;
-  padding-left: 20px;
-}
-
-.card-calendar .interview {
-  color: $white;
-  background-color: $green;
-  text-align: left;
-  font-size: 15px;
-  font-weight: bolder;
-  padding-left: 10px;
-}
-
-.card-calendar .deadline {
-  color: $white;
-  background-color: $red;
-  text-align: left;
-  font-size: 15px;
-  font-weight: bolder;
-  padding-left: 10px;
-}
-
-.jobcard {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1000px;
-  height: 50px;
-  border: 1px solid $gray-200;
-  margin-left: 100px;
-  box-shadow: 5px 5px 5px $gray-400;
-  transition: transform .3s;
-  &:hover {
-    border: 2px solid $green;
-    transform: scale(1.01);
+  .date {
+    text-align: left;
+    font-size: 20px;
+    font-style: italic;
+    padding-left: 20px;
   }
-}
 
-.jobcard-img {
-  align-self: center;
-}
+  .interview, .deadline {
+    color: $white;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bolder;
+    padding-left: 10px;
+  }
 
-.jobcard-title {
-  font-weight: bold;
-}
+  .interview {
+    background-color: $success;
+  }
 
-.jobcard-perso-grade {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.jobcard-auto-grade{
-  color: $gold;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.zoom {
-    transition: transform .3s; /* Animation */
-}
-
-.zoom:hover {
-    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-
-#jobcard-read {
-  color: $gray-600;
-  background-color: $gray-200;
-  font-style: italic;
-  font-weight: lighter;
-  text-decoration: none;
+  .deadline {
+    background-color: $danger;
+  }
 }
