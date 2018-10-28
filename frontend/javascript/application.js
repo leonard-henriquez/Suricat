@@ -10,3 +10,5 @@ import * as ActiveStorage from "activestorage";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+require.context('../images', true);
