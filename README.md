@@ -1,1 +1,7 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Styleguide page available [here](https://my-suricat.herokuapp.com/styleguide)
+
+Component libraries :
+
+- [Bootstrap-select](https://github.com/snapappointments/bootstrap-select) for multiple selects
+- [Selectize](https://github.com/selectize/selectize.js) for places
+- (Radar.js)[https://www.chartjs.org/docs/latest/charts/radar.html] for Kiviat diagrams
