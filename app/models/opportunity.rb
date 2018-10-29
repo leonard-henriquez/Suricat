@@ -10,5 +10,5 @@ class Opportunity < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validates :job_description, presence: true
   validates :contract_type, presence: true
-  validates :geography, presence: true
+  validates :location, presence: true
 end
