@@ -1,10 +1,46 @@
 // Define variables for your color scheme
 
 // For example:
-$red: #EE5F5B;
-$blue: #469AE0;
-$yellow: #FDB631;
-$orange: #E67E22;
-$green: #32B796;
-$gray: #000000;
-$light-gray: #F4F4F4;
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #D46262 !default;
+$orange:  #E28F00 !default;
+$yellow:  #ffc107 !default;
+$green:   #A7D82E !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+$beige:   #FFF8EF !default;
+$gold:    #DCAB68 !default;
+$whiteish:#F4F4F6 !default;
+$sand:    rgba(208, 137, 37, 0.67) !default;
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$sand-light: lighten($sand, 20);
+$sand-dark: darken($sand, 20);
+
+// Colors
+$primary:       $sand !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+.text-gray {
+  color: $gray-700;
+}

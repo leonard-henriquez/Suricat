@@ -1,0 +1,251 @@
+<div class="container">
+  <h1>Components Library</h1>
+
+  <section>
+    <h2>Banner</h2>
+    <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1453473677325-af32858b45d6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cd88e12bdc629d36c99e926696373524&auto=format&fit=crop&w=1651&q=80');">
+      <div class="banner-content">
+        <h1>Manage all your job opportunities</h1>
+        <p>Save, gather and keep track of all your job opportunities in one place to spot the most fitted job.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Navbar</h2>
+    <%= render 'shared/navbar' %>
+  </section>
+
+  <section>
+    <h2>Headings and body</h2>
+    <div class="section-content">
+      <h1>H1</h1>
+      <h2>H2</h2>
+      <h3>H3</h3>
+      <h4>H4</h4>
+      <h5>H5</h5>
+      <h6>H6</h6>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h5>Regular input</h5>
+    <div class="section-content">
+      <input type="text" class="form-control" name="" id="">
+    </div>
+  </section>
+
+  <section>
+    <h5>Secondary input</h5>
+    <div class="section-content">
+      <input type="text" class="form-control input-secondary" name="" id="">
+    </div>
+  </section>
+
+  <section style="background-color: rgba(208, 137, 37, 0.67); padding: 20px;">
+    <h5 style="color: white;">Light input</h5>
+    <div class="section-content">
+      <input type="text" class="form-control input-light" name="" id="">
+    </div>
+  </section>
+
+  <section>
+    <h5>Date</h5>
+    <div class="section-content">
+      <input type="date" class="form-control" name="" id="">
+    </div>
+  </section>
+
+  <section>
+    <h5>Checkbox</h5>
+    <div class="section-content">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="a" name="" id="checkbox_id">
+        <label for="checkbox_id">Suricat</label>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h5>Slider</h5>
+      <div class="section-content">
+      <div class="form-group">
+        <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+        <input type="range" class="form-control-range" id="formControlRange">
+        <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h5>Dropdown list</h5>
+    <div class="section-content">
+      <select class="form-control select optional" name="" id=""><option value="">Select your Language</option>
+        <option value="en">English</option>
+        <option value="de">German</option>
+        <option value="es">Spanish</option>
+        <option value="ru">Russian</option>
+      </select>
+    </div>
+  </section>
+
+  <section>
+    <h5>Step progress bar</h5>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li>Start</li>
+        <li>First Step</li>
+        <li class="is-active">Middle Stage</li>
+        <li>Finish</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>Button</h2>
+    <div class="section-content">
+      <%= link_to 'Sign in', '#', class: 'btn btn-primary' %>
+      <%= link_to 'Sign up', '#', class: 'btn btn-secondary' %>
+    </div>
+  </section>
+
+  <section>
+    <h2>Calendar card</h2>
+    <div class="section-content">
+      <div class="card-calendar">
+        <div class="date">13 Oct</div>
+        <div class="interview">Interview Space X</div>
+        <div class="deadline">Deadline Apple</div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>Jobcard</h2>
+
+      <div class="jobcard">
+        <% link_to 'job_details', "#"  %>
+        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+        <div class="jobcard-title">CEO @Facebook</div>
+        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
+        <div class="jobcard-salary d-none d-sm-block">100k$</div>
+        <div class="jobcard-perso-grade">5/5</div>
+        <div class="jobcard-auto-grade">A+</div>
+        <div class="jobcard-action zoom">
+          <span class="icon text-danger">
+            <i class="fas fa-flag text-danger"></i>
+          </span>
+        </div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-trash text-gray"></i>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="jobcard jobcard-read" id="jobcard-read">
+        <% link_to 'job_details', "#"  %>
+        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+        <div class="jobcard-title">CEO @Facebook</div>
+        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
+        <div class="jobcard-salary d-none d-sm-block">100k$</div>
+        <div class="jobcard-perso-grade">5/5</div>
+        <div class="jobcard-auto-grade">A+</div>
+        <div class="jobcard-action zoom">
+          <span class="icon text-danger">
+            <i class="fas fa-flag text-danger"></i>
+          </span>
+        </div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-trash text-gray"></i>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="jobcard">
+        <% link_to 'job_details', "#"  %>
+        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+        <div class="jobcard-title">CEO @Facebook</div>
+        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
+        <div class="jobcard-salary d-none d-sm-block">100k$</div>
+        <div class="jobcard-perso-grade">5/5</div>
+        <div class="jobcard-auto-grade">A+</div>
+        <div class="jobcard-action zoom">
+          <span class="icon text-success">
+            <i class="far fa-check-circle text-success"></i>
+          </span>
+        </div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-trash text-gray"></i>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="jobcard">
+        <% link_to 'job_details', "#"  %>
+        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+        <div class="jobcard-title">CEO @Facebook</div>
+        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
+        <div class="jobcard-salary d-none d-sm-block">100k$</div>
+        <div class="jobcard-perso-grade">5/5</div>
+        <div class="jobcard-auto-grade">A+</div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-trash text-gray"></i>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="jobcard" id="jobcard-read">
+        <% link_to 'job_details', "#"  %>
+        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+        <div class="jobcard-title">CEO @Facebook</div>
+        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
+        <div class="jobcard-salary d-none d-sm-block">100k$</div>
+        <div class="jobcard-perso-grade">5/5</div>
+        <div class="jobcard-auto-grade">A+</div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-redo text-dark"></i>
+          <% end %>
+        </div>
+        <div class="jobcard-action zoom">
+          <%= link_to '#' do %>
+            <i class="fas fa-trash text-gray"></i>
+          <% end %>
+        </div>
+      </div>
+
+  </section>
+
+  <section>
+    <h2>Icons</h2>
+    <div class="section-content">
+      <span class="badge badge-primary">new</span>
+      <i class="fas fa-flag text-danger"></i>
+      <i class="far fa-check-circle text-success"></i>
+      <i class="fas fa-trash text-gray"></i>
+      <i class="far fa-calendar-alt text-dark"></i>
+      <i class="fas fa-redo text-dark"></i>
+    </div>
+  </section>
+
+  <section>
+    <h2>Left Menu</h2>
+    <div class="section-content">
+      <%= render 'shared/left_menu' %>
+    </div>
+  </section>
+</div>

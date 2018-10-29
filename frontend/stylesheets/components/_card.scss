@@ -1,0 +1,41 @@
+.card-calendar {
+  width: 150px;
+  height: 150px;
+  background-color: $beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Raleway;
+  padding-top: 10px;
+  margin-left: 100px;
+  border: 1px solid $gray-300;
+  transition: transform .2s;
+
+  &:hover {
+    border: 1px solid $primary;
+    transform: scale(1.05);
+  }
+
+  .date {
+    text-align: left;
+    font-size: 20px;
+    font-style: italic;
+    padding-left: 20px;
+  }
+
+  .interview, .deadline {
+    color: $white;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bolder;
+    padding-left: 10px;
+  }
+
+  .interview {
+    background-color: $success;
+  }
+
+  .deadline {
+    background-color: $danger;
+  }
+}

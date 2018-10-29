@@ -1,0 +1,48 @@
+.left-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $beige;
+  font-family: Raleway;
+  padding: 20px;
+
+  a, a:hover, a:active {
+    color: $body-color;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &-item {
+    display: flex;
+    height: 40px;
+    opacity: 0.8;
+  }
+
+  &-item:hover, &-item:active {
+    opacity: 1;
+  }
+
+  &-item-text {
+    display: flex;
+    align-items: center;
+  }
+  &-item-text .light {
+    color: $gray-600;
+  }
+
+  &-item-icon .badge {
+    font-size: 12px;
+  }
+
+  &-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 8px;
+    width: 60px;
+    font-size: 22px;
+    position: relative;
+    top: -2px;
+  }
+}
