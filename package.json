@@ -18,6 +18,7 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack-dev-server": "2.11.2"
   }
 }
