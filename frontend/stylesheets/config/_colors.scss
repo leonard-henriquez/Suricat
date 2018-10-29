@@ -40,3 +40,7 @@ $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
+
+.text-gray {
+  color: $gray-700;
+}
