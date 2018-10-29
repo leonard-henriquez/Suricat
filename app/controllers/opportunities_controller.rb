@@ -48,7 +48,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def set_user_opportunities
-    @user_id = User.find(params[:id])
+    @user_id = current_user.id
     @user_opportunities = UserOpportunity.where(user_id: @user_id)
   end
 

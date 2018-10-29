@@ -24,6 +24,4 @@ Rails.application.routes.draw do
   resources :importances, except: :destroy do
     resources :criteria, except: :index
   end
-
-
 end
