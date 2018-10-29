@@ -12,7 +12,7 @@ gem 'redis'
 gem 'simple_form'
 gem 'webpacker'
 
-gem "pundit"
+gem 'pundit'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

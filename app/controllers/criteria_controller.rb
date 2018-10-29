@@ -7,6 +7,7 @@ class CriteriaController < ApplicationController
   end
 
   def create
+    authorize @criterium
     @criterium = Criterium.new(criterium_params)
     @criterium.importance = @importance
     if @criterium.save
@@ -15,29 +16,30 @@ class CriteriaController < ApplicationController
       render :new
     end
   end
-  end
 
   def edit
   end
 
   def update
+    authorize @criterium
     if @criterium.update(criterium_params)
       redirect_to importance_path(@importance)
     else
       render :edit
     end
   end
-  end
 
   def destroy
+    authorize @criterium
     @criterium.destroy
     redirect_to importance_path(@importance)
   end
 
   private
-   def set_importance
+  def set_importance
     @importance = Importance.find(params[:importance_id])
-   end
+  end
+
   def set_criterium
     @criterium = Criterium.find(params[:id])
   end

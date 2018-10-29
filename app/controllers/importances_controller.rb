@@ -1,11 +1,8 @@
 class ImportancesController < ApplicationController
-  before_action :set_importance, only: [:show, :edit, :update]
+  before_action :set_importance, only: [:edit, :update]
 
   def index
-    @importances = Importance.all
-  end
-
-  def show
+    @importances = policy_scope(Importance)
   end
 
   def edit
@@ -13,6 +10,7 @@ class ImportancesController < ApplicationController
   end
 
   def update
+    authorize @importance
     if @importance.value.update(params[:value])
       redirect_to importances_path
     else
