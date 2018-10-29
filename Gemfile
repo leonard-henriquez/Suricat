@@ -10,6 +10,7 @@ gem 'rails', '5.2.1'
 gem 'redis'
 
 gem 'simple_form'
+gem 'komponent'
 gem 'webpacker'
 
 group :development do
