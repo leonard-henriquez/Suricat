@@ -4,8 +4,11 @@
   "_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": "/javascript/_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900-63726a69fa60cb67459140ccaf679f96.ttf",
   "_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff": "/javascript/_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900-997f6b1819184c54248de33c81b7bb0c.woff",
   "_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": "/javascript/_/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900-1dc5b6dd4bf409a6f919be38603f76a0.woff2",
-  "application.css": "/javascript/application-a041d1df25a8bb24552cb6c80afb6afe.css",
-  "application.css.map": "/javascript/application-a041d1df25a8bb24552cb6c80afb6afe.css.map",
-  "application.js": "/javascript/application-fb4cc115a9b29b6db04f.js",
-  "application.js.map": "/javascript/application-fb4cc115a9b29b6db04f.js.map"
+  "application.css": "/javascript/application-c0842a0a39261ed5675421900f7aeed4.css",
+  "application.css.map": "/javascript/application-c0842a0a39261ed5675421900f7aeed4.css.map",
+  "application.js": "/javascript/application-5335a2a3ef7bea21e983.js",
+  "application.js.map": "/javascript/application-5335a2a3ef7bea21e983.js.map",
+  "images/logo-fb-noir.png": "/javascript/images/logo-fb-noir-9575895a26a6c4d0bef3e873054dffc1.png",
+  "images/logo.png": "/javascript/images/logo-1248912a737eb5042ca9a2d697a7a5ae.png",
+  "images/logo.svg": "/javascript/images/logo-1fcd77a293cd7c603ec9a0031f22cb3d.svg"
 }

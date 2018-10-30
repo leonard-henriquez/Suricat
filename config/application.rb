@@ -21,6 +21,8 @@ module Suricat
   class Application < Rails::Application
     config.i18n.load_path += Dir[config.root.join('frontend/components/**/*.yml')]
     config.autoload_paths << config.root.join('frontend/components')
+    Rails.application.config.komponent.root = Rails.root.join('frontend')
+
     config.generators do |generate|
           generate.assets false
           generate.helper false

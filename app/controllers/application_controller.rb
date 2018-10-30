@@ -14,7 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   # Move partial views to folder '/frontend'
-  prepend_view_path Rails.root.join("frontend", "views")
+  # self.view_paths = self.view_paths.reject do |path_object|
+  #   path_object.to_path =~ /app.views/
+  # end
+  # prepend_view_path Rails.root.join("frontend","views")
 
   private
 
