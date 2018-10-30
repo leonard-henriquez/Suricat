@@ -1,4 +1,3 @@
-import "./radar.css";
 import Chart from 'chart.js';
 
 $(document).ready(() => {
