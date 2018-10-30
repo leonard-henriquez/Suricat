@@ -11,6 +11,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~bootstrap/scss/bootstrap";
 
 // Your CSS partials
+@import "../components/index";
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
