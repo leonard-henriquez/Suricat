@@ -1,0 +1,78 @@
+.job-offer-container {
+overflow: hidden;
+vertical-align: top;
+padding: 20px;
+}
+
+.job-offer-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-offer-top--left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.job-offer-top--title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-offer-top--icon {
+  padding-left: 20px;
+}
+
+.job-offer-top--description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.job-offer-top--description h2,h4 {
+  margin: 0px;
+  padding-left: 5px;
+}
+
+.job-offer-top--grades {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jobcard-img {
+  padding: 7px;
+}
+
+.btn-primary {
+  padding: 5px 35px;
+}
+
+.job-offer-user-infos {
+  margin-top: 20px;
+  padding: 10px;
+  border: solid;
+  border-width: 1px;
+  border-color: $primary;
+}
+
+.job-offer-user-infos p {
+  margin: 0px;
+}
+
+.job-offer-map {
+  margin-top: 10px;
+}
+
+.job-offer-map img {
+  width: 290px;
+  height: 300px;
+}
+
+.job-offer-alumnis {
+margin-top: 10px;
+background-color: $primary;
+color: white;
+}
