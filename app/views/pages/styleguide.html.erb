@@ -124,110 +124,13 @@
     </div>
   </section>
 
-
-
   <section>
     <h2>Jobcard</h2>
-
-      <div class="jobcard">
-        <% link_to 'job_details', "#"  %>
-        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
-        <div class="jobcard-title">CEO @Facebook</div>
-        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
-        <div class="jobcard-salary d-none d-sm-block">100k$</div>
-        <div class="jobcard-perso-grade">5/5</div>
-        <div class="jobcard-auto-grade">A+</div>
-        <div class="jobcard-action zoom">
-          <span class="icon text-danger">
-            <i class="fas fa-flag text-danger"></i>
-          </span>
-        </div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-trash text-gray"></i>
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="jobcard jobcard-read" id="jobcard-read">
-        <% link_to 'job_details', "#"  %>
-        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
-        <div class="jobcard-title">CEO @Facebook</div>
-        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
-        <div class="jobcard-salary d-none d-sm-block">100k$</div>
-        <div class="jobcard-perso-grade">5/5</div>
-        <div class="jobcard-auto-grade">A+</div>
-        <div class="jobcard-action zoom">
-          <span class="icon text-danger">
-            <i class="fas fa-flag text-danger"></i>
-          </span>
-        </div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-trash text-gray"></i>
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="jobcard">
-        <% link_to 'job_details', "#"  %>
-        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
-        <div class="jobcard-title">CEO @Facebook</div>
-        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
-        <div class="jobcard-salary d-none d-sm-block">100k$</div>
-        <div class="jobcard-perso-grade">5/5</div>
-        <div class="jobcard-auto-grade">A+</div>
-        <div class="jobcard-action zoom">
-          <span class="icon text-success">
-            <i class="far fa-check-circle text-success"></i>
-          </span>
-        </div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-trash text-gray"></i>
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="jobcard">
-        <% link_to 'job_details', "#"  %>
-        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
-        <div class="jobcard-title">CEO @Facebook</div>
-        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
-        <div class="jobcard-salary d-none d-sm-block">100k$</div>
-        <div class="jobcard-perso-grade">5/5</div>
-        <div class="jobcard-auto-grade">A+</div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-trash text-gray"></i>
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="jobcard" id="jobcard-read">
-        <% link_to 'job_details', "#"  %>
-        <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
-        <div class="jobcard-title">CEO @Facebook</div>
-        <div class="jobcard-date d-none d-md-block">31/10/2018</div>
-        <div class="jobcard-salary d-none d-sm-block">100k$</div>
-        <div class="jobcard-perso-grade">5/5</div>
-        <div class="jobcard-auto-grade">A+</div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-redo text-dark"></i>
-          <% end %>
-        </div>
-        <div class="jobcard-action zoom">
-          <%= link_to '#' do %>
-            <i class="fas fa-trash text-gray"></i>
-          <% end %>
-        </div>
-      </div>
-
+    <% if UserOpportunity.count > 0 %>
+      <%= component 'job_card', opportunity: UserOpportunity.first %>
+    <% else %>
+      <p>Please create at list a job opportunity to see the card template</p>
+    <% end %>
   </section>
 
   <section>

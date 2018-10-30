@@ -11,4 +11,11 @@ class Opportunity < ApplicationRecord
   validates :job_description, presence: true
   validates :contract_type, presence: true
   validates :location, presence: true
+
+  [Job, Company, Sector].each do |obj|
+    (obj.attribute_names - self.attribute_names).each do |attr|
+      object_name = obj.name.underscore
+      delegate attr.to_sym, to: object_name, allow_nil: true, prefix: object_name.to_sym
+    end
+  end
 end

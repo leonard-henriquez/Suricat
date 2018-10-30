@@ -1,38 +1,33 @@
 class UserOpportunitiesController < ApplicationController
-  before_action :set_user_opportunity, only: [:show, :set_review, :set_pending, :set_applied, :set_trash, :destroy]
+  before_action :set_user_opportunity, only: [:show, :update, :destroy]
 
   def index
     @user_opportunities = policy_scope(UserOpportunity)
+    @user_opportunities = @user_opportunities.where(status: params[:status]) unless params[:status].nil?
+    # ADD ORDER BY
   end
 
   def show
   end
 
-  def set_review
-    @user_opportunity.status = 0
-  end
-
-
-  def set_pending
-    @user_opportunity.status = 1
-  end
-
-
-  def set_applied
-    @user_opportunity.status = 2
-  end
-
-  def set_trash
-    @user_opportunity.status = 3
+  def update
+    @user_opportunity.status = params[:status]
+    @user_opportunity.save
+    authorize @user_opportunity
   end
 
   def destroy
     @user_opportunity.destroy
+    authorize @user_opportunity
   end
 
   private
 
   def set_user_opportunity
     @user_opportunity = UserOpportunity.find(params[:id])
+  end
+
+  def user_opportunity_params
+    params.require(:user_opportunity).permit(:status)
   end
 end

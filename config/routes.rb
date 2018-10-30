@@ -9,20 +9,29 @@ Rails.application.routes.draw do
       # POST 'opportunities/'
       # POST 'users/sign_in'
 
-  resources :user_opportunities, path: 'opportunities', only: [:index, :show] do
-    # GET 'review'
-    # GET 'pending'
-    # GET 'applied'
-    # GET 'trash'
-    # POST ':id/review'
-    # POST ':id/pending'
-    # POST ':id/applied'
-    # POST ':id/trash'
+  # Build the following routes
+  # GET ['review', 'pending', 'applied', 'trash']
+  statuses = UserOpportunity.statuses.keys.map(&:to_sym)
+  # status = [:review, :pending, :applied, :trash]
+  statuses.each do |status|
+    # then we create the routes
+    # passing a parameter :status to the function in user_opportunity_controller :
+    match "/opportunities/#{status.to_s}" =>
+      'user_opportunities#index',
+      :defaults => { :status => status }, via: :get
   end
 
-  resources :events, only: [:index, :create, :update, :destroy]
+  resources :user_opportunities,
+    path: 'opportunities',
+    only: [:index, :show, :update, :destroy]
 
-  resources :importances, only: [:index, :update] do
-    resources :criteria, except: [:index, :show]
+
+  resources :events,
+    only: [:index, :create, :update, :destroy]
+
+  resources :importances,
+    only: [:index, :update] do
+      resources :criteria,
+        except: [:index, :show]
   end
 end
