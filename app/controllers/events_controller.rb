@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  layout "sidebar"
   before_action :set_event, only: [:update, :destroy]
 
   def index

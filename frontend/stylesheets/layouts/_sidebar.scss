@@ -1,0 +1,44 @@
+
+// .main {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: stretch;
+//   position: absolute;
+//   top: 59;
+
+// }
+
+// .frame{
+//   position: absolute;
+//   left: 300;
+//   z-index: -1;
+//   width: 100%;
+// }
+
+// .nav {
+//   position: fixed;
+// }
+
+
+// .container {
+//   height: 3000px;
+//   position: relative;
+//   border: 3px solid black;
+// }
+
+// #nav {
+//   width: 100%;
+//   position: fixed;
+//   z-index: 1;
+// }
+#column-container {
+  margin-left: 300;
+  margin-top: 59;
+  min-height: -webkit-fill-available;
+}
+
+#border-container {
+  border-left: 1px solid $sand;
+  min-height: -webkit-fill-available;
+}
