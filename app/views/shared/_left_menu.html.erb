@@ -1,55 +1,55 @@
 <div class="left-menu">
-  <div class="left-menu-item">
-    <div class="left-menu-item-icon">
-      <span class="badge badge-primary">new</span>
+  <%= link_to opportunities_review_path, class: "left-menu-item-link" do %>
+    <div class="left-menu-item">
+      <div class="left-menu-item-icon">
+        <span class="badge badge-primary">new</span>
+      </div>
+      <div class="left-menu-item-text">
+          Offers to review
+          <span class="light">(67)</span>
+      </div>
     </div>
-    <div class="left-menu-item-text">
-      <%= link_to "/opportunities/review", class: "left-menu-item-link" do %>
-        Offers to review
-        <span class="light">(67)</span>
-      <% end %>
+  <% end %>
+  <%= link_to opportunities_pending_path, class: "left-menu-item-link" do %>
+    <div class="left-menu-item">
+      <div class="left-menu-item-icon text-danger">
+        <i class="fas fa-flag"></i>
+      </div>
+      <div class="left-menu-item-text">
+          Pending
+          <span class="light">(55)</span>
+      </div>
     </div>
-  </div>
-  <div class="left-menu-item">
-    <div class="left-menu-item-icon text-danger">
-      <i class="fas fa-flag"></i>
+  <% end %>
+  <%= link_to opportunities_applied_path, class: "left-menu-item-link" do %>
+    <div class="left-menu-item">
+      <div class="left-menu-item-icon text-success">
+        <i class="fa fa-check-circle"></i>
+      </div>
+      <div class="left-menu-item-text">
+          Applied
+          <span class="light">(2)</span>
+      </div>
     </div>
-    <div class="left-menu-item-text">
-      <%= link_to "/opportunities/pending", class: "left-menu-item-link" do %>
-        Pending
-        <span class="light">(55)</span>
-      <% end %>
+  <% end %>
+  <%= link_to opportunities_trash_path, class: "left-menu-item-link" do %>
+    <div class="left-menu-item">
+      <div class="left-menu-item-icon text-gray">
+        <i class="fas fa-trash"></i>
+      </div>
+      <div class="left-menu-item-text">
+          Trash
+      </div>
     </div>
-  </div>
-  <div class="left-menu-item">
-    <div class="left-menu-item-icon text-success">
-      <i class="fa fa-check-circle"></i>
+  <% end %>
+  <%= link_to "#", class: "left-menu-item-link" do %>
+    <div class="left-menu-item">
+      <div class="left-menu-item-icon">
+        <i class="far fa-calendar-alt"></i>
+      </div>
+      <div class="left-menu-item-text">
+          Calendrier
+      </div>
     </div>
-    <div class="left-menu-item-text">
-      <%= link_to "/opportunities/applied", class: "left-menu-item-link" do %>
-        Applied
-        <span class="light">(2)</span>
-      <% end %>
-    </div>
-  </div>
-  <div class="left-menu-item">
-    <div class="left-menu-item-icon text-gray">
-      <i class="fas fa-trash"></i>
-    </div>
-    <div class="left-menu-item-text">
-      <%= link_to "/opportunities/trash", class: "left-menu-item-link" do %>
-        Trash
-      <% end %>
-    </div>
-  </div>
-  <div class="left-menu-item">
-    <div class="left-menu-item-icon">
-      <i class="far fa-calendar-alt"></i>
-    </div>
-    <div class="left-menu-item-text">
-      <%= link_to "#", class: "left-menu-item-link" do %>
-        Calendrier
-      <% end %>
-    </div>
-  </div>
+  <% end %>
 </div>

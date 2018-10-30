@@ -51,7 +51,8 @@
   &-auto-grade,
   &-action {
     text-align: center;
-    width: 80px;
+    flex-basis: 80px;
+    flex-shrink: 1
   }
 
   &-read {
