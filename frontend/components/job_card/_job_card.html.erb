@@ -1,6 +1,6 @@
 <div class="jobcard">
   <% link_to 'job_details', "#"  %>
-  <div class="jobcard-img"><%= image_tag asset_pack_path('images/logo-fb-noir.png'), height: 50 %></div>
+  <div class="jobcard-img img-center"><%= image_tag asset_pack_path('images/logo-fb-noir.png') %></div>
   <div class="jobcard-title"><%= @opportunity.job_title %> @<%= @opportunity.company_name %></div>
   <div class="jobcard-date d-none d-md-block"><%= @opportunity.deadline %></div>
   <div class="jobcard-salary d-none d-sm-block"><%= @opportunity.salary %>K$</div>
@@ -23,7 +23,7 @@
     <% when 'pending' %>
       <div class="jobcard-action zoom">
         <%= link_to user_opportunity_path(@opportunity, status: :applied), method: :patch do %>
-          <i class="far fa-check-circle text-success"></i>
+          <i class="fa fa-check-circle text-success"></i>
         <% end %>
       </div>
       <div class="jobcard-action zoom">

@@ -1,10 +1,10 @@
-<div class="left-menu position-fixed position-offset">
+<div class="left-menu">
   <div class="left-menu-item">
     <div class="left-menu-item-icon">
       <span class="badge badge-primary">new</span>
     </div>
     <div class="left-menu-item-text">
-      <%= link_to "#", class: "left-menu-item-link" do %>
+      <%= link_to "/opportunities/review", class: "left-menu-item-link" do %>
         Offers to review
         <span class="light">(67)</span>
       <% end %>
@@ -15,7 +15,7 @@
       <i class="fas fa-flag"></i>
     </div>
     <div class="left-menu-item-text">
-      <%= link_to "#", class: "left-menu-item-link" do %>
+      <%= link_to "/opportunities/pending", class: "left-menu-item-link" do %>
         Pending
         <span class="light">(55)</span>
       <% end %>
@@ -23,10 +23,10 @@
   </div>
   <div class="left-menu-item">
     <div class="left-menu-item-icon text-success">
-      <i class="far fa-check-circle"></i>
+      <i class="fa fa-check-circle"></i>
     </div>
     <div class="left-menu-item-text">
-      <%= link_to "#", class: "left-menu-item-link" do %>
+      <%= link_to "/opportunities/applied", class: "left-menu-item-link" do %>
         Applied
         <span class="light">(2)</span>
       <% end %>
@@ -37,7 +37,7 @@
       <i class="fas fa-trash"></i>
     </div>
     <div class="left-menu-item-text">
-      <%= link_to "#", class: "left-menu-item-link" do %>
+      <%= link_to "/opportunities/trash", class: "left-menu-item-link" do %>
         Trash
       <% end %>
     </div>
