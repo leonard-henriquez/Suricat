@@ -8,6 +8,7 @@ class UserOpportunitiesController < ApplicationController
   end
 
   def show
+    authorize @user_opportunity
   end
 
   def update
