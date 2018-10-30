@@ -11,15 +11,11 @@ Rails.application.routes.draw do
 
   # Build the following routes
   # GET ['review', 'pending', 'applied', 'trash']
-  # POST [':id/review', ':id/pending', ':id/applied', ':id/trash']
   statuses = UserOpportunity.statuses.keys.map(&:to_sym)
   # status = [:review, :pending, :applied, :trash]
   statuses.each do |status|
     # then we create the routes
     # passing a parameter :status to the function in user_opportunity_controller :
-    match "/opportunities/:id/#{status.to_s}" =>
-      'user_opportunities#set_status',
-      :defaults => { :status => status }, via: :post
     match "/opportunities/#{status.to_s}" =>
       'user_opportunities#index',
       :defaults => { :status => status }, via: :get
@@ -27,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :user_opportunities,
     path: 'opportunities',
-    only: [:index, :show]
+    only: [:index, :show, :update, :destroy]
 
 
   resources :events,

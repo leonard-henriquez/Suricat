@@ -2,4 +2,6 @@
 
 module JobCardComponent
   extend ComponentHelper
+
+  property :oppportunity, default: UserOpportunity.new
 end

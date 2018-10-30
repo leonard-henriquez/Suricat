@@ -1,4 +1,3 @@
 <% @user_opportunities.each do |user_opportunity| %>
-  <%= user_opportunity.opportunity_id %>
-  <%= component 'job_card' %>
+  <%= component 'job_card', opportunity: user_opportunity %>
 <% end %>
