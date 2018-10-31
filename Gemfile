@@ -11,7 +11,7 @@ gem 'redis'
 
 gem 'simple_form'
 gem 'komponent'
-gem 'webpacker'
+gem 'webpacker', '>= 4.0.x'
 
 gem 'pundit'
 
