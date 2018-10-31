@@ -6,10 +6,9 @@
   flex-direction: column;
   justify-content: space-around;
   font-family: Raleway;
-  padding-top: 10px;
-  margin-left: 100px;
   border: 1px solid $gray-300;
   transition: transform .2s;
+  margin: 0.5px;
 
   &:hover {
     border: 1px solid $primary;

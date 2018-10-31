@@ -1,0 +1,9 @@
+.calendar-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: $gray-300;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 40px;
+}
