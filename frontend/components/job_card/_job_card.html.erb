@@ -19,7 +19,6 @@
           <i class="fas fa-trash text-gray"></i>
         <% end %>
       </div>
-
     <% when 'pending' %>
       <div class="jobcard-action zoom">
         <%= link_to user_opportunity_path(@opportunity, status: :applied), method: :patch do %>
@@ -31,14 +30,12 @@
           <i class="fas fa-trash text-gray"></i>
         <% end %>
       </div>
-
     <% when 'applied' %>
       <div class="jobcard-action zoom">
         <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch do %>
           <i class="fas fa-trash text-gray"></i>
         <% end %>
       </div>
-
     <% when 'trash' %>
       <div class="jobcard-action zoom">
         <%= link_to user_opportunity_path(@opportunity, status: :review), method: :patch do %>
@@ -50,6 +47,5 @@
           <i class="fas fa-trash text-gray"></i>
         <% end %>
       </div>
-
   <% end %>
 </div>
