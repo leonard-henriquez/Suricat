@@ -9,6 +9,22 @@
   margin-bottom: 8px;
   padding-right: 8px;
   background-color: $gray-100;
+  position: relative;
+
+  &-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+  }
+  &-link:hover,
+  &-link:focus,
+  &-link:active {
+    text-decoration: none;
+  }
 
   &:hover {
     border: 1px solid $primary;

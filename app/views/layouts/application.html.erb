@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -10,8 +10,22 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar'%>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div id="page-content-wrapper">
+      <% if @sidebar %>
+      <%# sidebar is defined in controller with method sidebar? %>
+        <div id="sidebar" class="sidebar d-none d-md-block">
+          <div class="sidebar-inner position-fixed">
+            <%= render 'shared/left_menu' %>
+          </div>
+        </div>
+      <% end %>
+      <div id="content" class="content">
+        <div class="container-fluid" id="content-container">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
