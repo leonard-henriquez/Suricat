@@ -1,0 +1,74 @@
+<div class="container">
+  <section class="row mb-3">
+    <div class="col-sm-12">
+      <div class="d-flex justify-content-between">
+        <div class="importance-headers">
+          <h2>Your Preferences</h2>
+          <h4>Set your importance criteria</h4>
+        </div>
+        <div class="importance-submit d-flex align-items-center">
+          <%= link_to 'Submit', '#', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="row">
+    <div class="col-sm-4">
+      <div class="importance-criteria d-flex flex-column justify-content-between">
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Contract</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Structure</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Industry</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Job</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Company</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="criteria-bar d-flex flex-column justify-content-between">
+          <h6>Salary</h6>
+          <div class="form-group">
+            <span class="slider-button"><i class="fa fa-minus" aria-hidden="true"></i></span>
+            <input type="range" class="form-control-range" id="formControlRange">
+            <span class="slider-button"><i class="fa fa-plus" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8 d-flex flex-column justify-content-center">
+      <div class="section-content">
+        <%= component 'radar' %>
+      </div>
+    </div>
+  </section>
+</div>
