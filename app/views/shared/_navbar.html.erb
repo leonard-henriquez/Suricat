@@ -1,41 +1,43 @@
-<nav id="navbar-suricat" class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-  <%= link_to root_path, class: "navbar-suricat-brand" do %>
-    <%= image_tag asset_pack_path('images/logo.svg') %>
-  <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarToggler">
-    <% if user_signed_in? %>
-      <ul class="navbar-nav">
-        <!-- Links when logged in -->
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Recommandation", "#", class: "nav-link" %>
-          </li>
-      </ul>
+<div class="nav-container">
+  <nav id="navbar-suricat" class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <%= link_to opportunities_review_path, class: "navbar-suricat-brand" do %>
+      <%= image_tag asset_pack_path('images/logo.svg') %>
     <% end %>
-    <ul class="navbar-nav ml-auto">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
       <% if user_signed_in? %>
-        <!-- Links when logged in -->
-        <li class="nav-item">
-          <%= link_to "John Doe", "#", class: "nav-link" %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "Log out", "#", class: "nav-link" %>
-        </li>
-
-      <% else %>
-        <!-- Login link (when logged out) -->
-        <li class="nav-item">
-          <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "nav-link" %>
-        </li>
+        <ul class="navbar-nav">
+          <!-- Links when logged in -->
+            <li class="nav-item active">
+              <%= link_to "Home", opportunities_review_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Recommandation", "#", class: "nav-link" %>
+            </li>
+        </ul>
       <% end %>
-    </ul>
-  </div>
-</nav>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <!-- Links when logged in -->
+          <li class="nav-item">
+            <%= link_to "John Doe", "#", class: "nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+
+        <% else %>
+          <!-- Login link (when logged out) -->
+          <li class="nav-item">
+            <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>

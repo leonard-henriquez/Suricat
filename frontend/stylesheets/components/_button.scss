@@ -1,6 +1,7 @@
-.btn {
+.btn:active, .btn:hover, .btn {
   font-family: Raleway;
   font-weight: 500;
+  text-decoration: none !important;
 }
 
 .btn-primary, .btn-secondary {

@@ -3,9 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   width: min-content;
-  background-color: $beige;
   font-family: Raleway;
-  padding: 20px;
 
   a, a:hover, a:active {
     color: $body-color;
@@ -27,6 +25,7 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
+    padding-left: 8px;
   }
   &-item-text .light {
     color: $gray-600;
@@ -34,13 +33,13 @@
 
   &-item-icon .badge {
     font-size: 12px;
+    color: $white;
   }
 
   &-item-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 8px;
     width: 60px;
     font-size: 22px;
     position: relative;
@@ -48,7 +47,6 @@
   }
 }
 
-
-.position-offset {
-  top: 59px;
+.badge-primary {
+  color: $white;
 }
