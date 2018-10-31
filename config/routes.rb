@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,  path: 'profile', :controllers => {:registrations => "users/registrations"}
+  devise_scope :user do
+    get '/profile', to: 'users/registrations#index'
+  end
+
   root to: 'pages#home'
   get '/styleguide', to: 'pages#styleguide'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
