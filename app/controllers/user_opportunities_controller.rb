@@ -1,5 +1,4 @@
 class UserOpportunitiesController < ApplicationController
-  layout "sidebar"
   before_action :set_user_opportunity, only: [:show, :update, :destroy]
 
   def index
@@ -21,6 +20,10 @@ class UserOpportunitiesController < ApplicationController
   def destroy
     @user_opportunity.destroy
     authorize @user_opportunity
+  end
+
+  def sidebar?
+    true
   end
 
   private

@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  layout "sidebar"
   before_action :set_event, only: [:update, :destroy]
 
   def index
@@ -29,6 +28,10 @@ class EventsController < ApplicationController
     authorize @event
     @event.destroy
     redirect_to events_path
+  end
+
+  def sidebar?
+    true
   end
 
   private

@@ -7,6 +7,7 @@
   font-size: 18px;
   font-weight: 400;
   height: $navbar-height;
+  transition: all 0.2s;
 
   .navbar-suricat-brand, .nav-link {
     padding: ($spacer * 0.25) ($spacer * 1.5);
@@ -26,10 +27,13 @@
     outline: none;
   }
 
-  #navbarToggler.show {
+  #navbarToggler {
     margin-left:  ($spacer * -1.5);
     margin-right: ($spacer * -1.5);
-    padding-bottom: 10px;
     background-color: $sand;
+  }
+
+  #navbarToggler.show {
+    padding-bottom: 10px;
   }
 }
