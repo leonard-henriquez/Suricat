@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  before_action :set_constants
   include Pundit
 
   # Pundit: white-list approach.
@@ -19,9 +20,18 @@ class ApplicationController < ActionController::Base
   # end
   # prepend_view_path Rails.root.join("frontend","views")
 
+
   private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def set_constants
+    @sidebar = sidebar?
+  end
+
+  def sidebar?
+    false
   end
 end

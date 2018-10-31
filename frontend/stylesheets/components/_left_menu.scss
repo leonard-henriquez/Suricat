@@ -30,6 +30,9 @@
   &-item-text .light {
     color: $gray-600;
   }
+  &-item-text .opportunity-number {
+    margin-left: 4px;
+  }
 
   &-item-icon .badge {
     font-size: 12px;
