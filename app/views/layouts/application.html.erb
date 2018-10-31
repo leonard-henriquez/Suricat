@@ -10,10 +10,8 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <div id="layout-container" class="container">
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/flashes' %>
-      <%= yield %>
-    </div>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flashes' %>
+    <%= yield %>
   </body>
 </html>

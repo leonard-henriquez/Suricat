@@ -1,14 +1,3 @@
-/* Main navbar */
-.navbar-suricat {
-
-  /* Logo */
-  &-brand img {
-    height: 20px;
-    position: relative;
-    margin-top: -7px;
-  }
-}
-
 #navbar-suricat {
   // height: $navbar-height;
   color: $white;
@@ -17,12 +6,30 @@
   padding-right: ($spacer * 1.5);
   font-size: 18px;
   font-weight: 400;
+  height: $navbar-height;
 
   .navbar-suricat-brand, .nav-link {
-    padding: ($spacer * 0.5) $spacer;
+    padding: ($spacer * 0.25) ($spacer * 1.5);
+  }
+
+  .navbar-suricat-brand {
+    padding-left: 0;
+  }
+
+  .navbar-suricat-brand img {
+    height: 20px;
+    position: relative;
+    margin-top: -4px;
   }
 
   .navbar-toggler:focus {
     outline: none;
+  }
+
+  #navbarToggler.show {
+    margin-left:  ($spacer * -1.5);
+    margin-right: ($spacer * -1.5);
+    padding-bottom: 10px;
+    background-color: $sand;
   }
 }
