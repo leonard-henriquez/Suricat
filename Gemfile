@@ -15,11 +15,8 @@ gem 'webpacker', '>= 4.0.x'
 
 gem 'pundit'
 
-<<<<<<< HEAD
 gem 'geocoder'
-=======
 gem "simple_calendar", "~> 2.0"
->>>>>>> master
 
 group :development do
   gem 'web-console', '>= 3.3.0'
