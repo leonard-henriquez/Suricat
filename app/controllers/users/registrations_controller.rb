@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource
   def index
-    @user_opportunities = UserOpportunity.where(status: ['pending', 'applied'])
+    @user_opportunities = UserOpportunity.where(status: [1, 2])
     @user_opportunities_id = @user_opportunities.map do |user_opportunity|
       user_opportunity.opportunity_id
     end

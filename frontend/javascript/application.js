@@ -5,7 +5,12 @@ import "bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
 import "stylesheets/application";
 import "components";
-import "gmaps";
+import {initMap} from "./gmaps";
+
+document.addEventListener("DOMContentLoaded", () => {
+  // rajouter if
+  initMap();
+});
 
 
 
