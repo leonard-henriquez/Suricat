@@ -27,6 +27,11 @@
     white-space: nowrap;
     padding-left: 8px;
   }
+
+  &-item-text:hover, &-item-text:active {
+    color: $primary;
+  }
+
   &-item-text .light {
     color: $gray-600;
   }

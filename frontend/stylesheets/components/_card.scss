@@ -1,15 +1,15 @@
 .card-calendar {
-  width: 150px;
-  height: 150px;
+  width: 123px;
+  height: 123px;
   background-color: $beige;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  text-align: center;
   font-family: Raleway;
-  padding-top: 10px;
-  margin-left: 100px;
   border: 1px solid $gray-300;
   transition: transform .2s;
+  margin: 0.5px;
 
   &:hover {
     border: 1px solid $primary;
@@ -26,7 +26,7 @@
   .interview, .deadline {
     color: $white;
     text-align: left;
-    font-size: 15px;
+    font-size: 11px;
     font-weight: bolder;
     padding-left: 10px;
   }

@@ -1,0 +1,74 @@
+.simple-calendar {
+  .calendar-heading {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 36px;
+  }
+
+  .day {
+    width: 110px;
+    height: 110px;
+    background-color: $beige;
+    text-align: left;
+    font-family: Raleway;
+    border-left: 1px solid $primary;
+    border-bottom: 1px solid $primary;
+    border-top: 1px solid $primary;
+    transition: transform .2s;
+    &:hover {
+      border: 3px solid $primary;
+    }
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+    border-right: 1px solid $primary;
+  }
+
+  .today {
+    color: $red;
+    text-decoration: underline;
+    font-weight: bold;
+    border: 3px solid $green;
+  }
+  .past {
+    background-color: $gray-200;
+  }
+  .future {
+  }
+
+  .start-date {}
+
+  .prev-month {
+    background-color: $gray-200;
+  }
+  .next-month {
+    background-color: $gray-200;
+  }
+  .current-month {}
+
+  .has-events {}
+
+  .day-header{
+    color: $white;
+    text-align: center;
+    font-family: Raleway;
+    border-right: 1px solid $gray-200;
+    background-color: $primary;
+  }
+
+  .days-header{
+    border: 3px solid $gray-200;
+  }
+
+  .btn-secondary {
+    border-radius: 50px;
+  }
+}
