@@ -5,6 +5,14 @@ import "bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
 import "stylesheets/application";
 import "components";
+import {initMap} from "./gmaps";
+
+document.addEventListener("DOMContentLoaded", () => {
+  // rajouter if
+  initMap();
+});
+
+
 
 import Rails from "rails-ujs";
 import Turbolinks from "turbolinks";

@@ -15,6 +15,7 @@ gem 'webpacker', '>= 4.0.x'
 
 gem 'pundit'
 
+gem 'geocoder'
 gem "simple_calendar", "~> 2.0"
 
 group :development do

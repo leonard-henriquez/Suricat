@@ -16,8 +16,7 @@ yarn-error.log
 public/javascript
 public/javascript/manifest.json
 manifest.json
-/public/packs
-/public/packs-test
+.env*
 /node_modules
 yarn-debug.log*
 .yarn-integrity

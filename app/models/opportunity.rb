@@ -12,6 +12,9 @@ class Opportunity < ApplicationRecord
   validates :contract_type, presence: true
   validates :location, presence: true
 
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
+
   [Job, Company, Sector].each do |obj|
     (obj.attribute_names - self.attribute_names).each do |attr|
       object_name = obj.name.underscore
