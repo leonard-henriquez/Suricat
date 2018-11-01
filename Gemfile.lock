@@ -50,7 +50,7 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     coderay (1.1.2)
-    concurrent-ruby (1.1.0)
+    concurrent-ruby (1.0.5)
     crass (1.0.4)
     devise (4.5.0)
       bcrypt (~> 3.0)
@@ -207,4 +207,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.6
+   1.17.1
