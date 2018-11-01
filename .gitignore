@@ -16,13 +16,7 @@ yarn-error.log
 public/javascript
 public/javascript/manifest.json
 manifest.json
-<<<<<<< HEAD
 .env*
-.env*
-=======
-/public/packs
-/public/packs-test
 /node_modules
 yarn-debug.log*
 .yarn-integrity
->>>>>>> master
