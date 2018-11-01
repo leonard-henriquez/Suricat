@@ -93,7 +93,7 @@ opportunity_1 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_1',
   contract_type: :internship,
-  location: 'Location_1',
+  location: 'roubaix',
   url: 'url_1'
 )
 
@@ -104,7 +104,7 @@ opportunity_2 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_2',
   contract_type: :vie,
-  location: 'Location_2',
+  location: 'lille',
   url: 'url_2'
 )
 
@@ -115,7 +115,7 @@ opportunity_3 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_3',
   contract_type: :fixed_term,
-  location: 'Location_3',
+  location: 'paris',
   url: 'url_3'
 )
 
@@ -143,7 +143,7 @@ user_opportunity_2 = UserOpportunity.create(
   opportunity: opportunity_3,
   personnal_grade: 3,
   automatic_grade: 3,
-  status: :review
+  status: :pending
 )
 
 user_opportunity_3 = UserOpportunity.create(
@@ -151,7 +151,7 @@ user_opportunity_3 = UserOpportunity.create(
   opportunity: opportunity_2,
   personnal_grade: 2,
   automatic_grade: 2,
-  status: :review
+  status: :applied
 )
 
 event_1 = Event.create(
