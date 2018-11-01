@@ -25,6 +25,6 @@ class ImportancesController < ApplicationController
     end
 
     def importance_params
-      params.require(:importance).permit(:type, :value)
+      params.require(:importance).permit(:name, :value)
     end
 end

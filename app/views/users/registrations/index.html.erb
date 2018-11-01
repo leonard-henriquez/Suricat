@@ -5,12 +5,12 @@
     </div>
   </section>
   <section class= "row">
-    <div class="col-sm-5 bg-white border border-light rounded">
+    <div class="col-sm-6 bg-white border border-light rounded">
       <div class="profile-criteria-overview">
         <h4>Radar</h4>
         <div class="d-flex flex-column justify-content-between">
-          <div class="radar mb-5">
-            <canvas id="chartjs"></canvas>
+          <div class="section-content mb-5">
+            <%= component 'radar' %>
           </div>
           <div class="profile-edit-criteria mb-4">
             <div class="d-flex justify-content-around">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4 bg-white border border-light rounded">
+    <div class="col-sm-3 bg-white border border-light rounded">
       <div class="profile-applications-status">
         <h4>Status</h4>
         <div class="d-flex flex-column">

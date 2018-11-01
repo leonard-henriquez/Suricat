@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_11_01_093625) do
+=======
+ActiveRecord::Schema.define(version: 2018_11_01_133643) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_093625) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
-    t.date "date"
+    t.datetime "start_time"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
