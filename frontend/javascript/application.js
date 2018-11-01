@@ -1,5 +1,6 @@
 // This file is usually in the path app/javascript/packs/application.js
 
+require.context('../images', true);
 import "bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
 import "stylesheets/application";
@@ -11,19 +12,3 @@ import * as ActiveStorage from "activestorage";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
-
-require.context('../images', true);
-
-import $ from 'jquery';
-$(document).ready(() => {
-  // console.log($('.grid-item'));
-  $('.grid-item').each(() => {
-    var div = $(this);
-    console.log(div);
-
-    // console.log($(this));
-
-    // console.log($(this).innerHeight());
-
-  });
-});
