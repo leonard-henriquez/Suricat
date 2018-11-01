@@ -75,9 +75,9 @@
           <span class="align-bottom">Pending</span>
         </div>
       </div>
-      <div id="map" style="width: 100%; height: 600px;" data-markers="<%= @markers.to_json %>"></div>
+      <div id="map" style="width: 100%; height: 400px;" data-markers="<%= @markers.to_json %>"></div>
     </div>
   </section>
 </div>
 
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>

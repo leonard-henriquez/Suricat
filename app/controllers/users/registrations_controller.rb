@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       {
         lat: opportunity.latitude,
         lng: opportunity.longitude,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        # infoWindow: { content: render_to_string(partial: "/opportunities/map_box", locals: { flat: flat }) }
       }
     end
   end
