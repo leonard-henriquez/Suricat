@@ -15,7 +15,7 @@ class Opportunity < ApplicationRecord
   [Job, Company, Sector].each do |obj|
     (obj.attribute_names - self.attribute_names).each do |attr|
       object_name = obj.name.underscore
-      delegate attr.to_sym, to: object_name, allow_nil: true, prefix: object_name.to_sym
+      delegate attr.to_sym, to: object_name, allow_nil: true, prefix: true
     end
   end
 end
