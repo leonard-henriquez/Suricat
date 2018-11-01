@@ -16,7 +16,7 @@
               <%= link_to "Home", opportunities_review_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Recommandation", "#", class: "nav-link" %>
+              <%= link_to "Recommandation", user_opportunities_path, class: "nav-link" %>
             </li>
         </ul>
       <% end %>
@@ -24,7 +24,7 @@
         <% if user_signed_in? %>
           <!-- Links when logged in -->
           <li class="nav-item">
-            <%= link_to "John Doe", "#", class: "nav-link" %>
+            <%= link_to "#{current_user.first_name} #{current_user.last_name}", profile_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item">
