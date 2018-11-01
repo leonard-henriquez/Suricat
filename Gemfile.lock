@@ -64,6 +64,7 @@ GEM
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     ffi (1.9.25)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.1)
@@ -187,6 +188,7 @@ DEPENDENCIES
   bootsnap
   devise
   dotenv-rails
+  geocoder
   jbuilder (~> 2.0)
   komponent
   listen (~> 3.0.5)
