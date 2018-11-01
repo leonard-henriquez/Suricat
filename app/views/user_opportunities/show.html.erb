@@ -3,7 +3,7 @@
     <div class="job-offer">
       <div class="row">
 
-        <div class="col-sm-9">
+        <div class="col-lg-9">
           <div class="job-offer-top">
             <%= image_tag asset_pack_path('images/logo-fb-noir.png'), class: 'img-center' %>
             <div class="job-offer-top--description">
@@ -14,7 +14,7 @@
         </div>
 
 
-        <div class="col-sm-3 text-right">
+        <div class="col-lg-3 text-right">
           <div class="job-offer-top--companylink">
             <%= link_to 'Apply', @user_opportunity.url, class: 'btn btn-primary' %>
           </div>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-sm-12 d-md-none">
-          <%= render 'shared/opportunity_info' %>
+          <%= render partial: 'shared/opportunity_info', locals: { opportunity: @user_opportunity } %>
         </div>
 
         <div class="col-sm-12">
@@ -41,6 +41,6 @@
     </div>
   </div>
   <div class="job-info d-none d-md-block">
-    <%= render 'shared/opportunity_info' %>
+    <%= render partial: 'shared/opportunity_info', locals: { opportunity: @user_opportunity } %>
   </div>
 </div>

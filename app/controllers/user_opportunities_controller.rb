@@ -2,8 +2,8 @@ class UserOpportunitiesController < ApplicationController
   before_action :set_user_opportunity, only: [:show, :update, :destroy]
 
   def index
-    @user_opportunities = policy_scope(UserOpportunity)
-    @user_opportunities = @user_opportunities.where(status: params[:status]) unless params[:status].nil?
+    @user_opportunities_displayed = @user_opportunities
+    @user_opportunities_displayed = @user_opportunities.where(status: params[:status]) unless params[:status].nil?
     # ADD ORDER BY
   end
 

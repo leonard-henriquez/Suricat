@@ -5,7 +5,7 @@
         Status
       </td>
       <td>
-        Pending
+        <%= opportunity.status_name %>
       </td>
     </tr>
     <tr>
@@ -13,7 +13,7 @@
         Deadline
       </td>
       <td>
-        31/01
+        <%= opportunity.deadline %>
       </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
         Start date
       </td>
       <td>
-        31/01
+        <%= opportunity.start_date %>
       </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
         Contract
       </td>
       <td>
-        VIE
+        <%= opportunity.contract_type_name %>
       </td>
     </tr>
     <tr>
@@ -37,7 +37,7 @@
         Structure
       </td>
       <td>
-        Startup
+        <%= opportunity.company_structure_name %>
       </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@
         Industry
       </td>
       <td>
-        Tech
+        <%= opportunity.sector_name %>
       </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
         Salary
       </td>
       <td>
-        200000000000001 euros
+        <%= opportunity.salary %> K€
       </td>
     </tr>
   </table>

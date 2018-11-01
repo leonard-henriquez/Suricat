@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :set_constants
   include Pundit
@@ -23,12 +24,17 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
+  end
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
   def set_constants
     @sidebar = sidebar?
+    @user_opportunities = policy_scope(UserOpportunity)
   end
 
   def sidebar?
