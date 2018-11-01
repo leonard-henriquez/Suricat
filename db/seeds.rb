@@ -126,13 +126,13 @@ opportunity_4 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_4',
   contract_type: :full_time,
-  location: 'Location_4',
+  location: 'new york',
   url: 'url_4'
 )
 
 user_opportunity_1 = UserOpportunity.create(
   user: user_1,
-  opportunity: opportunity_2,
+  opportunity_id: opportunity_2,
   personnal_grade: 1,
   automatic_grade: 1,
   status: :review
@@ -140,7 +140,7 @@ user_opportunity_1 = UserOpportunity.create(
 
 user_opportunity_2 = UserOpportunity.create(
   user: user_1,
-  opportunity: opportunity_3,
+  opportunity_id: opportunity_3,
   personnal_grade: 3,
   automatic_grade: 3,
   status: :pending
@@ -148,7 +148,7 @@ user_opportunity_2 = UserOpportunity.create(
 
 user_opportunity_3 = UserOpportunity.create(
   user: user_2,
-  opportunity: opportunity_2,
+  opportunity_id: opportunity_2,
   personnal_grade: 2,
   automatic_grade: 2,
   status: :applied
