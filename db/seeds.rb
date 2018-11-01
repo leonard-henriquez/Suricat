@@ -156,14 +156,20 @@ user_opportunity_3 = UserOpportunity.create(
 
 event_1 = Event.create(
   user: user_1,
-  date: Date.new(),
+  start_time: DateTime.new(2018,11,3),
   name: 'Event_1'
 )
 
 event_2 = Event.create(
   user: user_2,
-  date: Date.new(),
+  start_time: DateTime.new(2018,11,9),
   name: 'Event_2'
+)
+
+event_3 = Event.create(
+  user: user_1,
+  start_time: DateTime.new(2018,12,9),
+  name: 'Event_3'
 )
 
 importance_1 = Importance.create(
