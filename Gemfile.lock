@@ -146,6 +146,8 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    simple_calendar (2.3.0)
+      rails (>= 3.0)
     simple_form (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -197,6 +199,7 @@ DEPENDENCIES
   pundit
   rails (= 5.2.1)
   redis
+  simple_calendar (~> 2.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
