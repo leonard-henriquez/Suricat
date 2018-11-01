@@ -54,7 +54,9 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+    border: 2px solid $red;
+  }
 
   .day-header{
     color: $white;
@@ -70,5 +72,11 @@
 
   .btn-secondary {
     border-radius: 50px;
+  }
+
+  .event-calendar{
+    color: $white;
+    background-color: $red;
+    font-weight: bold;
   }
 }
