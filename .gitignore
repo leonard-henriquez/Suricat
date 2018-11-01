@@ -16,3 +16,5 @@ yarn-error.log
 public/javascript
 public/javascript/manifest.json
 manifest.json
+.env*
+.env*
