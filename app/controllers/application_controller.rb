@@ -22,7 +22,19 @@ class ApplicationController < ActionController::Base
   # prepend_view_path Rails.root.join("frontend","views")
 
 
-  private
+  protected
+
+  def after_sign_in_path_for(resource)
+    opportunities_review_path
+  end
+
+  def after_update_path_for(resource)
+    opportunities_review_path
+  end
+
+  def after_sign_up_path_for(resource)
+    edit_importance_path(id: 0)
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
