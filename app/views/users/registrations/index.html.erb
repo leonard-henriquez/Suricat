@@ -25,17 +25,17 @@
       <div class="profile-applications-status">
         <h4>Status</h4>
         <div class="d-flex flex-column">
-          <div class="profile-applied d-flex justify-content-between">
-            <%= link_to 'Applied', '#', class: 'text-dark'%>
-            <p>2</p>
+          <div class="profile-not-reviewed d-flex justify-content-between">
+            <%= link_to 'Not reviewed', '#', class: 'text-dark'%>
+            <p><%= @user_opportunities.where(status: :review).count %></p>
           </div>
           <div class="profile-pending d-flex justify-content-between">
             <%= link_to 'Pending', '#', class: 'text-dark'%>
-            <p>10</p>
+            <p><%= @user_opportunities.where(status: :pending).count %></p>
           </div>
-          <div class="profile-not-reviewed d-flex justify-content-between">
-            <%= link_to 'Not reviewed', '#', class: 'text-dark'%>
-            <p>7</p>
+          <div class="profile-applied d-flex justify-content-between">
+            <%= link_to 'Applied', '#', class: 'text-dark'%>
+            <p><%= @user_opportunities.where(status: :applied).count %></p>
           </div>
           <div class="profile-deadlines d-flex justify-content-between text-danger">
             <%= link_to 'Urgent deadlines', '#', class: 'text-danger'%>
@@ -52,11 +52,13 @@
       <div class="profile-settings">
         <h4>Settings</h4>
         <div class="d-flex flex-column align-items-center">
-          <div class="settings-icon mb-2">
-            <i class="fas fa-cog fa-7x" style="color: #adb5bd"></i>
-          </div>
-          <div class="button-settings">
-          <%= link_to 'Settings', edit_user_registration_path, class: 'btn btn-primary' %>
+          <div>
+            <div class="settings-icon mb-2">
+              <i class="fas fa-cog fa-7x" style="color: #adb5bd"></i>
+            </div>
+            <div class="button-settings">
+            <%= link_to 'Settings', edit_user_registration_path, class: 'btn btn-primary' %>
+            </div>
           </div>
         </div>
       </div>
