@@ -9,6 +9,13 @@ class UserOpportunitiesController < ApplicationController
 
   def show
     authorize @user_opportunity
+    @opportunity = Opportunity.where(params[:opportunity_id]).first
+    @markers =
+      {
+        lat: @opportunity.latitude,
+        lng: @opportunity.longitude,
+        # infoWindow: { content: render_to_string(partial: "/opportunities/map_box", locals: { flat: flat }) }
+      }
   end
 
   def update
@@ -33,6 +40,6 @@ class UserOpportunitiesController < ApplicationController
   end
 
   def user_opportunity_params
-    params.require(:user_opportunity).permit(:status)
+    params.require(:user_opportunity).permit(:status, :opportunity_id)
   end
 end
