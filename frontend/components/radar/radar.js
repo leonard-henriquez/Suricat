@@ -6,7 +6,7 @@ const initRadar = () => {
     new Chart(document.getElementById("chartjs"), {
       "type":"radar",
       "data": {
-        "labels":["Eating","Drinking","Sleeping","Designing","Coding","Cycling"],
+        "labels":["Contract Type","Structure","Industry","Job","Location","Salary"],
         "datasets": [
           {
             "label":"My criteria",
@@ -25,7 +25,7 @@ const initRadar = () => {
         "elements": {
           "line": {
             "tension":0,
-            "borderWidth":3
+            "borderWidth":2
           }
         },
         "scale": {
@@ -34,7 +34,7 @@ const initRadar = () => {
             "showLabelBackdrop": false
           },
           "pointLabels": {
-            "fontSize": 20,
+            "fontSize": 15,
           }
         }
       }
