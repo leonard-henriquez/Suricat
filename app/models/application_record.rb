@@ -14,6 +14,6 @@ class ApplicationRecord < ActiveRecord::Base
     attr.include? m_s[1]
 
     str = send(m_s[1]).to_s.gsub('_', ' ')
-    str.length > 3 ? str.capitalize : str.upcase
+    ['sme', 'vie'].include?(str) ? str.upcase : str.capitalize
   end
 end

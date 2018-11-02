@@ -7,25 +7,45 @@ class ImportancesController < ApplicationController
 
   def edit
     authorize @importance
-    @importance.value = params[:value]
   end
 
   def update
-    authorize @importance
-    if @importance.value.update(params[:value])
-      redirect_to importances_path
+    @importance.criteria.destroy_all
+    @criterium = Criterium.new(importance_params[:criteria])
+    @criterium.importance = @importance
+    @criterium.save
+
+    raise
+    if @importance.save
+      redirect_next
     else
       render :edit
     end
+    authorize @importance
   end
 
   private
 
-    def set_importance
-      @importance = Importance.find_by(user: current_user, name: params[:id])
-    end
+  def set_importance
+    @importance = Importance.find_by(user: current_user, name: params[:id].to_sym)
+  end
 
-    def importance_params
-      params.require(:importance).permit(:name, :value)
+  def importance_params
+    params.require(:importance).permit(criteria: [:rank, :value])
+  end
+
+  def importance_names
+    Importance.names.keys
+  end
+
+  def redirect_next
+    index = importance_names.find_index(params[:id])
+    if !index.nil? && index + 1 < importance_names.count
+      next_importance = importance_names.at(index + 1).to_sym
+      redirect_to edit_importance_path(id: next_importance)
+    else
+      params = []
+      redirect_to importances_path
     end
+  end
 end

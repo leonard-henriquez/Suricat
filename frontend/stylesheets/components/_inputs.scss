@@ -66,6 +66,10 @@ select, select:-moz-focusring, select::-moz-focus-inner {
   text-shadow: 0 0 0 #000;
 }
 
+button.btn.dropdown-toggle {
+  height: 36px;
+}
+
 .slider-button {
   font-size: 28px;
   color: $primary;

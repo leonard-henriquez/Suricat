@@ -7,6 +7,7 @@ import "bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
 import "stylesheets/application";
 import "components";
+import "bootstrap-select";
 import { initMap } from "./gmaps";
 import { initCalendar } from "./calendar";
 require.context('../images', true);
@@ -23,5 +24,9 @@ $(document).on("turbolinks:load", () => {
 
   if ($('.simple-calendar').length) {
     initCalendar();
+  }
+
+  if ($('select').length) {
+    $('select').selectpicker();
   }
 });

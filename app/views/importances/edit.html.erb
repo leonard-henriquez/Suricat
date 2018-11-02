@@ -1,8 +1,14 @@
-<%= simple_form_for @importance do |f| %>
-  <%= f.input :importance_name, as: :hidden, input_html: { value: @importance.name } %>
-  <%= f.simple_fields_for :criteria do |criteria_form| %>
-    <%= criteria_form.input :value %>
-    <% end %>
+<%= @importance.name_name %>
+<%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
+
+  <%= f.input :value, multiple: true,
+    collection: JobCategory.all,
+    as: :grouped_select,
+    group_method: :jobs,
+    :input_html => {
+      title: "Pick one or more items",
+      multiple:true
+    } %>
+
   <%= f.button :submit %>
 <% end %>
-
