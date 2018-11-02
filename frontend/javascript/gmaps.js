@@ -1,6 +1,6 @@
 import GMaps from 'gmaps/gmaps.js';
 
-function initMap () {
+const initMap = () => {
   const mapElement = document.getElementById('map');
   if (mapElement) {
     const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
@@ -17,4 +17,4 @@ function initMap () {
   }
 };
 
-export {initMap};
+export { initMap };

@@ -6,13 +6,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    authorize @event
     @event = Event.new(event_params)
-    if @event.save
-      redirect_to events_path
-    else
-      render :new
-    end
+    @event.user = current_user
+    authorize @event
+
+    render json: @event if @event.save
   end
 
   def update
@@ -41,6 +39,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date)
+    params.require(:event).permit(:name, :start_time)
   end
 end

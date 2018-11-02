@@ -1,6 +1,6 @@
 import Chart from 'chart.js';
 
-$(document).ready(() => {
+const initRadar = () => {
   const chart = document.getElementById("chartjs");
   if (chart !== null) {
     new Chart(document.getElementById("chartjs"), {
@@ -40,4 +40,10 @@ $(document).ready(() => {
       }
     });
   }
-})
+};
+
+$(document).on("turbolinks:load", () => {
+  if ($('#chartjs').length) {
+    initRadar();
+  }
+});
