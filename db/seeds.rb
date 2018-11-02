@@ -147,8 +147,8 @@ user_opportunity_2 = UserOpportunity.create(
 )
 
 user_opportunity_3 = UserOpportunity.create(
-  user: user_2,
-  opportunity_id: opportunity_2,
+  user: user_1,
+  opportunity_id: opportunity_4,
   personnal_grade: 2,
   automatic_grade: 2,
   status: :applied
