@@ -16,4 +16,8 @@ class User < ApplicationRecord
       Importance.create(user: self, name: importance_name, value:nil )
     end
   end
+
+  # turn the field authentication_token into a working authentication token
+  acts_as_token_authenticatable
+
 end
