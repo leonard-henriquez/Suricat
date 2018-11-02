@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
   # prepend_view_path Rails.root.join("frontend","views")
 
 
+  def default_url_options
+    { host: ENV["www.suricat.co"] || "localhost:3000" }
+  end
+
+
   private
 
   def configure_permitted_parameters
