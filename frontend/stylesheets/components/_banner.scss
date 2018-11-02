@@ -1,12 +1,12 @@
 .banner {
   color: white;
   text-align: center;
-  height: 500px;
-
+  height: 550px;
+  width: 100%;
 
   // height: calc(100vh - #{$navbar-height});
   background-size: cover !important;
-  background-position: -150px -150px;
+  background-position: 0px -150px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -30,9 +30,6 @@
 
 }
 
-.banner-container {
-  margin: 0 100px 50px 100px;
-}
 
 .banner-main {
   height: 380px;
@@ -44,9 +41,7 @@
   margin-top: 50px;
 }
 
-.banner {
-  border: 5px solid $sand;
-}
+
 
 .btn-banner {
   width: 300px;
