@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users,  path: 'profile', :controllers => {
-    :registrations => "users/registrations",
-    :sessions => "users/sessions"
-  }
-  devise_scope :user do
-    get '/profile', to: 'users/registrations#index'
-  end
+  devise_for :users
+
+  get '/profile', to: 'profiles#index'
 
   root to: 'pages#home'
   get '/styleguide', to: 'pages#styleguide'

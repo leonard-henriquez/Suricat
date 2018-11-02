@@ -7,16 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user_1 = User.create(
-  first_name: 'Test',
-  last_name: 'Test',
+  first_name: 'test',
+  last_name: 'test_1',
   email: 'test@test.com',
   password: '123456'
 )
 
 user_2 = User.create(
-  first_name: 'Léonard',
-  last_name: 'Henriquez',
-  email: 'leonard.henriquez@edhec.com',
+  first_name: 'testy',
+  last_name: 'testy_1',
+  email: 'test2@test.com',
   password: '123456'
 )
 
@@ -132,7 +132,7 @@ opportunity_4 = Opportunity.create(
 
 user_opportunity_1 = UserOpportunity.create(
   user: user_1,
-  opportunity_id: opportunity_2,
+  opportunity: opportunity_2,
   personnal_grade: 1,
   automatic_grade: 1,
   status: :review
@@ -140,7 +140,7 @@ user_opportunity_1 = UserOpportunity.create(
 
 user_opportunity_2 = UserOpportunity.create(
   user: user_1,
-  opportunity_id: opportunity_3,
+  opportunity: opportunity_3,
   personnal_grade: 3,
   automatic_grade: 3,
   status: :pending
@@ -148,7 +148,7 @@ user_opportunity_2 = UserOpportunity.create(
 
 user_opportunity_3 = UserOpportunity.create(
   user: user_1,
-  opportunity_id: opportunity_4,
+  opportunity: opportunity_4,
   personnal_grade: 2,
   automatic_grade: 2,
   status: :applied
