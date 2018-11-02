@@ -26,15 +26,15 @@
         <h4>Status</h4>
         <div class="d-flex flex-column">
           <div class="profile-not-reviewed d-flex justify-content-between">
-            <%= link_to 'Not reviewed', '#', class: 'text-dark'%>
+            <%= link_to 'Not reviewed', opportunities_review_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :review).count %></p>
           </div>
           <div class="profile-pending d-flex justify-content-between">
-            <%= link_to 'Pending', '#', class: 'text-dark'%>
+            <%= link_to 'Pending', opportunities_pending_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :pending).count %></p>
           </div>
           <div class="profile-applied d-flex justify-content-between">
-            <%= link_to 'Applied', '#', class: 'text-dark'%>
+            <%= link_to 'Applied', opportunities_applied_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :applied).count %></p>
           </div>
           <div class="profile-deadlines d-flex justify-content-between text-danger">
