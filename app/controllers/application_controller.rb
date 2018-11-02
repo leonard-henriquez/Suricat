@@ -21,8 +21,12 @@ class ApplicationController < ActionController::Base
   # end
   # prepend_view_path Rails.root.join("frontend","views")
 
+  def default_url_options
+    { host: ENV["www.suricat.co"] || "localhost:3000" }
+  end
 
-  protected
+
+  private
 
   def after_sign_in_path_for(resource)
     opportunities_review_path
