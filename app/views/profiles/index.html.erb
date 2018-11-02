@@ -7,15 +7,15 @@
   <section class= "row">
     <div class="col-sm-6 bg-white border border-light rounded">
       <div class="profile-criteria-overview">
-        <h4>Radar</h4>
+        <h4>Criteria</h4>
         <div class="d-flex flex-column justify-content-between">
           <div class="section-content mb-5">
             <%= component 'radar' %>
           </div>
           <div class="profile-edit-criteria mb-4">
             <div class="d-flex justify-content-around">
-              <%= link_to 'Modify Criteria', '#', class: 'btn btn-primary' %>
-              <%= link_to 'Modify Importances', '#', class: 'btn btn-primary' %>
+              <%= link_to 'Modify Criteria', edit_importance_path(id: 0), class: 'btn btn-primary' %>
+              <%= link_to 'Modify Importances', importances_path, class: 'btn btn-primary' %>
             </div>
           </div>
         </div>
@@ -26,23 +26,23 @@
         <h4>Status</h4>
         <div class="d-flex flex-column">
           <div class="profile-not-reviewed d-flex justify-content-between">
-            <%= link_to 'Not reviewed', '#', class: 'text-dark'%>
+            <%= link_to 'Not reviewed', opportunities_review_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :review).count %></p>
           </div>
           <div class="profile-pending d-flex justify-content-between">
-            <%= link_to 'Pending', '#', class: 'text-dark'%>
+            <%= link_to 'Pending', opportunities_pending_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :pending).count %></p>
           </div>
           <div class="profile-applied d-flex justify-content-between">
-            <%= link_to 'Applied', '#', class: 'text-dark'%>
+            <%= link_to 'Applied', opportunities_applied_path, class: 'text-dark'%>
             <p><%= @user_opportunities.where(status: :applied).count %></p>
           </div>
           <div class="profile-deadlines d-flex justify-content-between text-danger">
-            <%= link_to 'Urgent deadlines', '#', class: 'text-danger'%>
+            <%= link_to 'Urgent deadlines', events_path, class: 'text-danger'%>
             <p>1</p>
           </div>
           <div class="profile-interviews d-flex justify-content-between text-warning">
-            <%= link_to 'Urgent deadlines', '#', class: 'text-warning'%>
+            <%= link_to 'Interviews', events_path, class: 'text-success'%>
             <p>1</p>
           </div>
         </div>

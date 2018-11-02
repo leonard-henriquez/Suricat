@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users,  path: 'profile'
-  # devise_for :users,  path: 'profile', :controllers => {
-  #   :registrations => "users/registrations",
-  #   :sessions => "users/sessions"
-  # }
+  devise_for :users,  path: 'profile', controllers: { registrations: "registrations" }
   get '/profile', to: 'profiles#index'
 
   root to: 'pages#home'
@@ -36,7 +32,7 @@ Rails.application.routes.draw do
     only: [:index, :create, :update, :destroy]
 
   resources :importances,
-    only: [:index, :update] do
+    only: [:index, :edit, :update] do
       resources :criteria,
         except: [:index, :show]
   end

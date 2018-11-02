@@ -42,5 +42,6 @@
   </div>
   <div class="job-info d-none d-md-block">
     <%= render partial: 'shared/opportunity_info', locals: { opportunity: @user_opportunity } %>
+    <div class="mt-2" id="map" style="width: 100%; height: 40%" data-markers="<%= @markers.to_json %>"></div>
   </div>
 </div>
