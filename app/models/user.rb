@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :user_opportunities, dependent: :destroy
   has_many :opportunities, through: :user_opportunities
+
+  after_create :create_importances
+
+  def create_importances
+    [:contract_type, :structure, :industry, :job, :location, :salary].each do |importance_name|
+      Importance.create(user: self, name: importance_name, value:nil )
+    end
+  end
 end
