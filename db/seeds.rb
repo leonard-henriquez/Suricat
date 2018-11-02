@@ -7,16 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user_1 = User.create(
-  first_name: 'Test',
-  last_name: 'Test',
+  first_name: 'test',
+  last_name: 'test_1',
   email: 'test@test.com',
   password: '123456'
 )
 
 user_2 = User.create(
-  first_name: 'Léonard',
-  last_name: 'Henriquez',
-  email: 'leonard.henriquez@edhec.com',
+  first_name: 'testy',
+  last_name: 'testy_1',
+  email: 'test2@test.com',
   password: '123456'
 )
 
@@ -93,7 +93,7 @@ opportunity_1 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_1',
   contract_type: :internship,
-  location: 'Location_1',
+  location: 'roubaix',
   url: 'url_1'
 )
 
@@ -104,7 +104,7 @@ opportunity_2 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_2',
   contract_type: :vie,
-  location: 'Location_2',
+  location: 'lille',
   url: 'url_2'
 )
 
@@ -115,7 +115,7 @@ opportunity_3 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_3',
   contract_type: :fixed_term,
-  location: 'Location_3',
+  location: 'paris',
   url: 'url_3'
 )
 
@@ -126,7 +126,7 @@ opportunity_4 = Opportunity.create(
   salary: 1000,
   job_description: 'Job_Description_4',
   contract_type: :full_time,
-  location: 'Location_4',
+  location: 'new york',
   url: 'url_4'
 )
 
@@ -143,15 +143,15 @@ user_opportunity_2 = UserOpportunity.create(
   opportunity: opportunity_3,
   personnal_grade: 3,
   automatic_grade: 3,
-  status: :review
+  status: :pending
 )
 
 user_opportunity_3 = UserOpportunity.create(
-  user: user_2,
-  opportunity: opportunity_2,
+  user: user_1,
+  opportunity: opportunity_4,
   personnal_grade: 2,
   automatic_grade: 2,
-  status: :review
+  status: :applied
 )
 
 event_1 = Event.create(
