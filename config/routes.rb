@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users,  path: 'profile', :controllers => {
-    :registrations => "users/registrations",
-    :sessions => "users/sessions"
-  }
+  devise_for :users,  path: 'profile'
+  # devise_for :users,  path: 'profile', :controllers => {
+  #   :registrations => "users/registrations",
+  #   :sessions => "users/sessions"
+  # }
   get '/profile', to: 'profiles#index'
 
   root to: 'pages#home'
