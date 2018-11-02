@@ -16,4 +16,12 @@ class User < ApplicationRecord
       Importance.create(user: self, name: importance_name, value:nil )
     end
   end
+
+  def first_name=(value)
+    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
+  end
+
+  def last_name=(value)
+    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
+  end
 end
