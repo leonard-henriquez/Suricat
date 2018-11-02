@@ -6,6 +6,7 @@ class ImportancesController < ApplicationController
   end
 
   def edit
+    authorize @importance
     @importance.value = params[:value]
   end
 
@@ -21,7 +22,7 @@ class ImportancesController < ApplicationController
   private
 
     def set_importance
-      @importance = Importance.find(params[:id])
+      @importance = Importance.find_by(user: current_user, name: params[:id])
     end
 
     def importance_params

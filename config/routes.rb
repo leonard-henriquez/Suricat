@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     only: [:index, :create, :update, :destroy]
 
   resources :importances,
-    only: [:index, :update] do
+    only: [:index, :edit, :update] do
       resources :criteria,
         except: [:index, :show]
   end
