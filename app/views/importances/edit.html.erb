@@ -1,0 +1,8 @@
+<%= simple_form_for @importance do |f| %>
+  <%= f.input :importance_name, as: :hidden, input_html: { value: @importance.name } %>
+  <%= f.simple_fields_for :criteria do |criteria_form| %>
+    <%= criteria_form.input :value %>
+    <% end %>
+  <%= f.button :submit %>
+<% end %>
+
