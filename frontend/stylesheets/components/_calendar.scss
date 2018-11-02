@@ -18,7 +18,7 @@
     border-top: 1px solid $primary;
     transition: transform .2s;
     &:hover {
-      border: 3px solid $primary;
+      box-shadow: 0 0 0 2px $primary inset;
     }
   }
 
