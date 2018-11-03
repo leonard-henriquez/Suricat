@@ -1,19 +1,18 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
 
+gem 'rails', '5.2.1'
 gem 'bootsnap', require: false
-gem 'devise'
-gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.2.1'
 gem 'redis'
+gem 'devise'
+gem 'pundit'
+gem 'jbuilder', '~> 2.0'
 
 gem 'simple_form'
 gem 'komponent'
 gem 'webpacker', '>= 4.0.x'
-
-gem 'pundit'
 
 gem 'geocoder'
 gem "simple_calendar", "~> 2.0"
