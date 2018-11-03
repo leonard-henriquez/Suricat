@@ -2,9 +2,19 @@
   .calendar-heading {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     text-align: center;
     font-family: Raleway;
     font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .change-month {
+    font-size: 24px;
+  }
+
+  table.table {
+    table-layout: fixed;
   }
 
   .day {
@@ -13,12 +23,10 @@
     background-color: $beige;
     text-align: left;
     font-family: Raleway;
-    border-left: 1px solid $primary;
-    border-bottom: 1px solid $primary;
-    border-top: 1px solid $primary;
+    border: 1px solid $primary;
     transition: transform .2s;
     &:hover {
-      border: 3px solid $primary;
+      box-shadow: 0 0 0 2px $primary inset;
     }
   }
 
@@ -67,16 +75,25 @@
   }
 
   .days-header{
-    border: 3px solid $gray-200;
+    // border: 3px solid $gray-200;
   }
 
-  .btn-secondary {
-    border-radius: 50px;
+
+  .btn-secondary,
+  .btn-secondary:hover,
+  .btn-secondary:active
+
+  {
+    border: none;
+    color: $primary;
+    background-color: initial;
+    outline: none;
   }
 
   .event-calendar{
     color: $white;
     background-color: $red;
     font-weight: bold;
+    overflow: hidden;
   }
 }
