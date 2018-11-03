@@ -1,9 +1,9 @@
-import GMaps from 'gmaps/gmaps.js';
+import GMaps from "gmaps/gmaps";
 
 const initMap = () => {
-  const mapElement = document.getElementById('map');
+  const mapElement = document.getElementById("map");
   if (mapElement) {
-    const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
+    const map = new GMaps({ el: "#map", lat: 0, lng: 0 });
     const markers = JSON.parse(mapElement.dataset.markers);
     map.addMarkers(markers);
     if (markers.length === 0) {
@@ -17,4 +17,4 @@ const initMap = () => {
   }
 };
 
-export { initMap };
+export default initMap;
