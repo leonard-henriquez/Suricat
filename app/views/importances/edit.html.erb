@@ -1,14 +1,38 @@
-<%= @importance.name_name %>
+<%= @importance.name_for_display %>
 <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
-  <%= f.input :value, multiple: true,
-    collection: JobCategory.all,
-    as: :grouped_select,
-    group_method: :jobs,
-    :input_html => {
-      title: "Pick one or more items",
-      multiple:true
-    } %>
+  <% if @importance.name.to_sym == :contract_type %>
+    <%= f.input :value, multiple: true,
+      collection: Importance.names,
+      :input_html => {
+        title: "Pick one or more items",
+        multiple:true
+      } %>
+
+  <% elsif @importance.name.to_sym == :job %>
+    <%= f.input :value, multiple: true,
+      collection: JobCategory.all,
+      as: :grouped_select,
+      group_method: :jobs,
+      :input_html => {
+        title: "Pick one or more items",
+        multiple:true
+      } %>
+
+  <% elsif @importance.name.to_sym == :sector %>
+    <%= f.input :value, multiple: true,
+      collection: SectorCategory.all,
+      as: :grouped_select,
+      group_method: :sectors,
+      :input_html => {
+        title: "Pick one or more items",
+        multiple:true
+      } %>
+
+  <% else %>
+    <%= f.input :value %>
+
+  <% end %>
 
   <%= f.button :submit %>
 <% end %>

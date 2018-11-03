@@ -15,7 +15,7 @@ class ImportancesController < ApplicationController
     @criterium.importance = @importance
     @criterium.save
 
-    raise
+    # raise
     if @importance.save
       redirect_next
     else
@@ -34,14 +34,10 @@ class ImportancesController < ApplicationController
     params.require(:importance).permit(criteria: [:rank, :value])
   end
 
-  def importance_names
-    Importance.names.keys
-  end
-
   def redirect_next
-    index = importance_names.find_index(params[:id])
-    if !index.nil? && index + 1 < importance_names.count
-      next_importance = importance_names.at(index + 1).to_sym
+    index = Importance.names.keys.find_index(params[:id].to_s)
+    if !index.nil? && index + 1 < Importance.names.count
+      next_importance = Importance.name_for_display.at(index + 1).to_sym
       redirect_to edit_importance_path(id: next_importance)
     else
       params = []

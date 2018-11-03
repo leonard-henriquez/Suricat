@@ -3,9 +3,9 @@ class ApplicationRecord < ActiveRecord::Base
 
 
   # allow to call $(enum)_name to get displayable value of enum
-  # example: UserOpportunity.contract_type_name returns "Large company"
+  # example: UserOpportunity.contract_type_for_display returns "Large company"
   def method_missing(m, *args, &block)
-    m_s = /(.*)_name$/.match(m.to_s)
+    m_s = /(.*)_for_display$/.match(m.to_s)
     raise NoMethodError if m_s.nil?
 
     attr = self.attribute_names.select do |n|
