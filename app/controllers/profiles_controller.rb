@@ -1,10 +1,9 @@
-class ProfilesController < ApplicationController
+# frozen_string_literal: true
 
+class ProfilesController < ApplicationController
   def index
-    @user_opportunities = UserOpportunity.where(status: [:pending, :applied])
-    @user_opportunities_id = @user_opportunities.map do |user_opportunity|
-      user_opportunity.opportunity_id
-    end
+    @user_opportunities = UserOpportunity.where(status: %i[pending applied])
+    @user_opportunities_id = @user_opportunities.map(&:opportunity_id)
     # @opportunities = Opportunity.where(id: @user_opportunities_id).where.not(latitude: nil, longitude: nil)
     @opportunities = Opportunity.where(id: @user_opportunities_id.uniq)
     @markers = @opportunities.map do |opportunity|

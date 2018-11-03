@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ImportancesController < ApplicationController
-  before_action :set_importance, only: [:edit, :update]
+  before_action :set_importance, only: %i[edit update]
 
   def index
     @importances = policy_scope(Importance)
@@ -31,7 +33,7 @@ class ImportancesController < ApplicationController
   end
 
   def importance_params
-    params.require(:importance).permit(criteria: [:rank, :value])
+    params.require(:importance).permit(criteria: %i[rank value])
   end
 
   def redirect_next

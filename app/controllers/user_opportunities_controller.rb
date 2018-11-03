@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserOpportunitiesController < ApplicationController
-  before_action :set_user_opportunity, only: [:show, :update, :destroy]
+  before_action :set_user_opportunity, only: %i[show update destroy]
 
   def index
     @user_opportunities_displayed = @user_opportunities

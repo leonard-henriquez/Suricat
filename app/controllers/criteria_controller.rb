@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CriteriaController < ApplicationController
-  before_action :set_importance, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_criterium, only: [:edit, :update, :destroy]
+  before_action :set_importance, only: %i[new create edit update destroy]
+  before_action :set_criterium, only: %i[edit update destroy]
 
   def new
     @criterium = Criterium.new
@@ -17,8 +19,7 @@ class CriteriaController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     authorize @criterium
@@ -36,6 +37,7 @@ class CriteriaController < ApplicationController
   end
 
   private
+
   def set_importance
     @importance = Importance.find(params[:importance_id])
   end

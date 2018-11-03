@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImportancePolicy < ApplicationPolicy
   def edit?
     @record.user == @user

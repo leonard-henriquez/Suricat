@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
-  layout 'homepage'
+  layout "homepage"
   skip_before_action :authenticate_user!, only: [:home]
 
-  def home
-  end
+  def home; end
 
-  def styleguide
-  end
+  def styleguide; end
 end
