@@ -19,7 +19,6 @@ ActiveStorage.start();
 $.fn.selectpicker.Constructor.BootstrapVersion = "4";
 
 $(document).on("turbolinks:load", () => {
-
   if ($("#map").length) {
     initMap();
   }

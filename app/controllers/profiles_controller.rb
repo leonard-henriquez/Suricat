@@ -3,7 +3,7 @@
 class ProfilesController < ApplicationController
   def index
     @importances = policy_scope(Importance)
-    @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h.to_json
+    @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h
 
     @user_opportunities = UserOpportunity.where(status: %i[pending applied])
     @user_opportunities_id = @user_opportunities.map(&:opportunity_id)

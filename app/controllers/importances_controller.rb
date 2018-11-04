@@ -6,7 +6,7 @@ class ImportancesController < ApplicationController
 
   def index
     @importances = policy_scope(Importance)
-    @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h.to_json
+    @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h
   end
 
   def edit
