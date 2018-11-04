@@ -13,5 +13,21 @@ environment.plugins.prepend(
   })
 );
 
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve("jquery"),
+        use: [
+          {
+            loader: "expose-loader",
+            options: "$"
+          }
+        ]
+      }
+    ]
+  }
+};
+
 environment.loaders.append("erb", erb);
 module.exports = environment;
