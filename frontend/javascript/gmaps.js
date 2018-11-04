@@ -20,14 +20,20 @@ const initMap = () => {
       marker.icon = pinImage
       map.addMarker(marker)
     });
-    // if (markers.length === 0) {
-    //   map.setZoom(2);
-    // } else if (markers.length === 1) {
-    //   map.setCenter(markers[0].lat, markers[0].lng);
-    //   map.setZoom(14);
-    // } else {
-    //   map.fitLatLngBounds(markers);
-    // }
+
+    const markers_all = markers_pending.concat(markers_applied);
+    const markers = [];
+    markers_all.forEach (hash => {
+      markers.push({lat: hash["lat"], lng: hash["lng"]});
+    });
+    if (markers.length === 0) {
+      map.setZoom(2);
+    } else if (markers.length === 1) {
+      map.setCenter(markers[0].lat, markers[0].lng);
+      map.setZoom(14);
+    } else {
+      map.fitLatLngBounds(markers);
+    }
   }
 };
 

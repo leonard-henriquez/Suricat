@@ -23,8 +23,5 @@ class ProfilesController < ApplicationController
         }
       }
     end
-
-    @length_markers_pending = @markers_pending.length
-    @length_markers_applied = @markers_applied.length
   end
 end
