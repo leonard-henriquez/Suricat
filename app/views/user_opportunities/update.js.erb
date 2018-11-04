@@ -1,5 +1,10 @@
-document.querySelector("[data-job-id='<%= @user_opportunity.id %>']")
-  .remove();
+$(document).ready(() => {
+  document.querySelector("[data-job-id='<%= @user_opportunity.id %>']")
+    .addClass('removed-item')
+    .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+      $(this).remove();
+    });
+});
 
 <% [:review, :pending, :applied].each do |status| %>
   document.querySelector('#opportunity-number-<%= status %>').innerText = '(<%=  @user_opportunities.where(status: status).count %>)';

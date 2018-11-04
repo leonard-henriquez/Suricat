@@ -29,6 +29,8 @@ $(document).on("turbolinks:load", () => {
   }
 
   if ($("select").length) {
-    $("select").selectpicker();
+    $("select").selectpicker({
+      dropupAuto: false
+    });
   }
 });

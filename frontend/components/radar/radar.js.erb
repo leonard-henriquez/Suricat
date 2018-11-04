@@ -1,6 +1,7 @@
 import Chart from "chart.js";
 
 const initRadar = () => {
+  const importancesValues = <%= @importances_values.nil? ? '{}' : @importances_values.html_safe %>
   const chartElem = document.getElementById("chartjs");
   if (chartElem !== null) {
     const labels = Object.keys(importancesValues);
