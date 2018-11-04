@@ -1,36 +1,53 @@
 <%= @importance.name_for_display %>
 <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
-  <% if @importance.name.to_sym == :contract_type %>
-    <%= f.input :value, multiple: true,
-      collection: Importance.names,
-      :input_html => {
-        title: "Pick one or more items",
-        multiple:true
-      } %>
+  <%= f.simple_fields_for :criteria, Criterium.new do |criterium| %>
 
-  <% elsif @importance.name.to_sym == :job %>
-    <%= f.input :value, multiple: true,
-      collection: JobCategory.all,
-      as: :grouped_select,
-      group_method: :jobs,
-      :input_html => {
-        title: "Pick one or more items",
-        multiple:true
-      } %>
+    <% if @importance.name.to_sym == :contract_type %>
+      <%= criterium.input :value, multiple: true,
+        collection: Opportunity.contract_types,
+        selected: @current_values,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
 
-  <% elsif @importance.name.to_sym == :sector %>
-    <%= f.input :value, multiple: true,
-      collection: SectorCategory.all,
-      as: :grouped_select,
-      group_method: :sectors,
-      :input_html => {
-        title: "Pick one or more items",
-        multiple:true
-      } %>
+    <% elsif @importance.name.to_sym == :structure %>
+      <%= criterium.input :value, multiple: true,
+        collection: Company.structures,
+        selected: @current_values,
+        as: :select,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
 
-  <% else %>
-    <%= f.input :value %>
+    <% elsif @importance.name.to_sym == :industry %>
+      <%= criterium.input :value, multiple: true,
+        collection: SectorCategory.all,
+        selected: @current_values,
+        as: :grouped_select,
+        group_method: :sectors,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% elsif @importance.name.to_sym == :job %>
+      <%= criterium.input :value, multiple: true,
+        collection: JobCategory.all,
+        selected: @current_values,
+        as: :grouped_select,
+        group_method: :jobs,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% else %>
+
+      <%= criterium.input :value %>
+    <% end %>
 
   <% end %>
 

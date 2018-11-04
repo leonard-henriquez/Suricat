@@ -14,7 +14,7 @@
           </div>
           <div class="profile-edit-criteria mb-4">
             <div class="d-flex justify-content-around">
-              <%= link_to 'Modify Criteria', edit_importance_path(id: 0), class: 'btn btn-primary' %>
+              <%= link_to 'Modify Criteria', edit_importance_path(id: Importance.names.keys.first.to_sym), class: 'btn btn-primary' %>
               <%= link_to 'Modify Importances', importances_path, class: 'btn btn-primary' %>
             </div>
           </div>

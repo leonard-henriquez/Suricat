@@ -3,21 +3,20 @@ import Chart from "chart.js";
 const initRadar = () => {
   const chartElem = document.getElementById("chartjs");
   if (chartElem !== null) {
+    const labels = Object.keys(importancesValues);
+    const values = Object.values(importancesValues);
+    // console.log(radar_values.keys());
+    // radar_values.each((i) => {
+    //   console.log(i);
+    // });
     const chart = new Chart(chartElem, {
       type: "radar",
       data: {
-        labels: [
-          "Contract Type",
-          "Structure",
-          "Industry",
-          "Job",
-          "Location",
-          "Salary"
-        ],
+        labels,
         datasets: [
           {
             label: "My criteria",
-            data: [65, 59, 90, 81, 56, 55],
+            data: values,
             fill: true,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(208, 137, 37, 0.67)",

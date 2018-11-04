@@ -172,10 +172,9 @@ event_3 = Event.create(
   name: 'Event_3'
 )
 
-importance_1 = Importance.create(
+importance_1 = Importance.find_by(
   user: user_1,
-  name: :contract_type,
-  value: 1
+  name: :contract_type
 )
 
 criteria_1_1 = Criterium.create(
@@ -190,10 +189,9 @@ criteria_1_2 = Criterium.create(
   rank: 2
 )
 
-importance_2 = Importance.create(
+importance_2 = Importance.find_by(
   user: user_1,
-  name: :structure,
-  value: 2
+  name: :structure
 )
 
 criteria_2_1 = Criterium.create(
@@ -208,10 +206,9 @@ criteria_2_2 = Criterium.create(
   rank: 2
 )
 
-importance_3 = Importance.create(
+importance_3 = Importance.find_by(
   user: user_1,
-  name: :industry,
-  value: 3
+  name: :industry
 )
 
 criteria_3_1 = Criterium.create(
@@ -226,10 +223,9 @@ criteria_3_2 = Criterium.create(
   rank: 2
 )
 
-importance_4 = Importance.create(
+importance_4 = Importance.find_by(
   user: user_1,
-  name: :job,
-  value: 4
+  name: :job
 )
 
 criteria_4_1 = Criterium.create(
@@ -244,10 +240,9 @@ criteria_4_2 = Criterium.create(
   rank: 2
 )
 
-importance_5 = Importance.create(
+importance_5 = Importance.find_by(
   user: user_1,
-  name: :location,
-  value: 5
+  name: :location
 )
 
 criteria_5_1 = Criterium.create(
@@ -262,10 +257,9 @@ criteria_5_2 = Criterium.create(
   rank: 2
 )
 
-importance_6 = Importance.create(
+importance_6 = Importance.find_by(
   user: user_1,
-  name: :salary,
-  value: 6
+  name: :salary
 )
 
 criteria_6_1 = Criterium.create(
