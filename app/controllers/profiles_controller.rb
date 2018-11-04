@@ -2,6 +2,9 @@
 
 class ProfilesController < ApplicationController
   def index
+    @importances = policy_scope(Importance)
+    @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h.to_json
+
     @user_opportunities = UserOpportunity.where(status: %i[pending applied])
     @user_opportunities_id = @user_opportunities.map(&:opportunity_id)
     # @opportunities = Opportunity.where(id: @user_opportunities_id).where.not(latitude: nil, longitude: nil)

@@ -11,7 +11,7 @@ class Importance < ApplicationRecord
     values = attributes[:value]
 
     # delete previous values
-    self.criteria.destroy_all
+    criteria.destroy_all
 
     # rewrite them all
     values.each do |value|
