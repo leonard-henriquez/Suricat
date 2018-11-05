@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CriteriaPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve

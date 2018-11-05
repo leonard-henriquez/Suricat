@@ -10,7 +10,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-require "sprockets/railtie"
+# require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -19,16 +19,6 @@ Bundler.require(*Rails.groups)
 
 module Suricat
   class Application < Rails::Application
-    config.i18n.load_path += Dir[config.root.join('frontend/components/**/*.yml')]
-    config.autoload_paths << config.root.join('frontend/components')
-    config.komponent.root = Rails.root.join('frontend')
-    config.komponent.stylesheet_engine = :scss
-
-    config.generators do |generate|
-          generate.assets false
-          generate.helper false
-          generate.test_framework  :test_unit, fixture: false
-        end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -45,8 +35,14 @@ module Suricat
       g.test_framework  false
       g.stylesheets     false
       g.javascripts     false
+      g.assets          false
       g.helper          false
       g.channel         assets: false
     end
+
+    config.i18n.load_path += Dir[config.root.join('frontend/components/**/*.yml')]
+    config.autoload_paths << config.root.join('frontend/components')
+    config.komponent.root = Rails.root.join('frontend')
+    config.komponent.stylesheet_engine = :scss
   end
 end

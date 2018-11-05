@@ -1,29 +1,23 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-
-const environment = require('./environment')
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const environment = require("./environment");
 
 module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
   ],
   module: {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
       }
     ]
   }
-}
+};
 
-module.exports = environment.toWebpackConfig()
+module.exports = environment.toWebpackConfig();

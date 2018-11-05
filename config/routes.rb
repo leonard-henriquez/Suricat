@@ -35,5 +35,12 @@ Rails.application.routes.draw do
     only: [:index, :edit, :update] do
       resources :criteria,
         except: [:index, :show]
+    end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :sessions, only: [ :create ]
+      resources :opportunities, only: [:create]
+    end
   end
 end

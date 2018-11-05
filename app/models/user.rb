@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -12,8 +14,21 @@ class User < ApplicationRecord
   after_create :create_importances
 
   def create_importances
-    [:contract_type, :structure, :industry, :job, :location, :salary].each do |importance_name|
-      Importance.create(user: self, name: importance_name, value:nil )
+    importance_names = Importance.names.keys.map(&:to_sym)
+    # returns [:contract_type, :structure, :industry, :job, :location, :salary]
+    importance_names.each do |importance_name|
+      Importance.create(user: self, name: importance_name, value: nil)
     end
+  end
+
+  # turn the field authentication_token into a working authentication token
+  acts_as_token_authenticatable
+
+  def first_name=(value)
+    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
+  end
+
+  def last_name=(value)
+    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
   end
 end

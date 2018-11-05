@@ -3,7 +3,7 @@ import blue from '../images/map-marker-blue.svg';
 import red from '../images/map-marker-red.svg';
 
 const initMap = () => {
-  const mapElement = document.getElementById('map');
+  const mapElement = document.getElementById("map");
   if (mapElement) {
     const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
     const markers_pending = JSON.parse(mapElement.dataset.pending);
@@ -42,11 +42,12 @@ const initMap = () => {
       map.addMarker(marker)
     });
 
-    const markers_all = markers_pending.concat(markers_applied);
+    const markersAll = markersPending.concat(markersApplied);
     const markers = [];
-    markers_all.forEach (hash => {
-      markers.push({lat: hash["lat"], lng: hash["lng"]});
+    markersAll.forEach(hash => {
+      markers.push({ lat: hash.lat, lng: hash.lng });
     });
+
     if (markers.length === 0) {
       map.setZoom(2);
     } else if (markers.length === 1) {
@@ -58,4 +59,4 @@ const initMap = () => {
   }
 };
 
-export { initMap };
+export default initMap;

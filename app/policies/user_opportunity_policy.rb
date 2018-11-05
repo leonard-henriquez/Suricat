@@ -1,5 +1,6 @@
-class UserOpportunityPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class UserOpportunityPolicy < ApplicationPolicy
   def show?
     @record.user == @user
   end

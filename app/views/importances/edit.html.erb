@@ -1,8 +1,55 @@
-<%= simple_form_for @importance do |f| %>
-  <%= f.input :importance_name, as: :hidden, input_html: { value: @importance.name } %>
-  <%= f.simple_fields_for :criteria do |criteria_form| %>
-    <%= criteria_form.input :value %>
+<%= @importance.name_for_display %>
+<%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
+
+  <%= f.simple_fields_for :criteria, Criterium.new do |criterium| %>
+
+    <% if @importance.name.to_sym == :contract_type %>
+      <%= criterium.input :value, multiple: true,
+        collection: Opportunity.contract_types,
+        selected: @current_values,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% elsif @importance.name.to_sym == :structure %>
+      <%= criterium.input :value, multiple: true,
+        collection: Company.structures,
+        selected: @current_values,
+        as: :select,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% elsif @importance.name.to_sym == :industry %>
+      <%= criterium.input :value, multiple: true,
+        collection: SectorCategory.all,
+        selected: @current_values,
+        as: :grouped_select,
+        group_method: :sectors,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% elsif @importance.name.to_sym == :job %>
+      <%= criterium.input :value, multiple: true,
+        collection: JobCategory.all,
+        selected: @current_values,
+        as: :grouped_select,
+        group_method: :jobs,
+        input_html: {
+          title: "Pick one or more items",
+          multiple:true
+        } %>
+
+    <% else %>
+
+      <%= criterium.input :value %>
     <% end %>
+
+  <% end %>
+
   <%= f.button :submit %>
 <% end %>
-

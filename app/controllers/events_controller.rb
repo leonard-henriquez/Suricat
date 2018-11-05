@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  before_action :set_event, only: [:update, :destroy]
+  before_action :set_event, only: %i[update destroy]
 
   def index
     @events = policy_scope(Event)

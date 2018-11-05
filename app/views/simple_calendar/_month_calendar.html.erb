@@ -1,8 +1,12 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "btn btn-secondary" %>
+    <%= link_to calendar.url_for_previous_view, class: "change-month" do %>
+      <i class="fas fa-backward"></i> Previous
+    <% end %>
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "btn btn-secondary" %>
+    <%= link_to calendar.url_for_next_view, class: "change-month" do %>
+      Next <i class="fas fa-forward"></i>
+    <% end %>
   </div>
 
   <table class="table table-striped">
@@ -31,4 +35,3 @@
     </tbody>
   </table>
 </div>
-
