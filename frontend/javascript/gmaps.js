@@ -1,4 +1,6 @@
 import GMaps from 'gmaps/gmaps.js';
+import blue from '../images/map-marker-blue.svg';
+import red from '../images/map-marker-red.svg';
 
 const initMap = () => {
   const mapElement = document.getElementById('map');
@@ -10,24 +12,24 @@ const initMap = () => {
 
     const iconPending = {
       // Adresse de l'icône personnalisée
-      url: '../images/map-marker-blue.svg',
+      url: blue,
       // Taille de l'icône personnalisée
-      size: new google.maps.Size(25, 40),
+      size: new google.maps.Size(32, 40),
       // Origine de l'image, souvent (0, 0)
       origin: new google.maps.Point(0,0),
       // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-      anchor: new google.maps.Point(0, 20)
+      anchor: new google.maps.Point(16,40)
     };
 
     const iconApplied = {
       // Adresse de l'icône personnalisée
-      url: '../images/map-marker-red.svg',
+      url: red,
       // Taille de l'icône personnalisée
-      size: new google.maps.Size(25, 40),
+      size: new google.maps.Size(32, 40),
       // Origine de l'image, souvent (0, 0)
       origin: new google.maps.Point(0,0),
       // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-      anchor: new google.maps.Point(0, 20)
+      anchor: new google.maps.Point(16,40)
     };
 
     markers_pending.forEach(marker => {

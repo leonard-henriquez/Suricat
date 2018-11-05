@@ -77,11 +77,11 @@
         <div class="map-legend d-flex m-2">
           <div class="map-legend-applied m-2">
             <i class="fas fa-map-marker-alt fa-2x" style="color: #0b409c"></i>
-            <span class="align-bottom">Applied</span>
+            <span class="align-bottom">Pending</span>
           </div>
           <div class="map-legend-pending m-2">
             <i class="fas fa-map-marker-alt fa-2x" style="color: #dd0a35"></i>
-            <span class="align-bottom">Pending</span>
+            <span class="align-bottom">Applied</span>
           </div>
         </div>
         <div id="map" style="width: 100%; height: 50%;" data-pending="<%= @markers_pending.to_json %>" data-applied="<%= @markers_applied.to_json %>"></div>
