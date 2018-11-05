@@ -5,7 +5,7 @@ const initRadar = () => {
   if (chartElem !== null) {
     const labels = Object.keys(importancesValues);
     const values = Object.values(importancesValues);
-    const chart = new Chart(chartElem, {
+    window.chart = new Chart(chartElem, {
       type: "radar",
       data: {
         labels,
@@ -44,8 +44,33 @@ const initRadar = () => {
   }
 };
 
+const initSlider = () => {
+  var slider = document.querySelectorAll(".form-group");
+  slider.forEach((fg) => {
+    var slidervalue = fg.querySelector("input[type=range]")
+    $(slidervalue).change(updateChart);
+    var output = fg.querySelector(".value");
+    output.innerHTML = slidervalue.value;
+    slidervalue.oninput = function() {
+      output.innerHTML = this.value;
+    };
+  })
+};
+
+const updateChart = () => {
+  var slider = document.querySelectorAll(".form-group");
+  let data = []
+  slider.forEach((fg) => {
+    var slidervalue = fg.querySelector("input[type=range]")
+    data.push(slidervalue.value);
+  });
+  chart.data.datasets[0].data = data;
+  chart.update();
+};
+
 $(document).on("turbolinks:load", () => {
   if ($("#chartjs").length) {
     initRadar();
+    initSlider();
   }
 });
