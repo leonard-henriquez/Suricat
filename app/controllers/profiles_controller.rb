@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h
 
     @markers_pending = @user_opportunities.where(status: :pending).map do |u_op|
-      title = "#{u_op.job_name} @#{u_op.company_name}"
+      title = "#{u_op.title} @#{u_op.company_name}"
       {
         title: title,
         lat: u_op.opportunity.latitude,
@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
       }
     end
     @markers_applied = @user_opportunities.where(status: :applied).map do |u_op|
-      title = "#{u_op.job_name} @#{u_op.company_name}"
+      title = "#{u_op.title} @#{u_op.company_name}"
       {
         title: title,
         lat: u_op.opportunity.latitude,

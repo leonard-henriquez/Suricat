@@ -55,6 +55,20 @@
     padding-right: 20px;
   }
 
+  &-user-infos {
+    th {
+      vertical-align: text-top;
+    }
+
+    td {
+      word-break: break-all;
+    }
+  }
+
+  &-job--description {
+    text-align: justify !important;
+  }
+
   .text-right {
     direction: rtl;
   }
@@ -66,14 +80,4 @@
   max-width: 300px;
   padding-right: 15px;
   padding-left: 15px;
-}
-
-.job-offer-user-infos {
-  th {
-    vertical-align: text-top;
-  }
-
-  td {
-    word-break: break-all;
-  }
 }

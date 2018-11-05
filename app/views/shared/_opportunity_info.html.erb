@@ -53,7 +53,7 @@
         Salary
       </td>
       <td>
-        <%= opportunity.salary %> K€
+        <%= opportunity.salary.nil? ? 'N/A' : "#{opportunity.salary}  €" %>
       </td>
     </tr>
   </table>

@@ -23,4 +23,13 @@ class Opportunity < ApplicationRecord
       delegate attr.to_sym, to: object_name, allow_nil: true, prefix: true
     end
   end
+
+  def contract_type=(contract_type)
+    self[:contract_type] = contract_type.to_s.underscore.to_sym unless contract_type.is_a? Symbol
+  end
+
+  def salary=(salary)
+    salary = salary.to_s.gsub(/\D/, "").to_i
+    self[:salary] = salary.zero? ? nil : salary
+  end
 end

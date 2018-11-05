@@ -5,9 +5,9 @@
 
         <div class="col-lg-9">
           <div class="job-offer-top">
-            <%= image_tag asset_pack_path('images/logo-fb-noir.png'), class: 'img-center' %>
+            <%= image_tag @user_opportunity.logo, class: 'img-center' %>
             <div class="job-offer-top--description">
-              <h2><%= @user_opportunity.job_name %></h2>
+              <h2><%= @user_opportunity.title %></h2>
               <h4><%= @user_opportunity.company_name %></h4>
             </div>
           </div>
@@ -32,7 +32,7 @@
           <div class="job-offer-job--description">
             <h2>Company Information</h2>
             <p class="text-justify">
-              <%= @user_opportunity.job_description %>
+              <%= @user_opportunity.job_description.html_safe %>
             </p>
           </div>
         </div>
