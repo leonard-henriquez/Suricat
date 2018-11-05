@@ -13,12 +13,15 @@ class UserOpportunitiesController < ApplicationController
   def show
     authorize @user_opportunity
     @opportunity = Opportunity.where(params[:opportunity_id]).first
-    @markers =
+    title = "#{@opportunity.title} @#{@opportunity.company_name}"
+    @marker =
       {
-        lat: @opportunity.latitude,
-        lng: @opportunity.longitude,
-        # infoWindow: { content: render_to_string(partial: "/opportunities/map_box", locals: { flat: flat }) }
+      lat: @opportunity.latitude,
+      lng: @opportunity.longitude,
+      infoWindow: {
+        content: "<p>#{title}</p>"
       }
+    }
   end
 
   def update
