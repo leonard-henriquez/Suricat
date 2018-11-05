@@ -1,39 +1,59 @@
 <div class="banner-container">
-  <div class="banner" style="background-image: url(<%= asset_pack_path 'images/banner-suricat2.jpg' %>);">
-    <div class="banner-main">
-      <h1>Manage all your job opportunities</h1>
-      <p>Save, gather and keep track of all your job opportunities in one place to spot the most fitted job.</p>
-
-      <div class="btn-banner">
-        <%= link_to t(".sign_in", default: "Sign in"), new_user_session_path, class: "btn btn-primary" %>
-        <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "btn btn-secondary" %>
+  <div class="banner p-0" style="background-image: url(<%= asset_pack_path 'images/banner-suricat2.jpg' %>);">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-6 offset-lg-4 col-md-6 offset-md-4 col-xs-12">
+        <h1>Manage all your job opportunities</h1>
+        <p>Save, gather and keep track of all your job opportunities in one place to spot the most fitted job.</p>
+      </div>
+      <div class="col-lg-6 offset-lg-4 col-md-6 offset-md-4 col-xs-12">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 mb-3">
+            <%= link_to t(".sign_in", default: "Sign in"), new_user_session_path, class: "btn btn-primary" %>
+          </div>
+          <div class="col-lg-4">
+            <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="wrapper-banner">
-  <div class="subtitle-banner">
-    <h3>Looking for your first position is always a stressful time.</h3>
-    <h3>Keep calm, here is Suricat :</h3>
+  <div class="row">
+    <div class="subtitle-banner">
+      <h3>Looking for your first position is always a stressful time.</h3>
+      <h3>Keep calm, here is Suricat :</h3>
+    </div>
   </div>
 </div>
 
+
 <div class="wrapper-banner" id="wrapper-banner">
-  <div class="wrapper-content">
-    <div class="home-img"><%= image_tag asset_pack_path('images/puzzle.png'), height: 100, class: 'img-center' %></div>
-    <h5>Add every offer from your favorite job websites to your Suricat platform.</h5>
-  </div>
-  <div class="wrapper-content">
-    <div class="home-img"><%= image_tag asset_pack_path('images/dashboard.png'), height: 100, class: 'img-center' %></div>
-    <h5>Manage your personal dashboard gathering all opportunities you might be interested in.</h5>
-  </div>
-  <div class="wrapper-content">
-    <div class="home-img"><%= image_tag asset_pack_path('images/data.png'), height: 100, class: 'img-center' %></div>
-    <h5>Get instant access to data on your job opportunities but also on sectorized data and related offers.</h5>
-  </div>
-  <div class="wrapper-content">
-    <div class="home-img"><%= image_tag asset_pack_path('images/offer.png'), height: 100, class: 'img-center' %></div>
-    <h5>Get recommanded job offers and find the the most suited position.</h5>
+  <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div class="wrapper-content">
+        <div class="home-img"><%= image_tag asset_pack_path('images/puzzle.png'), height: 100, class: 'img-center' %></div>
+        <h5>Add every offer from your favorite job websites to your Suricat platform.</h5>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="wrapper-content">
+        <div class="home-img"><%= image_tag asset_pack_path('images/dashboard.png'), height: 100, class: 'img-center' %></div>
+        <h5>Manage your personal dashboard gathering all opportunities you might be interested in.</h5>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="wrapper-content">
+        <div class="home-img"><%= image_tag asset_pack_path('images/data.png'), height: 100, class: 'img-center' %></div>
+        <h5>Get instant access to data on your job opportunities but also on sectorized data and related offers.</h5>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="wrapper-content">
+        <div class="home-img"><%= image_tag asset_pack_path('images/offer.png'), height: 100, class: 'img-center' %></div>
+        <h5>Get recommanded job offers and find the the most suited position.</h5>
+      </div>
+    </div>
   </div>
 </div>
