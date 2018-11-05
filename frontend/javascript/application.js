@@ -10,6 +10,7 @@ import "components";
 import "bootstrap-select";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
+import initSlider from "./slider";
 
 require.context("../images", true);
 
@@ -26,6 +27,10 @@ $(document).on("turbolinks:load", () => {
   if ($(".simple-calendar").length) {
     initCalendar();
   }
+
+  // if ($(".form-group").length) {
+  //   initSlider();
+  // }
 
   if ($("select").length) {
     $("select").selectpicker({

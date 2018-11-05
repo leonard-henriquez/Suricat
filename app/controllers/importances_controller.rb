@@ -1,12 +1,22 @@
 # frozen_string_literal: true
 
 class ImportancesController < ApplicationController
-  before_action :clean_params
+  before_action :clean_params, only: %i[edit update]
   before_action :set_importance, only: %i[edit update]
 
   def index
     @importances = policy_scope(Importance)
     @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h
+  end
+
+  def update_importances
+    importance_params.each do |name, value|
+      importance = Importance.find_by(name: name, user: current_user)
+      importance.value = value
+      importance.save
+      authorize importance
+    end
+    redirect_to profile_path
   end
 
   def edit
@@ -15,7 +25,7 @@ class ImportancesController < ApplicationController
   end
 
   def update
-    @importance.criteria_attributes = importance_params[:criteria_attributes]
+    @importance.criteria_attributes = importances_params[:criteria_attributes]
 
     if @importance.save
       redirect_next
@@ -44,6 +54,10 @@ class ImportancesController < ApplicationController
   end
 
   def importance_params
+    params.require(:importance).permit!()
+  end
+
+  def importances_params
     params.require(:importance).permit(criteria_attributes: {})
   end
 
