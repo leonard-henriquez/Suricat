@@ -6,7 +6,6 @@
 
   // height: calc(100vh - #{$navbar-height});
   background-size: cover !important;
-  background-position: 0px -150px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -30,7 +29,6 @@
 
 }
 
-
 .banner-main {
   height: 380px;
   width: 600px;
@@ -40,8 +38,6 @@
   justify-content: space-between;
   margin-top: 50px;
 }
-
-
 
 .btn-banner {
   width: 300px;
@@ -53,7 +49,7 @@
   display: flex;
   justify-content: center;
   background-color: beige;
-  border-top: 2px solid $sand;
+  border-top: 1px solid $sand;
 }
 
 .subtitle-banner {
