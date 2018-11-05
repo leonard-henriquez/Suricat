@@ -6,8 +6,8 @@ const initMap = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
     const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
-    const markers_pending = JSON.parse(mapElement.dataset.pending);
-    const markers_applied = JSON.parse(mapElement.dataset.applied);
+    const markersPending = JSON.parse(mapElement.dataset.pending);
+    const markersApplied = JSON.parse(mapElement.dataset.applied);
 
 
     const iconPending = {
@@ -32,14 +32,14 @@ const initMap = () => {
       anchor: new google.maps.Point(16,40)
     };
 
-    markers_pending.forEach(marker => {
-      marker.icon = iconPending
-      map.addMarker(marker)
+    markersPending.forEach(marker => {
+      marker.icon = iconPending;
+      map.addMarker(marker);
     });
 
-    markers_applied.forEach(marker => {
-      marker.icon = iconApplied
-      map.addMarker(marker)
+    markersApplied.forEach(marker => {
+      marker.icon = iconApplied;
+      map.addMarker(marker);
     });
 
     const markersAll = markersPending.concat(markersApplied);
