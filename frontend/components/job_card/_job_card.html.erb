@@ -1,5 +1,6 @@
   <div class="jobcard" data-job-id="<%= @opportunity.id %>">
-    <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
+    <%= link_to user_opportunity_path(@opportunity), class: "jobcard-link" do %>
+    <% end %>
     <div class="jobcard-img img-center"><%= image_tag @opportunity.logo %></div>
     <div class="jobcard-title"><%= @opportunity.title %> @<%= @opportunity.company_name %></div>
     <div class="jobcard-date d-none d-md-block"><%= @opportunity.deadline %></div>

@@ -13,6 +13,7 @@ class Opportunity < ApplicationRecord
   validates :job_description, presence: true
   validates :contract_type, presence: true
   validates :location, presence: true
+  validates :logo, presence: true
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
@@ -24,12 +25,16 @@ class Opportunity < ApplicationRecord
     end
   end
 
-  def contract_type=(contract_type)
-    self[:contract_type] = contract_type.to_s.underscore.to_sym unless contract_type.is_a? Symbol
+  def contract_type=(value)
+    if value.is_a? Symbol
+      super(value)
+    else
+      super(value.to_s.underscore.to_sym)
+    end
   end
 
-  def salary=(salary)
-    salary = salary.to_s.gsub(/\D/, "").to_i
-    self[:salary] = salary.zero? ? nil : salary
+  def salary=(value)
+    value = value.to_s.gsub(/\D/, "").to_i
+    super(value.zero? ? nil : value)
   end
 end

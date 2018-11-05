@@ -94,7 +94,8 @@ opportunity_1 = Opportunity.create(
   job_description: 'Job_Description_1',
   contract_type: :internship,
   location: 'roubaix',
-  url: 'url_1'
+  url: 'url_1',
+  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 opportunity_2 = Opportunity.create(
@@ -105,7 +106,8 @@ opportunity_2 = Opportunity.create(
   job_description: 'Job_Description_2',
   contract_type: :vie,
   location: 'lille',
-  url: 'url_2'
+  url: 'url_2',
+  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 opportunity_3 = Opportunity.create(
@@ -116,7 +118,8 @@ opportunity_3 = Opportunity.create(
   job_description: 'Job_Description_3',
   contract_type: :fixed_term,
   location: 'paris',
-  url: 'url_3'
+  url: 'url_3',
+  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 opportunity_4 = Opportunity.create(
@@ -127,7 +130,8 @@ opportunity_4 = Opportunity.create(
   job_description: 'Job_Description_4',
   contract_type: :full_time,
   location: 'new york',
-  url: 'url_4'
+  url: 'url_4',
+  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 user_opportunity_1 = UserOpportunity.create(
