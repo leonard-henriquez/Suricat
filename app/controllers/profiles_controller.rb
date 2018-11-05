@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
         lat: u_op.opportunity.latitude,
         lng: u_op.opportunity.longitude,
         infoWindow: {
-          content: "<p>#{title}</p>"
+          content: "<p>#{title}</p>",
         }
       }
     end

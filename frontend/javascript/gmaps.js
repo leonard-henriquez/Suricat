@@ -7,17 +7,36 @@ const initMap = () => {
     const markers_pending = JSON.parse(mapElement.dataset.pending);
     const markers_applied = JSON.parse(mapElement.dataset.applied);
 
-    let pinColor = "dd0a35";
-    let pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
+
+    const iconPending = {
+      // Adresse de l'icône personnalisée
+      url: '../images/map-marker-blue.svg',
+      // Taille de l'icône personnalisée
+      size: new google.maps.Size(25, 40),
+      // Origine de l'image, souvent (0, 0)
+      origin: new google.maps.Point(0,0),
+      // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+      anchor: new google.maps.Point(0, 20)
+    };
+
+    const iconApplied = {
+      // Adresse de l'icône personnalisée
+      url: '../images/map-marker-red.svg',
+      // Taille de l'icône personnalisée
+      size: new google.maps.Size(25, 40),
+      // Origine de l'image, souvent (0, 0)
+      origin: new google.maps.Point(0,0),
+      // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+      anchor: new google.maps.Point(0, 20)
+    };
+
     markers_pending.forEach(marker => {
-      marker.icon = pinImage
+      marker.icon = iconPending
       map.addMarker(marker)
     });
 
-    pinColor = "0b409c";
-    pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
     markers_applied.forEach(marker => {
-      marker.icon = pinImage
+      marker.icon = iconApplied
       map.addMarker(marker)
     });
 
