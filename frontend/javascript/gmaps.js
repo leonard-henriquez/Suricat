@@ -1,14 +1,13 @@
-import GMaps from 'gmaps/gmaps.js';
-import blue from '../images/map-marker-blue.svg';
-import red from '../images/map-marker-red.svg';
+import GMaps from "gmaps/gmaps.js";
+import blue from "../images/map-marker-blue.svg";
+import red from "../images/map-marker-red.svg";
 
 const initMap = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
-    const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
+    const map = new GMaps({ el: "#map", lat: 0, lng: 0 });
     const markersPending = JSON.parse(mapElement.dataset.pending);
     const markersApplied = JSON.parse(mapElement.dataset.applied);
-
 
     const iconPending = {
       // Adresse de l'icône personnalisée
@@ -16,9 +15,9 @@ const initMap = () => {
       // Taille de l'icône personnalisée
       size: new google.maps.Size(32, 40),
       // Origine de l'image, souvent (0, 0)
-      origin: new google.maps.Point(0,0),
+      origin: new google.maps.Point(0, 0),
       // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-      anchor: new google.maps.Point(16,40)
+      anchor: new google.maps.Point(16, 40)
     };
 
     const iconApplied = {
@@ -27,9 +26,9 @@ const initMap = () => {
       // Taille de l'icône personnalisée
       size: new google.maps.Size(32, 40),
       // Origine de l'image, souvent (0, 0)
-      origin: new google.maps.Point(0,0),
+      origin: new google.maps.Point(0, 0),
       // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-      anchor: new google.maps.Point(16,40)
+      anchor: new google.maps.Point(16, 40)
     };
 
     markersPending.forEach(marker => {
@@ -56,6 +55,11 @@ const initMap = () => {
     } else {
       map.fitLatLngBounds(markers);
     }
+
+    $(window).resize(() => {
+      $(mapElement).css({ width: "100%", height: "50%" });
+      google.maps.event.trigger(map, "resize");
+    });
   }
 };
 
