@@ -63,6 +63,11 @@ const initMap = () => {
     } else {
       map.fitLatLngBounds(markers);
     }
+
+    $(window).resize(() => {
+      $(mapElement).css({ width: "100%", height: "50%" });
+      google.maps.event.trigger(map, "resize");
+    });
   }
 };
 
