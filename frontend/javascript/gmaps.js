@@ -51,10 +51,8 @@ const initMap = () => {
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(16, 40)
       };
-      marker.forEach(el => {
-        el.icon = icon;
-        map.addMarker(el);
-      });
+      marker[0].icon = icon;
+      map.addMarker(marker[0]);
       markers.push({ lat: marker[0].lat, lng: marker[0].lng });
     }
     if (markers.length === 0) {
