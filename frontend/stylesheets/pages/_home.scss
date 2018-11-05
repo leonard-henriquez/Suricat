@@ -1,18 +1,56 @@
 // Specific CSS for your home-page
-@media screen and (max-width: 800px) {
-  h1, h2, h3 {
-    font-size: 25px;
-  }
-  p {
-    font-size: 20px;
-  }
-}
+#home {
+  // @media screen and (max-width: 800px) {
+  //   h1, h2, h3 {
+  //     font-size: 25px;
+  //   }
+  //   p {
+  //     font-size: 20px;
+  //   }
+  // }
 
-@media screen and (max-width: 600px) {
-  h1, h2, h3 {
-    font-size: 20px;
+  // @media screen and (max-width: 600px) {
+  //   h1, h2, h3 {
+  //     font-size: 20px;
+  //   }
+  //   p {
+  //     font-size: 15px;
+  //   }
+  // }
+
+  .wrapper-banner {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
   }
-  p {
-    font-size: 15px;
+
+  #subtitle-banner {
+    background-color: $beige;
   }
+
+  #subtitle-banner .content {
+    font-weight: thin;
+    width: 680px;
+    text-align: center;
+    margin: auto;
+  }
+
+  #wrapper-banner {
+    color: $gray-700;
+  }
+
+  .wrapper-content {
+    text-align: center;
+    padding: 30px;
+  }
+  .wrapper-content p {
+    padding-top: 16px;
+  }
+
+  .home-img {
+    display: flex;
+    justify-content: center;
+
+  }
+
 }

@@ -29,22 +29,22 @@ job_category_2 = JobCategory.create(
 )
 
 job_1 = Job.create(
-  title: 'Job_Title_1',
+  name: 'Job_Title_1',
   job_category: job_category_1
 )
 
 job_2 = Job.create(
-  title: 'Job_Title_2',
+  name: 'Job_Title_2',
   job_category: job_category_1
 )
 
 job_3 = Job.create(
-  title: 'Job_Title_3',
+  name: 'Job_Title_3',
   job_category: job_category_2
 )
 
 job_4 = Job.create(
-  title: 'Job_Title_4',
+  name: 'Job_Title_4',
   job_category: job_category_2
 )
 
