@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :criteria,
         except: [:index, :show]
     end
+  put '/importances/', to: 'importances#update_importances', as: :update_importances
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

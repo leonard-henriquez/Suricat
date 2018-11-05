@@ -1,35 +1,37 @@
 <div class="container">
-  <section class="row mb-3">
-    <div class="col-sm-12">
-      <div class="d-flex justify-content-between">
-        <div class="importance-headers">
-          <h2>Your Preferences</h2>
-          <h4>Set your importance criteria</h4>
-        </div>
-        <div class="importance-submit d-flex align-items-center">
-          <%= link_to 'Submit', profile_path, class: 'btn btn-primary' %>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="col-sm-4 border-right border-primary">
-      <div class="importance-criteria d-flex flex-column justify-content-between">
-        <% @importances.each do |importance| %>
-          <div class="criteria-bar d-flex flex-column justify-content-between">
-            <h6><%= importance.name %></h6>
-            <div class="form-group">
-              <input type="range" min="1" max="100" value="<%= importance.value %>" class="form-control-range" id="formControlRange" data-importance="<%= importance.name %>">
-              <p>Value: <span class="value"></span> </p>
-            </div>
+  <%= form_tag update_importances_path, method: :put do %>
+    <section class="row mb-3">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between">
+          <div class="importance-headers">
+            <h2>Your Preferences</h2>
+            <h4>Set your importance criteria</h4>
           </div>
-        <% end %>
+          <div class="importance-submit d-flex align-items-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-8 d-flex flex-column justify-content-center">
-      <div class="section-content">
-        <%= component 'radar', importances_values: @importances_values %>
+    </section>
+    <section class="row">
+      <div class="col-sm-4 border-right border-primary">
+        <div class="importance-criteria d-flex flex-column justify-content-between">
+          <% @importances.each do |importance| %>
+            <div class="criteria-bar d-flex flex-column justify-content-between">
+              <h6><%= importance.name %></h6>
+              <div class="form-group">
+                <input type="range" min="0" max="100" name="importance[<%= importance.name %>]"value="<%= importance.value %>" class="form-control-range" id="formControlRange" data-importance="<%= importance.name %>">
+                <p>Value: <span class="value"></span> </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </section>
+      <div class="col-sm-8 d-flex flex-column justify-content-center">
+        <div class="section-content">
+          <%= component 'radar', importances_values: @importances_values %>
+        </div>
+      </div>
+    </section>
+  <% end %>
 </div>
