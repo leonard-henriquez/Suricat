@@ -7,7 +7,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @user = current_user
 
     puts "------------------------------------------"
-    puts p[:job_title]
+    puts p[:job_name]
     puts p[:company_name]
     puts "------------------------------------------"
 
@@ -22,9 +22,9 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       )
     end
 
-    job = Job.find_by(title: p[:job_title])
+    job = Job.find_by(name: p[:job_name])
     if job.nil?
-      job = Job.create(title: p[:job_title])
+      job = Job.create(name: p[:job_name])
     end
 
     opportunity = Opportunity.new(
@@ -70,7 +70,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       :contract_type,
       :image,
       :job_description,
-      :job_title,
+      :job_name,
       :location,
       :start_date,
       :title,
