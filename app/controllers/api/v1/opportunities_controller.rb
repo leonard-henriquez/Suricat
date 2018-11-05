@@ -5,27 +5,48 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   def create
     @user = current_user
+
+    puts "------------------------------------------"
+    puts p[:job_title]
+    puts p[:company_name]
+    puts "------------------------------------------"
+
+    company = Company.find_by(name: p[:company_name])
+    if company.nil?
+      structure = p[:company_structure].to_sym
+      structures = Company.structures.reject { |s| s == :others }
+      structure = :others unless structures.include?(structure)
+      company = Company.create(
+        name:      p[:company_name],
+        structure: structure
+      )
+    end
+
+    job = Job.find_by(title: p[:job_title])
+    if job.nil?
+      job = Job.create(title: p[:job_title])
+    end
+
     opportunity = Opportunity.new(
-      job:             Job.first,
-      company:         Company.first,
-      sector:          Sector.first,
-      salary:          1123,
-      job_description: "Ceci est un test",
-      contract_type:   :vie,
-      location:        "Paris",
-      url:             "http://suricat.co/",
-      latitude:        0,
-      longitude:       0
+      job:             job,
+      company:         company,
+      salary:          p[:salary],
+      job_description: p[:job_description],
+      contract_type:   p[:contract_type].to_s.underscore.to_sym,
+      location:        p[:location],
+      url:             p[:url]
     )
     opportunity.save
+    puts opportunity.errors.inspect
     user_opportunity = UserOpportunity.new(
       user:            @user,
       opportunity:     opportunity,
       automatic_grade: 4,
       personnal_grade: 1,
-      status:          :pending
+      status:          :review
     )
     user_opportunity.save
+
     if @user
       response = {
         status:           true,
@@ -42,7 +63,20 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   private
 
-  def params_sessions
-    params.permit
+  def p
+    params.require(:opportunity).permit(
+      :company_name,
+      :company_structure,
+      :contract_type,
+      :image,
+      :job_description,
+      :job_title,
+      :location,
+      :start_date,
+      :title,
+      :url,
+      :salary,
+      :email
+    )
   end
 end

@@ -4,7 +4,7 @@ class Opportunity < ApplicationRecord
   enum contract_type: %i[internship vie graduate_program fixed_term full_time apprenticeship]
   belongs_to :job
   belongs_to :company
-  belongs_to :sector
+  belongs_to :sector, optional: true
   has_one :job_category, through: :job
   has_one :sector_category, through: :sector
   has_many :user_opportunities
