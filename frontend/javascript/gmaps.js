@@ -1,31 +1,44 @@
-import GMaps from "gmaps/gmaps";
-
-const pin = color =>
-  new google.maps.MarkerImage(
-    `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${color}`
-  );
+import GMaps from 'gmaps/gmaps.js';
+import blue from '../images/map-marker-blue.svg';
+import red from '../images/map-marker-red.svg';
 
 const initMap = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
-    const map = new GMaps({ el: "#map", lat: 0, lng: 0 });
+    const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
+    const markersPending = JSON.parse(mapElement.dataset.pending);
+    const markersApplied = JSON.parse(mapElement.dataset.applied);
 
-    const markersPending =
-      $("mapElement").data("pending") !== undefined
-        ? JSON.parse($("mapElement").data("pending"))
-        : [];
-    const markersApplied =
-      $("mapElement").data("applied") !== undefined
-        ? JSON.parse($("mapElement").data("applied"))
-        : [];
+
+    const iconPending = {
+      // Adresse de l'icône personnalisée
+      url: blue,
+      // Taille de l'icône personnalisée
+      size: new google.maps.Size(32, 40),
+      // Origine de l'image, souvent (0, 0)
+      origin: new google.maps.Point(0,0),
+      // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+      anchor: new google.maps.Point(16,40)
+    };
+
+    const iconApplied = {
+      // Adresse de l'icône personnalisée
+      url: red,
+      // Taille de l'icône personnalisée
+      size: new google.maps.Size(32, 40),
+      // Origine de l'image, souvent (0, 0)
+      origin: new google.maps.Point(0,0),
+      // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+      anchor: new google.maps.Point(16,40)
+    };
 
     markersPending.forEach(marker => {
-      marker.icon = pin("dd0a35");
+      marker.icon = iconPending;
       map.addMarker(marker);
     });
 
     markersApplied.forEach(marker => {
-      marker.icon = pin("0b409c");
+      marker.icon = iconApplied;
       map.addMarker(marker);
     });
 
