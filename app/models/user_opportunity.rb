@@ -34,7 +34,12 @@ class UserOpportunity < ApplicationRecord
     @importances_value = []
     6.times do |i|
       i += 1
-      @importances_value.push(Importance.where(name: i).value)
+      importance_value = Importance.where(name: i).value
+      if importance_value.nil?
+        @importances_value.push(0)
+      else
+        @importances_value.push(importance_value)
+      end
     end
   end
 
