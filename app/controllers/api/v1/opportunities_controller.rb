@@ -30,8 +30,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     UserOpportunity.create(
       user:            current_user,
       opportunity:     opportunity,
-      automatic_grade: 4,
-      personnal_grade: 1,
+      personnal_grade: p[:stars].to_i,
       status:          :review
     )
   end
@@ -83,7 +82,8 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       :title,
       :url,
       :salary,
-      :email
+      :email,
+      :stars
     )
   end
 end
