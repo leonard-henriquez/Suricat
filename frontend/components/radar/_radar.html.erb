@@ -1,4 +1,4 @@
 <div class="radar">
-  <script>const importancesValues = <%= @importances_values.nil? ? '{}' : @importances_values.to_json.html_safe %></script>
+  <script>importancesValues = <%= @importances_values.nil? ? '{}' : @importances_values.to_json.html_safe %></script>
   <canvas id="chartjs"></canvas>
 </div>
