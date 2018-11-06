@@ -8,7 +8,6 @@ class UserOpportunity < ApplicationRecord
   has_one :company, through: :opportunity
   has_one :sector, through: :opportunity
 
-  validates :automatic_grade, presence: true
   validates :personnal_grade, presence: true
 
   (Opportunity.attribute_names - attribute_names).each do |attr|
