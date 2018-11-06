@@ -11,6 +11,7 @@ import "bootstrap-select";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
 import initSlider from "./slider";
+import autocomplete from "./autocomplete";
 
 require.context("../images", true);
 
