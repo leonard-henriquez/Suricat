@@ -19,6 +19,8 @@ Turbolinks.start();
 ActiveStorage.start();
 $.fn.selectpicker.Constructor.BootstrapVersion = "4";
 
+let importancesValues = {};
+
 $(document).on("turbolinks:load", () => {
   if ($("#map").length) {
     initMap();

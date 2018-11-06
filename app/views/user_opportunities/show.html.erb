@@ -5,10 +5,12 @@
 
         <div class="col-lg-9">
           <div class="job-offer-top">
-            <%= image_tag @user_opportunity.logo, class: 'img-center' %>
+            <% unless @user_opportunity.nil? %>
+              <%= image_tag @user_opportunity.logo, class: 'img-center' %>
+            <% end %>
             <div class="job-offer-top--description">
-              <h2><%= @user_opportunity.title %></h2>
-              <h4><%= @user_opportunity.company_name %></h4>
+              <h3><%= sanitize @user_opportunity.title %></h3>
+              <h4><%= sanitize @user_opportunity.company_name %></h4>
             </div>
           </div>
         </div>
@@ -30,9 +32,9 @@
 
         <div class="col-sm-12">
           <div class="job-offer-job--description">
-            <h2>Company Information</h2>
+            <h4>Job description</h4>
             <p class="text-justify">
-              <%= @user_opportunity.job_description.html_safe %>
+              <%= sanitize @user_opportunity.job_description %>
             </p>
           </div>
         </div>
@@ -42,6 +44,6 @@
   </div>
   <div class="job-info d-none d-md-block">
     <%= render partial: 'shared/opportunity_info', locals: { opportunity: @user_opportunity } %>
-    <div class="mt-2" id="map" style="width: 100%; height: 40%"></div>
+    <div class="mt-2" id="map" style="width: 100%; height: 40%" data-marker="<%= @marker.to_json %>"></div>
   </div>
 </div>

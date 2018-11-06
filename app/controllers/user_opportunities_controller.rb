@@ -12,16 +12,19 @@ class UserOpportunitiesController < ApplicationController
 
   def show
     authorize @user_opportunity
-    @opportunity = Opportunity.find(params[:id])
+    @opportunity = UserOpportunity.find(params[:id])
     unless @opportunity.nil?
-      @markers =
+      title = "#{@opportunity.title} @#{@opportunity.company_name}"
+      @marker =
       {
         lat: @opportunity.latitude,
         lng: @opportunity.longitude,
-        # infoWindow: { content: render_to_string(partial: "/opportunities/map_box", locals: { flat: flat }) }
+        infoWindow: {
+          content: "<p>#{title}</p>"
+        }
       }
     else
-      @markers = { lat: nil, lng: nil }
+      @marker = { lat: nil, lng: nil }
     end
   end
 
