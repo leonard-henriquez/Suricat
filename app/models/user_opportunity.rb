@@ -21,4 +21,22 @@ class UserOpportunity < ApplicationRecord
       delegate attr.to_sym, to: object_name, allow_nil: true, prefix: true
     end
   end
+
+  def grade_calculation(criterium_matching, importances)
+    grade = 0
+    (0..5).each do |i|
+      grade += criterium_matching[i] * importances [i]
+    end
+  end
+
+  def check_criterium(criterium, opportunity_attributes)
+    criterium_matching = []
+    (0..5).each do |i|
+      if criterium[i].include?(opportunity_attributes[i])
+        criterium_matching.push(1)
+      else
+        criterium_matching.push(0)
+      end
+    end
+  end
 end
