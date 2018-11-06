@@ -77,7 +77,7 @@ class UserOpportunity < ApplicationRecord
   def grade_calculation
     automatic_grade = 0
     6.times do |i|
-      automatic_grade += ((@criterium_matching[i] * @importances_value[i]) / 6).to_i
+      automatic_grade += (@criterium_matching[i] * @importances_value[i] / 6).to_i
     end
     @user_opportunity.automatic_grade = automatic_grade
     @user_opportunity.save
