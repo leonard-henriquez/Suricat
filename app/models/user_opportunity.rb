@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "criterium"
+require_relative "importance"
+
 class UserOpportunity < ApplicationRecord
   enum status: %i[review pending applied trash]
   belongs_to :user
@@ -10,6 +13,8 @@ class UserOpportunity < ApplicationRecord
 
   validates :automatic_grade, presence: true
   validates :personnal_grade, presence: true
+
+  before_validation :grade_calculation
 
   (Opportunity.attribute_names - attribute_names).each do |attr|
     delegate attr.to_sym, to: :opportunity, allow_nil: true
@@ -22,21 +27,57 @@ class UserOpportunity < ApplicationRecord
     end
   end
 
-  def grade_calculation(criterium_matching, importances)
-    grade = 0
-    (0..5).each do |i|
-      grade += criterium_matching[i] * importances [i]
+  private
+
+  # ! start methods for automatic_grade calculation !
+  def importances_value
+    @importances_value = []
+    (1..6).to_a.each do |i|
+      @importances_value.push(Importance.where(name: i).value)
     end
   end
 
-  def check_criterium(criterium, opportunity_attributes)
-    criterium_matching = []
-    (0..5).each do |i|
-      if criterium[i].include?(opportunity_attributes[i])
-        criterium_matching.push(1)
+  def criteria_tab
+    @criteria = []
+    (1..6).to_a.each do |i|
+      criteria = Criterium.where(importance_id: i).map(&:value.to_proc)
+      @criteria.push(criteria)
+    end
+  end
+
+  def user_opportunity_criteria
+    @user_opportunity_criteria = [
+      @user_opportunity.contract_type,
+      @user_opportunity.company.structure,
+      @user_opportunity.sector.name,
+      @user_opportunity.job.name,
+      @user_opportunity.location,
+      @user_opportunity.salary
+    ]
+  end
+
+  def check_criterium
+    @criterium_matching = []
+    (0..4).to_a.each do |i|
+      if @criteria[i].include?(@user_opportunity_criteria[i])
+        @criterium_matching.push(1)
       else
-        criterium_matching.push(0)
+        @criterium_matching.push(0)
       end
     end
+    if @user_opportunity_criteria[5] >= @criteria[5]
+      @criterium_matching.push(1)
+    else
+      @criterium_matching.push(0)
+    end
+  end
+
+  def grade_calculation
+    automatic_grade = 0
+    (0..5).to_a.each do |i|
+      automatic_grade += ((@criterium_matching[i] * @importances_value[i]) / 6).to_i
+    end
+    @user_opportunity.automatic_grade = automatic_grade
+    @user_opportunity.save
   end
 end
