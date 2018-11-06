@@ -32,14 +32,16 @@ class UserOpportunity < ApplicationRecord
   # ! start methods for automatic_grade calculation !
   def importances_value
     @importances_value = []
-    (1..6).to_a.each do |i|
+    6.times do |i|
+      i += 1
       @importances_value.push(Importance.where(name: i).value)
     end
   end
 
   def criteria_tab
     @criteria = []
-    (1..6).to_a.each do |i|
+    6.times do |i|
+      i += 1
       criteria = Criterium.where(importance_id: i).map(&:value.to_proc)
       @criteria.push(criteria)
     end
@@ -58,7 +60,7 @@ class UserOpportunity < ApplicationRecord
 
   def check_criterium
     @criterium_matching = []
-    (0..4).to_a.each do |i|
+    5.times do |i|
       if @criteria[i].include?(@user_opportunity_criteria[i])
         @criterium_matching.push(1)
       else
@@ -74,7 +76,7 @@ class UserOpportunity < ApplicationRecord
 
   def grade_calculation
     automatic_grade = 0
-    (0..5).to_a.each do |i|
+    6.times do |i|
       automatic_grade += ((@criterium_matching[i] * @importances_value[i]) / 6).to_i
     end
     @user_opportunity.automatic_grade = automatic_grade
