@@ -138,7 +138,6 @@ user_opportunity_1 = UserOpportunity.create(
   user: user_1,
   opportunity: opportunity_2,
   personnal_grade: 1,
-  automatic_grade: 1,
   status: :review
 )
 
@@ -146,7 +145,6 @@ user_opportunity_2 = UserOpportunity.create(
   user: user_1,
   opportunity: opportunity_3,
   personnal_grade: 3,
-  automatic_grade: 3,
   status: :pending
 )
 
@@ -154,7 +152,6 @@ user_opportunity_3 = UserOpportunity.create(
   user: user_1,
   opportunity: opportunity_4,
   personnal_grade: 2,
-  automatic_grade: 2,
   status: :applied
 )
 
