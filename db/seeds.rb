@@ -180,13 +180,13 @@ importance_1 = Importance.find_by(
 
 criteria_1_1 = Criterium.create(
   importance: importance_1,
-  value: 'Test',
+  value: 'vie',
   rank: 1
 )
 
 criteria_1_2 = Criterium.create(
   importance: importance_1,
-  value: 'Test_2',
+  value: 'internship',
   rank: 2
 )
 
@@ -197,13 +197,13 @@ importance_2 = Importance.find_by(
 
 criteria_2_1 = Criterium.create(
   importance: importance_2,
-  value: 'Test',
+  value: 'large-company',
   rank: 1
 )
 
 criteria_2_2 = Criterium.create(
   importance: importance_2,
-  value: 'Test_2',
+  value: 'start-up',
   rank: 2
 )
 
@@ -214,13 +214,13 @@ importance_3 = Importance.find_by(
 
 criteria_3_1 = Criterium.create(
   importance: importance_3,
-  value: 'Test',
+  value: 'Sector_Title_1',
   rank: 1
 )
 
 criteria_3_2 = Criterium.create(
   importance: importance_3,
-  value: 'Test_2',
+  value: 'Sector_Title_2',
   rank: 2
 )
 
@@ -231,13 +231,13 @@ importance_4 = Importance.find_by(
 
 criteria_4_1 = Criterium.create(
   importance: importance_4,
-  value: 'Test',
+  value: 'Job_Title_1',
   rank: 1
 )
 
 criteria_4_2 = Criterium.create(
   importance: importance_4,
-  value: 'Test_2',
+  value: 'Job_Title_3',
   rank: 2
 )
 
@@ -248,13 +248,13 @@ importance_5 = Importance.find_by(
 
 criteria_5_1 = Criterium.create(
   importance: importance_5,
-  value: 'Test',
+  value: 'paris',
   rank: 1
 )
 
 criteria_5_2 = Criterium.create(
   importance: importance_5,
-  value: 'Test_2',
+  value: 'lille',
   rank: 2
 )
 
@@ -265,12 +265,12 @@ importance_6 = Importance.find_by(
 
 criteria_6_1 = Criterium.create(
   importance: importance_6,
-  value: 'Test',
+  value: 1000,
   rank: 1
 )
 
 criteria_6_2 = Criterium.create(
   importance: importance_6,
-  value: 'Test_2',
+  value: 1000,
   rank: 2
 )
