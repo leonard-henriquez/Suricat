@@ -20,12 +20,18 @@
     margin-bottom: 10px;
   }
 
-  &-top--description {
-    padding-left: 20;
+  &-top--description h3 {
+    letter-spacing: -0.3px;
   }
 
-  &-top--description h2, h4 {
+  &-top--description h3 {
     margin: 0;
+  }
+
+  .right-side {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: auto;
   }
 
   &-top--grades {
@@ -33,12 +39,14 @@
   }
 
   &-top img {
-    height: 140px;
-    max-width: 200px;
+    padding-right: 20;
+    height: 105px;
+    max-width: 150px;
+    align-self: auto;
   }
 
   &-user-infos p {
-    margin: 0px;
+    margin: 0;
   }
 
   &-map img {
@@ -66,12 +74,41 @@
   }
 
   &-job--description {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: justify !important;
   }
 
   .text-right {
     direction: rtl;
+  }
+
+  @media screen and (max-width: 555px) {
+    &-top img {
+      display: none;
+    }
+
+    &-top--description h3 {
+      font-size: 1.5rem;
+    }
+
+    &-top--description h4 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+#mobile-nav {
+  border-bottom: 1px solid #DBAC69;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+
+  .left-menu {
+    flex-direction: row;
+    margin: auto;
+  }
+
+  .left-menu-item-text {
+    display: none;
   }
 }
 
