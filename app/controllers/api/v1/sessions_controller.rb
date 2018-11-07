@@ -14,10 +14,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   private
-  def params_sessions
-    params.permit(:email, :password)
-  end
-
   def user_visible_attributes
     [:id, :email, :first_name, :last_name, :authentication_token]
   end
