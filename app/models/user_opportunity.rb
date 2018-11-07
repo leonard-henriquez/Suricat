@@ -73,7 +73,7 @@ class UserOpportunity < ApplicationRecord
   end
 
   def test(criteria_values, value)
-    is_number?(criteria_values.first) ? value >= criteria_values.first.to_i : criteria_values.include?(value)
+    is_number?(criteria_values.first) ? (value || 0) >= criteria_values.first.to_i : criteria_values.include?(value)
   end
 
   def test_to_int(criteria_values, value)
