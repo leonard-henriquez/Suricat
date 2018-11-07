@@ -48,7 +48,7 @@ const autocomplete = () => {
           lng: place.geometry.location.lng()
         };
 
-        input.insertAdjacentHTML('afterend', tagGenerator(location))
+        input.insertAdjacentHTML('beforebegin', tagGenerator(location))
         addScript(location);
 
       });

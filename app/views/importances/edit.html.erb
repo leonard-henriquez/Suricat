@@ -1,59 +1,139 @@
-<%= @importance.name_for_display %>
-<%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
+<div class="flex-sign">
+  <h1> Your Criteria </h1>
+  <h2> Let us know more about you to build your profil: </h2>
 
-  <%= f.simple_fields_for :criteria, Criterium.new do |criterium| %>
+  <div id="mydiv" class="card-question section-content">
 
-    <% if @importance.name.to_sym == :contract_type %>
-      <%= criterium.input :value, multiple: true,
-        collection: Opportunity.contract_types,
-        selected: @current_values,
-        input_html: {
-          title: "Pick one or more items",
-          multiple:true
-        } %>
+    <h3> <%= @importance.name_for_display %> </h3>
+    <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
-    <% elsif @importance.name.to_sym == :structure %>
-      <%= criterium.input :value, multiple: true,
-        collection: Company.structures,
-        selected: @current_values,
-        as: :select,
-        input_html: {
-          title: "Pick one or more items",
-          multiple:true
-        } %>
+      <%= f.simple_fields_for :criteria, Criterium.new do |criterium| %>
 
-    <% elsif @importance.name.to_sym == :industry %>
-      <%= criterium.input :value, multiple: true,
-        collection: SectorCategory.all,
-        selected: @current_values,
-        as: :grouped_select,
-        group_method: :sectors,
-        input_html: {
-          title: "Pick one or more items",
-          multiple:true
-        } %>
+        <% if @importance.name.to_sym == :contract_type %>
+          <%= criterium.input :value, multiple: true,
+            collection: Opportunity.contract_types,
+            selected: @current_values,
+            input_html: {
+              title: "Pick one or more items",
+              multiple:true
+            } %>
 
-    <% elsif @importance.name.to_sym == :job %>
-      <%= criterium.input :value, multiple: true,
-        collection: JobCategory.all,
-        selected: @current_values,
-        as: :grouped_select,
-        group_method: :jobs,
-        input_html: {
-          title: "Pick one or more items",
-          multiple:true
-        } %>
+        <% elsif @importance.name.to_sym == :structure %>
+          <%= criterium.input :value, multiple: true,
+            collection: Company.structures,
+            selected: @current_values,
+            as: :select,
+            input_html: {
+              title: "Pick one or more items",
+              multiple:true
+            } %>
 
-    <% elsif @importance.name.to_sym == :location %>
-      <input type="text" id="location">
+        <% elsif @importance.name.to_sym == :industry %>
+          <%= criterium.input :value, multiple: true,
+            collection: SectorCategory.all,
+            selected: @current_values,
+            as: :grouped_select,
+            group_method: :sectors,
+            input_html: {
+              title: "Pick one or more items",
+              multiple:true
+            } %>
 
+        <% elsif @importance.name.to_sym == :job %>
+          <%= criterium.input :value, multiple: true,
+            collection: JobCategory.all,
+            selected: @current_values,
+            as: :grouped_select,
+            group_method: :jobs,
+            input_html: {
+              title: "Pick one or more items",
+              multiple:true
+            } %>
 
-    <% else %>
+        <% elsif @importance.name.to_sym == :location %>
+          <input type="text" id="location">
 
-      <%= criterium.input :value %>
+        <% else %>
+
+          <%= criterium.input :value %>
+
+        <% end %>
+
+      <% end %>
+
+      <%= f.button :submit %>
     <% end %>
-
+  </div>
+  <% if @importance.name.to_sym == :contract_type %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li class="is-active"><%= link_to 'Contract type', 'edit' %></li>
+        <li><%= link_to 'Structure', '../structure/edit' %></li>
+        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'Job', '../job/edit' %></li>
+        <li><%= link_to 'Structure', '../location/edit' %></li>
+        <li><%= link_to 'Structure', '../salary/edit' %></li>
+      </ul>
+    </div>
   <% end %>
-
-  <%= f.button :submit %>
-<% end %>
+  <% if @importance.name.to_sym == :structure %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
+        <li class="is-active"><%= link_to 'Structure', 'edit' %></li>
+        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'Job', '../job/edit' %></li>
+        <li><%= link_to 'Location', '../location/edit' %></li>
+        <li><%= link_to 'Salary', '../salary/edit' %></li>
+      </ul>
+    </div>
+  <% end %>
+  <% if @importance.name.to_sym == :industry %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
+        <li><%= link_to 'Structure', '../structure/edit' %></li>
+        <li class="is-active"><%= link_to 'Industry', 'edit' %></li>
+        <li><%= link_to 'Job', '../job/edit' %></li>
+        <li><%= link_to 'Location', '../location/edit' %></li>
+        <li><%= link_to 'Salary', '../salary/edit' %></li>
+      </ul>
+    </div>
+  <% end %>
+  <% if @importance.name.to_sym == :job %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
+        <li><%= link_to 'Structure', '../structure/edit' %></li>
+        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li class="is-active"><%= link_to 'Job', 'edit' %></li>
+        <li><%= link_to 'Location', '../location/edit' %></li>
+        <li><%= link_to 'Salary', '../salary/edit' %></li>
+      </ul>
+    </div>
+  <% end %>
+  <% if @importance.name.to_sym == :location %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
+        <li><%= link_to 'Structure', '../structure/edit' %></li>
+        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'Job', '../job/edit' %></li>
+        <li class="is-active"><%= link_to 'Location', 'edit' %></li>
+        <li><%= link_to 'Salary', '../salary/edit' %></li>
+      </ul>
+    </div>
+  <% end %>
+  <% if @importance.name.to_sym == :salary %>
+    <div class="section-content">
+      <ul class="list-unstyled multi-steps">
+        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
+        <li><%= link_to 'Structure', '../structure/edit' %></li>
+        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'Job', '../job/edit' %></li>
+        <li><%= link_to 'Location', '../location/edit' %></li>
+        <li class="is-active"><%= link_to 'Salary', 'edit' %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
