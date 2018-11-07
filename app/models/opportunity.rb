@@ -25,15 +25,11 @@ class Opportunity < ApplicationRecord
   end
 
   def contract_type=(value)
-    if value.is_a? Symbol
-      super(value)
-    else
-      actual_contract_type = :other
-      contract_types_format.each do |contract_type, regex|
-        actual_contract_type = contract_type if regex.match?(value)
-      end
-      super(value.to_s.underscore.to_sym)
+    unless value.is_a? Symbol
+      sanitizer = ApiSanitizerService.new(value, contract_types_format, :other)
+      value = sanitizer.call
     end
+    super(value)
   end
 
   def salary=(value)
@@ -42,7 +38,7 @@ class Opportunity < ApplicationRecord
   end
 
   def company_location
-    company.nil? ? location : [company.name, location].compact.join(', ')
+    company.nil? ? location : [company.name, location].compact.join(", ")
   end
 
   protected

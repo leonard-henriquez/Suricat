@@ -51,7 +51,6 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       url
       salary
       email
-      stars
     ]
 
     create_opportunity_params = {
