@@ -79,7 +79,9 @@ class UserOpportunity < ApplicationRecord
         @criterium_matching.push(0)
       end
     end
-    if @user_opportunity_criteria[5] >= @criteria[5][0].to_i
+    if @criteria[5][0].nil?
+      @criterium_matching.push(0)
+    elsif @user_opportunity_criteria[5] >= @criteria[5][0].to_i
       @criterium_matching.push(1)
     else
       @criterium_matching.push(0)
