@@ -7,6 +7,8 @@ class UserOpportunitiesController < ApplicationController
     @status = params[:status]
     @user_opportunities_displayed = @user_opportunities
     @user_opportunities_displayed = @user_opportunities.where(status: @status) unless @status.nil?
+    @user_opportunities_displayed.sort_by(&:personnal_grade)
+    @user_opportunities_displayed.sort_by(&:automatic_grade)
     # ADD ORDER BY
   end
 
