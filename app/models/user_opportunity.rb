@@ -29,7 +29,7 @@ class UserOpportunity < ApplicationRecord
   # ! start methods for automatic_grade calculation !
   def grade_calculation
     grade = 0
-    [0, 1, 2, 3, 4, 5].each do |i|
+    criterium_matching.each_with_index do |_, i|
       grade += criterium_matching[i] * importances_value[i]
     end
     self.automatic_grade = grade.fdiv(6).to_i
@@ -46,9 +46,9 @@ class UserOpportunity < ApplicationRecord
   def user_opportunity_criteria
     [
       contract_type,
-      company.structure,
-      sector.name,
-      job.name,
+      company_structure,
+      sector_name,
+      job_name,
       location,
       salary
     ]
@@ -56,19 +56,23 @@ class UserOpportunity < ApplicationRecord
 
   def criterium_matching
     criterium_matching = []
-    [0, 1, 2, 3, 4].each do |i|
-      if criteria[i].include?(user_opportunity_criteria[i])
-        criterium_matching.push(1)
-      else
-        criterium_matching.push(0)
-      end
+    criteria.each_with_index do |_, i|
+      criterium_matching.push(test_to_int(criteria[i], user_opportunity_criteria[i]))
     end
-    if criteria[5][0].nil?
-      criterium_matching.push(0)
-    elsif user_opportunity_criteria[5] >= criteria[5][0].to_i
-      criterium_matching.push(1)
-    else
-      criterium_matching.push(0)
-    end
+    criterium_matching
+  end
+
+  def test(criteria_values, value)
+    is_number?(criteria_values.first) ? value >= criteria_values.first.to_i : criteria_values.include?(value)
+  end
+
+  def test_to_int(criteria_values, value)
+    test(criteria_values, value) ? 1 : 0
+  end
+
+  def is_number?(value)
+    true if Float(value)
+  rescue StandardError
+    false
   end
 end
