@@ -39,3 +39,32 @@
     background-color: $danger;
   }
 }
+
+.card-question {
+  width: 600px;
+  height: 300px;
+  border: 1px solid $primary;
+  background-color: $beige;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  justify-content: space-around;
+  align-items: stretch;
+  h1 {
+    margin-left: 30px;
+  }
+}
+
+
+.flex-sign {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  h2 {
+    font-weight: lighter;
+  }
+}
+
+
+
