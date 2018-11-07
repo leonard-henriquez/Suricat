@@ -7,6 +7,7 @@ class UserOpportunity < ApplicationRecord
   has_one :job, through: :opportunity
   has_one :company, through: :opportunity
   has_one :sector, through: :opportunity
+  after_initialize :init
 
   validates :personnal_grade, presence: true
 
@@ -19,5 +20,14 @@ class UserOpportunity < ApplicationRecord
       object_name = obj.name.underscore
       delegate attr.to_sym, to: object_name, allow_nil: true, prefix: true
     end
+  end
+
+  def init
+    self.status  ||= :review
+  end
+
+  def personnal_grade=(value)
+    value = value.to_s.gsub(/\D/, "").to_i
+    super(value)
   end
 end

@@ -17,7 +17,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
     response = {
       status:           true,
-      user:             @user,
+      user:             current_user,
       user_opportunity: user_opportunity,
       opportunity:      opportunity
     }
@@ -30,8 +30,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     UserOpportunity.create(
       user:            current_user,
       opportunity:     opportunity,
-      personnal_grade: p[:stars].to_i,
-      status:          :review
+      personnal_grade: p[:stars]
     )
   end
 
@@ -42,17 +41,29 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     company = Company.find_by(name: p[:company_name])
     company = create_company if company.nil?
 
-    Opportunity.create(
-      job:             job,
-      company:         company,
-      contract_type:   p[:contract_type],
-      salary:          p[:salary],
-      job_description: p[:job_description],
-      location:        p[:location],
-      url:             p[:url],
-      title:           p[:title],
-      logo:            p[:logo]
-    )
+    opportunity_params = %i[
+      contract_type
+      logo
+      job_description
+      location
+      start_date
+      title
+      url
+      salary
+      email
+      stars
+    ]
+
+    create_opportunity_params = {
+      job:     job,
+      company: company
+    }
+
+    opportunity_params.each do |param|
+      create_opportunity_params[param] = p[param] if p.key?(param)
+    end
+
+    Opportunity.create(create_opportunity_params)
   end
 
   def create_company
@@ -70,20 +81,25 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
   end
 
   def p
-    params.require(:opportunity).permit(
-      :company_name,
-      :company_structure,
-      :contract_type,
-      :logo,
-      :job_description,
-      :job_name,
-      :location,
-      :start_date,
-      :title,
-      :url,
-      :salary,
-      :email,
-      :stars
-    )
+    required_params = %i[
+      company_name
+      company_structure
+      contract_type
+      logo
+      job_description
+      job_name
+      location
+      title
+      url
+      stars
+    ]
+    optional_params = %i[
+      job_name
+      start_date
+      salary
+      email
+    ]
+    params.require(:opportunity).require(required_params)
+    params.require(:opportunity).permit(required_params + optional_params)
   end
 end
