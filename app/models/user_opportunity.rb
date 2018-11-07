@@ -27,14 +27,13 @@ class UserOpportunity < ApplicationRecord
     end
   end
 
-  private
 
   # ! start methods for automatic_grade calculation !
   def importances_value
     @importances_value = []
     6.times do |i|
       i += 1
-      importance_value = Importance.where(name: i).value
+      importance_value = Importance.find_by(name: i).value
       if importance_value.nil?
         @importances_value.push(0)
       else
