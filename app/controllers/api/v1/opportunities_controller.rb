@@ -24,7 +24,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     render json: response
   end
 
-  private
+  protected
 
   def create_user_opportunity(opportunity)
     UserOpportunity.create(
