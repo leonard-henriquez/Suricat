@@ -32,11 +32,11 @@ class UserOpportunity < ApplicationRecord
     self.criteria_tab
     self.user_opportunity_criteria
     self.check_criterium
-    automatic_grade = 0
+    grade = 0
     [0,1,2,3,4,5].each do |i|
-      automatic_grade += (@criterium_matching[i] * @importances_value[i] / 6).to_i
+      grade += (@criterium_matching[i] * @importances_value[i] / 6).to_i
     end
-    self.automatic_grade = automatic_grade
+    self.automatic_grade = grade
   end
 
   def importances_value
