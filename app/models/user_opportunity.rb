@@ -28,63 +28,47 @@ class UserOpportunity < ApplicationRecord
 
   # ! start methods for automatic_grade calculation !
   def grade_calculation
-    self.importances_value
-    self.criteria_tab
-    self.user_opportunity_criteria
-    self.check_criterium
     grade = 0
-    [0,1,2,3,4,5].each do |i|
-      grade += (@criterium_matching[i] * @importances_value[i] / 6).to_i
+    [0, 1, 2, 3, 4, 5].each do |i|
+      grade += criterium_matching[i] * importances_value[i]
     end
-    self.automatic_grade = grade
+    self.automatic_grade = grade.fdiv(6).to_i
   end
 
   def importances_value
-    @importances_value = []
-    [0,1,2,3,4,5].each do |i|
-      importance_value = Importance.find_by(name: i).value
-      if importance_value.nil?
-        @importances_value.push(0)
-      else
-        @importances_value.push(importance_value)
-      end
-    end
+    user.importances.map { |i| i.value || 0 }
   end
 
-  def criteria_tab
-    @criteria = []
-    [1,2,3,4,5,6].each do |i|
-      criteria = Criterium.where(importance_id: i).map(&:value.to_proc)
-      @criteria.push(criteria)
-    end
+  def criteria
+    user.importances.map { |i| i.criteria.map(&:value.to_proc) }
   end
 
   def user_opportunity_criteria
-    @user_opportunity_criteria = [
-      self.contract_type,
-      self.company.structure,
-      self.sector.name,
-      self.job.name,
-      self.location,
-      self.salary
+    [
+      contract_type,
+      company.structure,
+      sector.name,
+      job.name,
+      location,
+      salary
     ]
   end
 
-  def check_criterium
-    @criterium_matching = []
-    [0,1,2,3,4,5].each do |i|
-      if @criteria[i].include?(@user_opportunity_criteria[i])
-        @criterium_matching.push(1)
+  def criterium_matching
+    criterium_matching = []
+    [0, 1, 2, 3, 4].each do |i|
+      if criteria[i].include?(user_opportunity_criteria[i])
+        criterium_matching.push(1)
       else
-        @criterium_matching.push(0)
+        criterium_matching.push(0)
       end
     end
-    if @criteria[5][0].nil?
-      @criterium_matching.push(0)
-    elsif @user_opportunity_criteria[5] >= @criteria[5][0].to_i
-      @criterium_matching.push(1)
+    if criteria[5][0].nil?
+      criterium_matching.push(0)
+    elsif user_opportunity_criteria[5] >= criteria[5][0].to_i
+      criterium_matching.push(1)
     else
-      @criterium_matching.push(0)
+      criterium_matching.push(0)
     end
   end
 end
