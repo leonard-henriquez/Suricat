@@ -11,7 +11,7 @@
     <div class="jobcard-date d-none d-md-block"><%= sanitize @opportunity.deadline %></div>
     <div class="jobcard-salary d-none d-sm-block"><%= @opportunity.salary %></div>
     <div class="jobcard-perso-grade"><%= @opportunity.personnal_grade %>/5</div>
-    <div class="jobcard-auto-grade"><%= @opportunity.automatic_grade %>/5</div>
+    <div class="jobcard-auto-grade"><%= @opportunity.automatic_grade %>%</div>
 
     <% case @opportunity.status %>
     <% when 'review' %>
