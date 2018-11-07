@@ -15,7 +15,7 @@ class UserOpportunity < ApplicationRecord
   validates :personnal_grade, presence: true
 
 
-  before_validation :grade_calculation
+  before_save :grade_calculation
 
   (Opportunity.attribute_names - attribute_names).each do |attr|
     delegate attr.to_sym, to: :opportunity, allow_nil: true
