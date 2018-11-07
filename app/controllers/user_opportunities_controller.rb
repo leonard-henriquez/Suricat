@@ -32,7 +32,6 @@ class UserOpportunitiesController < ApplicationController
 
   def update
     @user_opportunity.status = params[:status]
-    @user_opportunity.grade_calculation
     @user_opportunity.save
     authorize @user_opportunity
   end
