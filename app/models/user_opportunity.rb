@@ -76,7 +76,8 @@ class UserOpportunity < ApplicationRecord
 
   def test(criteria_values, value)
     if is_number?(criteria_values.first) && criteria_values.length == 2
-      criteria_values[0]
+      radius = 30000
+      in_circle?(criteria_values, value, radius)
     elsif is_number?(criteria_values.first)
       (value.to_i || 0) >= criteria_values.first.to_i
     else
