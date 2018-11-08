@@ -4209,6 +4209,11 @@ interpret@^1.0.0, interpret@^1.1.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
   integrity sha1-ftGxQQxqDg94z5XTuEQMY/eLhhQ=
 
+intro.js@^2.9.3:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-2.9.3.tgz#001d9a7bca66d8f4d2d0253c9b3345e9ae4320c3"
+  integrity sha512-hC+EXWnEuJeA3CveGMat3XHePd2iaXNFJIVfvJh2E9IzBMGLTlhWvPIVHAgKlOpO4lNayCxEqzr4N02VmHFr9Q==
+
 invariant@^2.2.2:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -4882,6 +4887,13 @@ lint-staged@^8.0.4:
     staged-git-files "1.1.2"
     string-argv "^0.0.2"
     stringify-object "^3.2.2"
+
+list.js@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/list.js/-/list.js-1.5.0.tgz#a4cbfc8281ddefc02fdb2d30c8748bfae25fbcda"
+  integrity sha1-pMv8goHd78Av2y0wyHSL+uJfvNo=
+  dependencies:
+    string-natural-compare "^2.0.2"
 
 listr-silent-renderer@^1.1.1:
   version "1.1.1"
@@ -8291,6 +8303,11 @@ string-argv@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/string-argv/-/string-argv-0.0.2.tgz#dac30408690c21f3c3630a3ff3a05877bdcbd736"
   integrity sha1-2sMECGkMIfPDYwo/86BYd73L1zY=
+
+string-natural-compare@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/string-natural-compare/-/string-natural-compare-2.0.3.tgz#9dbe1dd65490a5fe14f7a5c9bc686fc67cb9c6e4"
+  integrity sha512-4Kcl12rNjc+6EKhY8QyDVuQTAlMWwRiNbsxnVwBUKFr7dYPQuXVrtNU4sEkjF9LHY0AY6uVbB3ktbkIH4LC+BQ==
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"

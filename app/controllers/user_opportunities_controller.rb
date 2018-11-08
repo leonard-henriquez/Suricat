@@ -4,6 +4,13 @@ class UserOpportunitiesController < ApplicationController
   before_action :set_user_opportunity, only: %i[show update destroy]
 
   def index
+    if current_user.intro
+      @intro = false
+    else
+      @intro = true
+      current_user.intro = true
+      current_user.save
+    end
     @status = params[:status]
     @user_opportunities_displayed = @user_opportunities.where(status: @status) unless @status.nil?
     @user_opportunities_displayed = @user_opportunities_displayed.sort_by { |op| [op.personnal_grade, op.automatic_grade] || 0 }.reverse

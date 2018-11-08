@@ -8,6 +8,8 @@ import "@fortawesome/fontawesome-free/js/all";
 import "stylesheets/application.scss";
 import "components";
 import "bootstrap-select";
+import List from "list.js";
+import introJs from "intro.js";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
 import initSlider from "./slider";
@@ -20,7 +22,7 @@ Turbolinks.start();
 ActiveStorage.start();
 $.fn.selectpicker.Constructor.BootstrapVersion = "4";
 
-let importancesValues = {};
+const importancesValues = {};
 
 $(document).on("turbolinks:load", () => {
   if ($("#map").length) {
@@ -39,5 +41,13 @@ $(document).on("turbolinks:load", () => {
     $("select").selectpicker({
       dropupAuto: false
     });
+  }
+
+  List("job-cards", {
+    valueNames: ["jobcard-title", "jobcard-date", "jobcard-auto-grade"]
+  });
+
+  if (intro) {
+    introJs().start();
   }
 });
