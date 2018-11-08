@@ -50,9 +50,12 @@ class UserOpportunity < ApplicationRecord
 
   def criteria
     criteria_list = user.importances.map { |i| i.criteria.map(&:value.to_proc) }
-    str = criteria_list[4].first
-    hash = JSON.parse(str)
-    criteria_list[4] = [hash["lat"], hash["lng"]]
+    if !criteria_list[4].first.nil?
+      str = criteria_list[4].first
+      hash = JSON.parse(str)
+      criteria_list[4] = [hash["lat"], hash["lng"]]
+    end
+    criteria_list
   end
 
   def user_opportunity_criteria
