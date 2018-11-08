@@ -26,9 +26,13 @@ class UserOpportunitiesController < ApplicationController
   end
 
   def update
+
     @user_opportunity.status = params[:status]
     @user_opportunity.save
     authorize @user_opportunity
+    if params[:from] == 'show'
+      redirect_to opportunities_review_path
+    end
   end
 
   def destroy

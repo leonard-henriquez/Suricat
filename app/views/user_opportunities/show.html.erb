@@ -17,16 +17,26 @@
                   <h3><%= sanitize @user_opportunity.title %></h3>
                   <h4><%= sanitize @user_opportunity.company_name %></h4>
                 </div>
+
               </div>
             </div>
 
             <div class="col right-side text-right">
+              <div class="trash-show zoom">
+                <%= link_to user_opportunity_path(@opportunity, status: :trash) + "&from=show", method: :patch, remote: false do %>
+
+                    <i class="fas fa-trash text-gray"></i>
+
+                <% end %>
+              </div>
               <div class="job-offer-top--companylink">
                 <%= link_to 'Apply', @user_opportunity.url, class: 'btn btn-primary' %>
               </div>
+
               <div class="job-offer-top--grades">
                 <strong><%= @user_opportunity.personnal_grade %>/5</strong>
                 <strong><%= @user_opportunity.automatic_grade %>%</strong>
+
               </div>
             </div>
 
