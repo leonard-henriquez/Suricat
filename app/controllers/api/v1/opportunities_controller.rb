@@ -12,7 +12,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     opportunity = Opportunity.find_by(url: p[:url])
     opportunity = create_opportunity if opportunity.nil?
 
-    user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user)
+    user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user).first
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
 
     response = {
@@ -48,7 +48,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
     unless p[:sector_name].nil?
       sector = Sector.find_by(name: p[:sector_name])
-      sector = create_job if job.nil?
+      sector = create_sector if sector.nil?
       create_opportunity_params[sector] = sector
     end
 
