@@ -16,6 +16,7 @@ class ImportancesController < ApplicationController
       importance.save
       authorize importance
     end
+    @user_opportunities.each(&:save)
     redirect_to profile_path
   end
 
@@ -33,6 +34,7 @@ class ImportancesController < ApplicationController
       render :edit
     end
     authorize @importance
+    @user_opportunities.each(&:save)
   end
 
   private
