@@ -23,14 +23,6 @@
             <% end %>
           </select>
 
-          <%#= criterium.input :value, multiple: true,
-            collection: Opportunity.contract_types,
-            selected: @current_values,
-            input_html: {
-              title: "Pick one or more items",
-              multiple:true
-            } %>
-
         <% elsif @importance.name.to_sym == :company_structure %>
           <select class="form-control select optional"
             title="Pick one or more items"
@@ -43,15 +35,6 @@
               </option>
             <% end %>
           </select>
-
-          <%#= criterium.input :value, multiple: true,
-            collection: Company.structures,
-            selected: @current_values,
-            as: :select,
-            input_html: {
-              title: "Pick one or more items",
-              multiple:true
-            } %>
 
         <% elsif @importance.name.to_sym == :sector_name %>
           <select class="form-control select optional"
@@ -70,16 +53,6 @@
             <% end %>
           </select>
 
-          <%#= criterium.input :value, multiple: true,
-            collection: SectorCategory.all,
-            selected: @current_values,
-            as: :grouped_select,
-            group_method: :sectors,
-            input_html: {
-              title: "Pick one or more items",
-              multiple:true
-            } %>
-
         <% elsif @importance.name.to_sym == :job %>
           <select class="form-control select optional"
             title="Pick one or more items"
@@ -96,16 +69,6 @@
               </optgroup>
             <% end %>
           </select>
-
-          <%#= criterium.input :value, multiple: true,
-            collection: JobCategory.all,
-            selected: @current_values,
-            as: :grouped_select,
-            group_method: :jobs,
-            input_html: {
-              title: "Pick one or more items",
-              multiple:true
-            } %>
 
         <% elsif @importance.name.to_sym == :location %>
           <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
