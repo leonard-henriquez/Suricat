@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# ActiveRecord::Base.connection.tables.each do |table|
+#   next if table.match(/\Aschema_migrations\Z/)
+#   ActiveRecord::Base.connection.execute("TRUNCATE #{table} CASCADE")
+# end
 
 jobs_seed = {
   "Business &amp; Management": [
