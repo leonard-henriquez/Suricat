@@ -2,9 +2,7 @@ const tagGenerator = location => `
     <div id="${location.id}" class="tags">${location.city}</div>
     <input type="hidden" id="hidden-${
       location.id
-    }" name="importance[criteria_attributes][0][value][]" value='${JSON.stringify(
-  location
-)}'>
+    }" name="importance[values][]" value='${JSON.stringify(location)}'>
   `;
 
 const scriptGenerator = location => `

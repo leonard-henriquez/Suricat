@@ -59,3 +59,7 @@ en:
       job: "Job"
       location: "Location"
       salary: "Salary"
+  intro:
+    home: "Here is the main page of the dashboard. Start by downloading our Chrome extension and add new opportunities."
+    joblist: "Here is the list of the offers that you added with the chrome extension"
+    left_menu: "Here is the navigation menu to find your offers ordered by status"

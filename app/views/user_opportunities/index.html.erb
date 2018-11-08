@@ -10,8 +10,24 @@
   <% end %>
 <% end %>
 
-<% unless @user_opportunities_displayed.nil? %>
-  <% @user_opportunities_displayed.each do |user_opportunity| %>
-    <%= component 'job_card', opportunity: user_opportunity %>
+<div id="job-cards" data-step="3" data-intro="<%= t('intro.joblist') %>">
+  <div class="controls">
+    <!-- class="search" automagically makes an input a search field. -->
+    <input class="search form-control" placeholder="Search" />
+    <!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
+    <button class="sort btn btn-secondary" data-sort="jobcard-auto-grade">
+      Sort by grade
+    </button>
+  </div>
+
+  <% unless @user_opportunities_displayed.nil? %>
+    <ul class="list list-unstyled">
+    <% @user_opportunities_displayed.each do |user_opportunity| %>
+      <li>
+        <%= component 'job_card', opportunity: user_opportunity %>
+      </li>
+    <% end %>
+    </ul>
   <% end %>
-<% end %>
+</div>
+<script>const intro = <%= @intro ? 'true' : 'false' %>;</script>

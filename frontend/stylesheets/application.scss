@@ -11,6 +11,8 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-select/sass/bootstrap-select";
+@import "~intro.js/introjs";
+@import "~intro.js/themes/introjs-flattener";
 
 // Your CSS partials
 @import "../components/index";

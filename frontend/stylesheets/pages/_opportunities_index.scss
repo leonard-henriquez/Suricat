@@ -1,0 +1,23 @@
+#job-cards {
+  .search {
+    width: 300px;
+    display: inline-block;
+  }
+
+  .sort {
+    padding: 0 10px;
+    height: auto;
+    font-size: 1rem;
+  }
+
+  .controls {
+    margin-bottom: 20px;
+  }
+}
+
+.introjs-tooltip {
+  letter-spacing: inherit;
+  color: $body-color;
+  font-family: inherit;
+  text-align: center;
+}

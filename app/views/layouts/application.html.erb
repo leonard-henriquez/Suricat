@@ -15,7 +15,7 @@
     <div id="page-content-wrapper">
       <% if @sidebar %>
       <%# sidebar is defined in controller with method sidebar? %>
-        <div id="sidebar" class="sidebar d-none d-md-block">
+        <div id="sidebar" class="sidebar d-none d-md-block" data-step="2" data-intro="<%= t('intro.left_menu') %>">
           <div class="sidebar-inner position-fixed">
             <%= component 'left_menu' %>
           </div>
