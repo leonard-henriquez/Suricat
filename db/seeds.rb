@@ -95,7 +95,6 @@ opportunity_1 = Opportunity.create(
   contract_type: :internship,
   location: 'roubaix',
   url: 'url_1',
-  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 opportunity_2 = Opportunity.create(
@@ -107,7 +106,6 @@ opportunity_2 = Opportunity.create(
   contract_type: :vie,
   location: 'lille',
   url: 'url_2',
-  logo: 'https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/1744941/logo_mobile.png?1541332792'
 )
 
 opportunity_3 = Opportunity.create(
@@ -126,7 +124,6 @@ opportunity_4 = Opportunity.create(
   job: job_4,
   company: company_1,
   sector: sector_2,
-  salary: 1000,
   job_description: 'Job_Description_4',
   contract_type: :full_time,
   location: 'new york',
@@ -151,7 +148,6 @@ user_opportunity_2 = UserOpportunity.create(
 user_opportunity_3 = UserOpportunity.create(
   user: user_1,
   opportunity: opportunity_4,
-  personnal_grade: 2,
   status: :applied
 )
 
@@ -192,24 +188,24 @@ criteria_1_2 = Criterium.create(
 
 importance_2 = Importance.find_by(
   user: user_1,
-  name: :structure
+  name: :company_structure
 )
 
 criteria_2_1 = Criterium.create(
   importance: importance_2,
-  value: 'large-company',
+  value: 'large_company',
   rank: 1
 )
 
 criteria_2_2 = Criterium.create(
   importance: importance_2,
-  value: 'start-up',
+  value: 'start_up',
   rank: 2
 )
 
 importance_3 = Importance.find_by(
   user: user_1,
-  name: :industry
+  name: :sector_name
 )
 
 criteria_3_1 = Criterium.create(

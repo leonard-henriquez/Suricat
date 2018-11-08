@@ -1,10 +1,10 @@
   <div class="jobcard" data-job-id="<%= @opportunity.id %>">
     <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
     <div class="jobcard-img img-center">
-      <% unless @opportunity.logo.nil? %>
-        <%= image_tag @opportunity.logo %>
+      <% if @opportunity.logo.nil? %>
+        <%= image_tag asset_pack_path("images/company.png") %>
       <% else %>
-        <img>
+        <%= image_tag @opportunity.logo %>
       <% end %>
     </div>
     <div class="jobcard-title"><%= sanitize @opportunity.title %> @<%= sanitize @opportunity.company_name %></div>

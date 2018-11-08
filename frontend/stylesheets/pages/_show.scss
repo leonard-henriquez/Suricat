@@ -39,7 +39,8 @@
   }
 
   &-top img {
-    padding-right: 20;
+    box-shadow: 1px 1px 10px #e9ecef;
+    margin-right: 20;
     height: 105px;
     max-width: 150px;
     align-self: auto;
@@ -64,6 +65,9 @@
   }
 
   &-user-infos {
+    box-shadow: 1px 1px 10px #e9ecef;
+    background-color: #f8f9fa;
+
     th {
       vertical-align: text-top;
     }
@@ -97,25 +101,16 @@
   }
 }
 
-#mobile-nav {
-  border-bottom: 1px solid #DBAC69;
-  padding-bottom: 8px;
-  margin-bottom: 24px;
-
-  .left-menu {
-    flex-direction: row;
-    margin: auto;
-  }
-
-  .left-menu-item-text {
-    display: none;
-  }
-}
-
 .job-info {
   flex-grow: 0;
   flex-shrink: 0;
   max-width: 300px;
   padding-right: 15px;
   padding-left: 15px;
+}
+
+#job-container {
+  #map {
+    box-shadow: 1px 1px 10px #e9ecef;
+  }
 }

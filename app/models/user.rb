@@ -15,9 +15,9 @@ class User < ApplicationRecord
 
   def create_importances
     importance_names = Importance.names.keys.map(&:to_sym)
-    # returns [:contract_type, :structure, :industry, :job, :location, :salary]
+    # returns [:contract_type, :company_structure, :sector_name, :job, :location, :salary]
     importance_names.each do |importance_name|
-      Importance.create(user: self, name: importance_name, value: nil)
+      Importance.create(user: self, name: importance_name, value: 50)
     end
   end
 

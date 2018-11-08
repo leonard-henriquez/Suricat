@@ -13,7 +13,9 @@ class Opportunity < ApplicationRecord
   validates :job_description, presence: true
   validates :contract_type, presence: true
   validates :location, presence: true
+  validates :salary, presence: true
 
+  after_initialize :init
   geocoded_by :company_location
   after_validation :geocode, if: :will_save_change_to_location?
 
@@ -22,6 +24,10 @@ class Opportunity < ApplicationRecord
       object_name = obj.name.underscore
       delegate attr.to_sym, to: object_name, allow_nil: true, prefix: true
     end
+  end
+
+  def init
+    self.salary ||= 0
   end
 
   def contract_type=(value)
@@ -33,8 +39,15 @@ class Opportunity < ApplicationRecord
   end
 
   def salary=(value)
+    value ||= 0
     value = value.to_s.gsub(/\D/, "").to_i
-    super(value.zero? ? nil : value)
+    super(value)
+  end
+
+  def start_date=(str)
+    now = ["immediate", "now", "dès que possible"]
+    date = now.include?(str.strip.downcase) ? Date.today : Date.strptime(str, "%b. %d")
+    super(date)
   end
 
   def company_location
@@ -45,11 +58,12 @@ class Opportunity < ApplicationRecord
 
   def contract_types_format
     {
-      internship:       /internship/,
+      internship:       [/internship/, /stage/],
       vie:              /vie/,
       graduate_program: /graduate program/,
-      full_time:        /full.time/,
-      fixed_term:       /fixed.(term|time)/
+      full_time:        [/full.time/, /cdi/],
+      fixed_term:       [/fixed.(term|time)/, /cdd/],
+      apprenticeship:   [/apprenticeship/, /alternance/]
     }
   end
 end

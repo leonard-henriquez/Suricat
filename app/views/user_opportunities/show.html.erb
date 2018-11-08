@@ -1,6 +1,3 @@
-<div id="mobile-nav" class="d-md-none">
-  <%= component 'left_menu' %>
-</div>
 <div id="job-container" class="row">
   <div class="col">
     <div class="job-offer">
@@ -11,7 +8,9 @@
 
             <div class="col">
               <div class="job-offer-top">
-                <% unless @user_opportunity.logo.nil? %>
+                <% if @user_opportunity.logo.nil? %>
+                  <%= image_tag asset_pack_path("images/company.png"), class: 'img-center' %>
+                <% else %>
                   <%= image_tag @user_opportunity.logo, class: 'img-center' %>
                 <% end %>
                 <div class="job-offer-top--description">

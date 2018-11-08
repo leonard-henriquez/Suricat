@@ -41,18 +41,6 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     company = Company.find_by(name: p[:company_name])
     company = create_company if company.nil?
 
-    opportunity_params = %i[
-      contract_type
-      logo
-      job_description
-      location
-      start_date
-      title
-      url
-      salary
-      email
-    ]
-
     create_opportunity_params = {
       job:     job,
       company: company
@@ -80,9 +68,14 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
   end
 
   def p
-    required_params = %i[
+    # (required_params + optional_params).each { |field| p[field] = sanitize(field) }
+    params.require(:opportunity).require(required_params)
+    params.require(:opportunity).permit(required_params + optional_params)
+  end
+
+  def required_params
+    %i[
       company_name
-      company_structure
       contract_type
       logo
       job_description
@@ -92,13 +85,28 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       url
       stars
     ]
-    optional_params = %i[
-      job_name
+  end
+
+  def optional_params
+    %i[
+      company_structure
       start_date
       salary
       email
     ]
-    params.require(:opportunity).require(required_params)
-    params.require(:opportunity).permit(required_params + optional_params)
+  end
+
+  def opportunity_params
+    %i[
+      contract_type
+      logo
+      job_description
+      location
+      start_date
+      title
+      url
+      salary
+      email
+    ]
   end
 end

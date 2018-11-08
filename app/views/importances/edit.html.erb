@@ -18,9 +18,9 @@
               multiple:true
             } %>
 
-        <% elsif @importance.name.to_sym == :structure %>
+        <% elsif @importance.name.to_sym == :company_structure %>
           <%= criterium.input :value, multiple: true,
-            collection: Company.structures,
+            collection: Company.company_structures,
             selected: @current_values,
             as: :select,
             input_html: {
@@ -28,7 +28,7 @@
               multiple:true
             } %>
 
-        <% elsif @importance.name.to_sym == :industry %>
+        <% elsif @importance.name.to_sym == :sector_name %>
           <%= criterium.input :value, multiple: true,
             collection: SectorCategory.all,
             selected: @current_values,
@@ -68,32 +68,32 @@
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li class="is-active"><%= link_to 'Contract type', 'edit' %></li>
-        <li><%= link_to 'Structure', '../structure/edit' %></li>
-        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'company_structure', '../company_structure/edit' %></li>
+        <li><%= link_to 'sector_name', '../sector_name/edit' %></li>
         <li><%= link_to 'Job', '../job/edit' %></li>
-        <li><%= link_to 'Structure', '../location/edit' %></li>
-        <li><%= link_to 'Structure', '../salary/edit' %></li>
+        <li><%= link_to 'company_structure', '../location/edit' %></li>
+        <li><%= link_to 'company_structure', '../salary/edit' %></li>
       </ul>
     </div>
   <% end %>
-  <% if @importance.name.to_sym == :structure %>
+  <% if @importance.name.to_sym == :company_structure %>
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li class="is-active"><%= link_to 'Structure', 'edit' %></li>
-        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li class="is-active"><%= link_to 'company_structure', 'edit' %></li>
+        <li><%= link_to 'sector_name', '../sector_name/edit' %></li>
         <li><%= link_to 'Job', '../job/edit' %></li>
         <li><%= link_to 'Location', '../location/edit' %></li>
         <li><%= link_to 'Salary', '../salary/edit' %></li>
       </ul>
     </div>
   <% end %>
-  <% if @importance.name.to_sym == :industry %>
+  <% if @importance.name.to_sym == :sector_name %>
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../structure/edit' %></li>
-        <li class="is-active"><%= link_to 'Industry', 'edit' %></li>
+        <li><%= link_to 'company_structure', '../company_structure/edit' %></li>
+        <li class="is-active"><%= link_to 'sector_name', 'edit' %></li>
         <li><%= link_to 'Job', '../job/edit' %></li>
         <li><%= link_to 'Location', '../location/edit' %></li>
         <li><%= link_to 'Salary', '../salary/edit' %></li>
@@ -104,8 +104,8 @@
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../structure/edit' %></li>
-        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'company_structure', '../company_structure/edit' %></li>
+        <li><%= link_to 'sector_name', '../sector_name/edit' %></li>
         <li class="is-active"><%= link_to 'Job', 'edit' %></li>
         <li><%= link_to 'Location', '../location/edit' %></li>
         <li><%= link_to 'Salary', '../salary/edit' %></li>
@@ -116,8 +116,8 @@
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../structure/edit' %></li>
-        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'company_structure', '../company_structure/edit' %></li>
+        <li><%= link_to 'sector_name', '../sector_name/edit' %></li>
         <li><%= link_to 'Job', '../job/edit' %></li>
         <li class="is-active"><%= link_to 'Location', 'edit' %></li>
         <li><%= link_to 'Salary', '../salary/edit' %></li>
@@ -128,8 +128,8 @@
     <div class="section-content">
       <ul class="list-unstyled multi-steps">
         <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../structure/edit' %></li>
-        <li><%= link_to 'Industry', '../industry/edit' %></li>
+        <li><%= link_to 'company_structure', '../company_structure/edit' %></li>
+        <li><%= link_to 'sector_name', '../sector_name/edit' %></li>
         <li><%= link_to 'Job', '../job/edit' %></li>
         <li><%= link_to 'Location', '../location/edit' %></li>
         <li class="is-active"><%= link_to 'Salary', 'edit' %></li>

@@ -29,6 +29,8 @@ class UserOpportunity < ApplicationRecord
 
   def init
     self.status ||= :review
+    self.personnal_grade ||= 0
+    self.automatic_grade ||= 0
   end
 
   def personnal_grade=(value)

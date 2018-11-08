@@ -58,3 +58,18 @@
 .badge-primary {
   color: $white;
 }
+
+#mobile-nav {
+  border-bottom: 1px solid #DBAC69;
+  padding-bottom: 8px;
+  margin: -8px 30px 24px 30px;
+
+  .left-menu {
+    flex-direction: row;
+    margin: auto;
+  }
+
+  .left-menu-item-text {
+    display: none;
+  }
+}
