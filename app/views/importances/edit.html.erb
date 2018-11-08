@@ -14,7 +14,7 @@
           <select class="form-control select optional"
             title="Pick one or more items"
             multiple="multiple"
-            name="importance[value][]"
+            name="importance[values][]"
             id="importance__value">
             <% Opportunity.contract_types.each do |type, value| %>
               <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
@@ -35,7 +35,7 @@
           <select class="form-control select optional"
             title="Pick one or more items"
             multiple="multiple"
-            name="importance[value][]"
+            name="importance[values][]"
             id="importance__value">
             <% Company.structures.each do |type, value| %>
               <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
@@ -57,12 +57,12 @@
           <select class="form-control select optional"
             title="Pick one or more items"
             multiple="multiple"
-            name="importance[value][]"
+            name="importance[values][]"
             id="importance__value">
             <% SectorCategory.all.each do |category| %>
               <optgroup label="<%= sanitize category.name %>">
                 <% category.sectors.each do |sector| %>
-                  <option value="<%= sector.id %>" <%= 'selected="selected"' if @current_values.include?(sector.id) %>>
+                  <option value="<%= sector.id %>" <%= 'selected="selected"' if @current_values.include?(sector.id.to_s) %>>
                     <%= sanitize sector.name %>
                   </option>
                 <% end %>
@@ -84,12 +84,12 @@
           <select class="form-control select optional"
             title="Pick one or more items"
             multiple="multiple"
-            name="importance[value][]"
+            name="importance[values][]"
             id="importance__value">
             <% JobCategory.all.each do |category| %>
               <optgroup label="<%= sanitize category.name %>">
                 <% category.jobs.each do |job| %>
-                  <option value="<%= job.id %>" <%= 'selected="selected"' if @current_values.include?(job.id) %>>
+                  <option value="<%= job.id %>" <%= 'selected="selected"' if @current_values.include?(job.id.to_s) %>>
                     <%= sanitize job.name %>
                   </option>
                 <% end %>
@@ -108,10 +108,10 @@
             } %>
 
         <% elsif @importance.name.to_sym == :location %>
-          <input type="text" class="form-control" name="importance[value][]" id="importance__value">
+          <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
 
         <% else %>
-          <input type="text" class="form-control" name="importance[value][]" id="importance__value">
+          <input type="text" class="form-control" name="importance[values][]" id="importance__value" value=<%= @current_values.first %>>
 
         <% end %>
       </div>

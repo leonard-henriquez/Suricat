@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportancesController < ApplicationController
-  before_action :clean_params, only: %i[edit update]
+  # before_action :clean_params, only: %i[edit update]
   before_action :set_importance, only: %i[edit update]
 
   def index
@@ -25,29 +25,39 @@ class ImportancesController < ApplicationController
   end
 
   def update
-    @importance.criteria_attributes = importances_params[:criteria_attributes]
+    authorize @importance
+    values = importances_params[:values]
+
+    # delete previous values
+    @importance.criteria.destroy_all
+
+    # rewrite them all
+    values.each do |value|
+      criterium = Criterium.new(value: value)
+      criterium.importance = @importance
+      criterium.save
+    end
 
     if @importance.save
       redirect_next
     else
       render :edit
     end
-    authorize @importance
   end
 
   private
 
-  def clean_params
-    return if params[:importance].nil?
+  # def clean_params
+  #   return if params[:importance].nil?
 
-    criteria_attributes = params[:importance][:criteria_attributes]
-    return unless criteria_attributes.include?("0")
+  #   criteria_attributes = params[:importance][:criteria_attributes]
+  #   return unless criteria_attributes.include?("0")
 
-    values = criteria_attributes.delete("0")[:value]
-    values = [values] unless values.is_a? Array # makes sure values is an array
-    values = values.reject(&:empty?).map(&:to_i) # clean array
-    criteria_attributes[:value] = values
-  end
+  #   values = criteria_attributes.delete("0")[:value]
+  #   values = [values] unless values.is_a? Array # makes sure values is an array
+  #   values = values.reject(&:empty?).map(&:to_i) # clean array
+  #   criteria_attributes[:value] = values
+  # end
 
   def set_importance
     @importance = Importance.find_by(user: current_user, name: params[:id].to_sym)
@@ -58,7 +68,7 @@ class ImportancesController < ApplicationController
   end
 
   def importances_params
-    params.require(:importance).permit(criteria_attributes: {})
+    params.require(:importance).permit(values: [])
   end
 
   def redirect_next

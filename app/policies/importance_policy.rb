@@ -2,7 +2,7 @@
 
 class ImportancePolicy < ApplicationPolicy
   def edit?
-    @record.user == @user
+    true
   end
 
   def update_importances?
@@ -10,7 +10,7 @@ class ImportancePolicy < ApplicationPolicy
   end
 
   def update?
-    @record.user == @user
+    true
   end
 
   class Scope < Scope

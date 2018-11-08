@@ -1,62 +1,62 @@
-const tagGenerator = (location) => {
-  return `
+const tagGenerator = location => `
     <div id="${location.id}" class="tags">${location.city}</div>
-    <input type="hidden" id="hidden-${location.id}" name="importance[criteria_attributes][0][value][]" value='${JSON.stringify(location)}'>
-  `
-}
+    <input type="hidden" id="hidden-${
+      location.id
+    }" name="importance[criteria_attributes][0][value][]" value='${JSON.stringify(
+  location
+)}'>
+  `;
 
-const scriptGenerator = (location) => {
-  return `
+const scriptGenerator = location => `
     tag = document.getElementById('${location.id}');
     tag_input = document.getElementById('hidden-${location.id}');
     tag.addEventListener('click', (e) => {
       tag.remove();
       tag_input.remove();
     });
-  `
-};
+  `;
 
-const addScript = (location) => {
-  var newScript = document.createElement("script");
-  var inlineScript = document.createTextNode(scriptGenerator(location));
+const addScript = location => {
+  const newScript = document.createElement("script");
+  const inlineScript = document.createTextNode(scriptGenerator(location));
   newScript.appendChild(inlineScript);
-  document.querySelector('body').appendChild(newScript);
+  document.querySelector("body").appendChild(newScript);
 };
 
 const autocomplete = () => {
-  document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById('location');
+  document.addEventListener("turbolinks:load", () => {
+    const input = $("#importance__value[data-location='true']")[0];
     let location;
 
     if (input) {
-      var autocomplete = new google.maps.places.Autocomplete(input, { types: [ 'geocode' ] });
-      google.maps.event.addDomListener(input, 'keydown', (e) => {
+      const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ["geocode"]
+      });
+      google.maps.event.addDomListener(input, "keydown", e => {
         if (e.key === "Enter") {
           e.preventDefault(); // Do not submit the form on Enter.
         }
       });
 
-      autocomplete.addListener('place_changed', () => {
-        input.value = ''
-        var place = autocomplete.getPlace();
+      autocomplete.addListener("place_changed", () => {
+        input.value = "";
+        const place = autocomplete.getPlace();
         console.log(place);
 
-        location = {
-          city: place.name,
-          id: place.place_id,
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
-        };
+        if ("place_id" in place) {
+          location = {
+            city: place.name,
+            id: place.place_id,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+          };
 
-        input.insertAdjacentHTML('beforebegin', tagGenerator(location))
-        addScript(location);
-
+          input.insertAdjacentHTML("beforebegin", tagGenerator(location));
+          addScript(location);
+        }
       });
     }
-  })
-}
-
+  });
+};
 
 export { autocomplete };
-
-
