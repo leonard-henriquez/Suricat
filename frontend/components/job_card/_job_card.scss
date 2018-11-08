@@ -44,6 +44,8 @@
   &-title {
     padding-left: 30px;
     flex-grow: 1;
+    overflow: hidden;
+    max-height: 100%;
   }
 
   &-date {
@@ -69,8 +71,8 @@
   &-auto-grade,
   &-action {
     text-align: center;
-    flex-basis: 80px;
-    flex-shrink: 1
+    flex-basis: 50px;
+    flex-shrink: 0;
   }
 
   &-read {
