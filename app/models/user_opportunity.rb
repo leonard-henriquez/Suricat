@@ -55,7 +55,7 @@ class UserOpportunity < ApplicationRecord
     unless criteria_list[4].first.nil?
       criteria_list[4].each do |json|
         hash = JSON.parse(json)
-        coords_list.push [hash["lat"], hash["lng"]]
+        coords_list.push [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f]
       end
     end
     criteria_list[4] = coords_list
@@ -63,12 +63,13 @@ class UserOpportunity < ApplicationRecord
   end
 
   def user_opportunity_criteria
+    location = [(latitude || 0).to_f, (longitude || 0).to_f]
     [
       contract_type,
       company_structure,
       sector_name,
       job_name,
-      [latitude, longitude],
+      location,
       salary
     ]
   end
