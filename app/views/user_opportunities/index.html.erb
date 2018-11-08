@@ -1,12 +1,12 @@
 <% unless @status.nil? %>
   <% if @status == :review %>
-    <h1><span class="badge badge-primary">new</span> Offers to <%= @status%></h1>
+    <h2><span class="badge badge-primary">new</span> Offers to <%= @status %></h2>
   <% elsif @status == :pending %>
-    <h1><i class="fas fa-flag text-danger"></i> <%= @status.capitalize %> offers</h1>
+    <h2><i class="fas fa-flag text-danger"></i> <%= @status.capitalize %> offers</h2>
     <% elsif @status == :applied %>
-    <h1><i class="fa fa-check-circle text-success"></i> <%= @status.capitalize %> offers</h1>
+    <h2><i class="fa fa-check-circle text-success"></i> <%= @status.capitalize %> offers</h2>
   <% else %>
-    <h1><i class="fas fa-trash text-gray"></i> <%= @status.capitalize %></h1>
+    <h2><i class="fas fa-trash text-gray"></i> <%= @status.capitalize %></h2>
   <% end %>
 <% end %>
 

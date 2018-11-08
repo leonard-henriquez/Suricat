@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :set_constants
+  before_action :set_locale
+
   include Pundit
 
   # Pundit: white-list approach.
@@ -27,6 +29,9 @@ class ApplicationController < ActionController::Base
     { host: ENV["www.suricat.co"] || "localhost:3000" }
   end
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
   protected
 

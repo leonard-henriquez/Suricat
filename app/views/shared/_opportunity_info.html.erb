@@ -5,7 +5,7 @@
         Status
       </td>
       <td>
-        <%= opportunity.status_for_display %>
+        <%= t("opportunity.status.#{opportunity.status}") %>
       </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
         Contract
       </td>
       <td>
-        <%= opportunity.contract_type_for_display %>
+        <%= t("opportunity.contract_type.#{opportunity.contract_type}") %>
       </td>
     </tr>
     <tr>
@@ -37,7 +37,7 @@
         Structure
       </td>
       <td>
-        <%= opportunity.company_structure_for_display %>
+        <%= t("company.structure.#{opportunity.company_structure}") %>
       </td>
     </tr>
     <tr>

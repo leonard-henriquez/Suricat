@@ -2,6 +2,7 @@
   <h1> Your Criteria </h1>
   <h2> Let us know more about you to build your profil: </h2>
 
+
   <div id="mydiv" class="card-question section-content">
 
     <h3> <%= @importance.name_for_display %> </h3>
@@ -51,7 +52,9 @@
             } %>
 
         <% elsif @importance.name.to_sym == :location %>
-          <input type="text" id="location">
+          <div class="form-group">
+            <input type="text" class="form-control" id="location">
+          </div>
 
         <% else %>
 
@@ -61,79 +64,20 @@
 
       <% end %>
 
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn-primary" %>
     <% end %>
   </div>
-  <% if @importance.name.to_sym == :contract_type %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li class="is-active"><%= link_to 'Contract type', 'edit' %></li>
-        <li><%= link_to 'Structure', '../company_structure/edit' %></li>
-        <li><%= link_to 'Industry', '../sector_name/edit' %></li>
-        <li><%= link_to 'Job', '../job/edit' %></li>
-        <li><%= link_to 'Location', '../location/edit' %></li>
-        <li><%= link_to 'Salary', '../salary/edit' %></li>
-      </ul>
-    </div>
-  <% end %>
-  <% if @importance.name.to_sym == :company_structure %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li class="is-active"><%= link_to 'Structure', 'edit' %></li>
-        <li><%= link_to 'Industry', '../sector_name/edit' %></li>
-        <li><%= link_to 'Job', '../job/edit' %></li>
-        <li><%= link_to 'Location', '../location/edit' %></li>
-        <li><%= link_to 'Salary', '../salary/edit' %></li>
-      </ul>
-    </div>
-  <% end %>
-  <% if @importance.name.to_sym == :sector_name %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../company_structure/edit' %></li>
-        <li class="is-active"><%= link_to 'Industry', 'edit' %></li>
-        <li><%= link_to 'Job', '../job/edit' %></li>
-        <li><%= link_to 'Location', '../location/edit' %></li>
-        <li><%= link_to 'Salary', '../salary/edit' %></li>
-      </ul>
-    </div>
-  <% end %>
-  <% if @importance.name.to_sym == :job %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../company_structure/edit' %></li>
-        <li><%= link_to 'Industry', '../sector_name/edit' %></li>
-        <li class="is-active"><%= link_to 'Job', 'edit' %></li>
-        <li><%= link_to 'Location', '../location/edit' %></li>
-        <li><%= link_to 'Salary', '../salary/edit' %></li>
-      </ul>
-    </div>
-  <% end %>
-  <% if @importance.name.to_sym == :location %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../company_structure/edit' %></li>
-        <li><%= link_to 'Industry', '../sector_name/edit' %></li>
-        <li><%= link_to 'Job', '../job/edit' %></li>
-        <li class="is-active"><%= link_to 'Location', 'edit' %></li>
-        <li><%= link_to 'Salary', '../salary/edit' %></li>
-      </ul>
-    </div>
-  <% end %>
-  <% if @importance.name.to_sym == :salary %>
-    <div class="section-content">
-      <ul class="list-unstyled multi-steps">
-        <li><%= link_to 'Contract type', '../contract_type/edit' %></li>
-        <li><%= link_to 'Structure', '../company_structure/edit' %></li>
-        <li><%= link_to 'Industru', '../sector_name/edit' %></li>
-        <li><%= link_to 'Job', '../job/edit' %></li>
-        <li><%= link_to 'Location', '../location/edit' %></li>
-        <li class="is-active"><%= link_to 'Salary', 'edit' %></li>
-      </ul>
-    </div>
-  <% end %>
+
+  <div class="section-content">
+    <ul class="list-unstyled multi-steps">
+      <% Importance.names.each do |name, value| %>
+        <% if name == @importance.name %>
+          <li class="is-active"><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
+        <% else %>
+          <li><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
 </div>

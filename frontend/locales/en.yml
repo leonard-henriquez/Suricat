@@ -30,4 +30,32 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  user_opportunity:
+    status:
+      review: "Review"
+      pending: "Pending"
+      applied: "applied"
+      trash: "Trash"
+  opportunity:
+    contract_type:
+      internship: "Internship"
+      vie: "VIE"
+      graduate_program: "Graduate Program"
+      fixed_term: "Fixed term"
+      full_time: "Full time"
+      apprenticeship: "Apprenticeship"
+      other: "Other"
+  company:
+    structure:
+      large_company: "Large company"
+      sme: "Small or Medium Enterprise"
+      start_up: "Start-up"
+      others: "Other"
+  importance:
+    name:
+      contract_type: "Contract type"
+      company_structure: "Company structure"
+      sector_name: "Sector name"
+      job: "Job"
+      location: "Location"
+      salary: "Salary"

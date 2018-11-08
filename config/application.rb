@@ -40,6 +40,8 @@ module Suricat
       g.channel         assets: false
     end
 
+    config.i18n.default_locale = :en
+    config.i18n.load_path += Dir[config.root.join('frontend/locales/*.yml')]
     config.i18n.load_path += Dir[config.root.join('frontend/components/**/*.yml')]
     config.autoload_paths << config.root.join('frontend/components')
     config.komponent.root = Rails.root.join('frontend')
