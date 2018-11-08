@@ -14,6 +14,7 @@ class ImportancesController < ApplicationController
       importance = Importance.find_by(name: name, user: current_user)
       importance.value = value
       importance.save
+      @user_opportunities.each(&:save)
       authorize importance
     end
     redirect_to profile_path
@@ -39,6 +40,7 @@ class ImportancesController < ApplicationController
     end
 
     if @importance.save
+      @user_opportunities.each(&:save)
       redirect_next
     else
       render :edit

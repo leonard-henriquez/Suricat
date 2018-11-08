@@ -43,12 +43,12 @@
               <p><%= @user_opportunities.where(status: :applied).count %></p>
             </div>
             <div class="pl-1 pr-1  profile-deadlines d-flex justify-content-between text-danger">
-              <%= link_to 'Urgent deadlines', events_path, class: 'text-danger'%>
-              <p>1</p>
-            </div>
-            <div class="pl-1 pr-1 profile-interviews d-flex justify-content-between text-success">
-              <%= link_to 'Interviews', events_path, class: 'text-success'%>
-              <p>1</p>
+              <%= link_to 'Calendar', events_path, class: 'text-danger'%>
+              <% if current_user.events.size.nil? %>
+                <p>0</p>
+              <% else %>
+                <p><%= current_user.events.size  %></p>
+              <% end %>
             </div>
           </div>
         </div>
