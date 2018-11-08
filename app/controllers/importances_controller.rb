@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportancesController < ApplicationController
-  # before_action :clean_params, only: %i[edit update]
+  before_action :clean_params, only: %i[update]
   before_action :set_importance, only: %i[edit update]
 
   def index
@@ -33,8 +33,8 @@ class ImportancesController < ApplicationController
     @importance.criteria.destroy_all
 
     # rewrite them all
-    values.each do |value|
-      criterium = Criterium.new(value: value)
+    values.each_with_index do |value, index|
+      criterium = Criterium.new(value: value, rank: index)
       criterium.importance = @importance
       criterium.save
     end
@@ -49,17 +49,14 @@ class ImportancesController < ApplicationController
 
   private
 
-  # def clean_params
-  #   return if params[:importance].nil?
+  def clean_params
+    return if params[:importance].nil?
 
-  #   criteria_attributes = params[:importance][:criteria_attributes]
-  #   return unless criteria_attributes.include?("0")
-
-  #   values = criteria_attributes.delete("0")[:value]
-  #   values = [values] unless values.is_a? Array # makes sure values is an array
-  #   values = values.reject(&:empty?).map(&:to_i) # clean array
-  #   criteria_attributes[:value] = values
-  # end
+    values = params[:importance][:values]
+    values = [values] unless values.is_a? Array # makes sure values is an array
+    values = values.reject(&:empty?)
+    params[:importance][:values] = values
+  end
 
   def set_importance
     @importance = Importance.find_by(user: current_user, name: params[:id].to_sym)
