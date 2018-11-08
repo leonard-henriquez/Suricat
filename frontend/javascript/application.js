@@ -48,6 +48,7 @@ $(document).on("turbolinks:load", () => {
   });
 
   if (intro) {
+    intro = false;
     introJs().start();
   }
 });
