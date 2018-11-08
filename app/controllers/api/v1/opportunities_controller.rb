@@ -106,6 +106,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
   def optional_params
     %i[
       company_structure
+      sector_name
       start_date
       salary
       email
