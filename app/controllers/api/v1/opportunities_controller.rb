@@ -12,7 +12,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     opportunity = Opportunity.find_by(url: p[:url])
     opportunity = create_opportunity if opportunity.nil?
 
-    user_opportunity = UserOpportunity.find_by(opportunity: opportunity, user: current_user)
+    user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user)
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
 
     response = {
