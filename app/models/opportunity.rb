@@ -46,8 +46,24 @@ class Opportunity < ApplicationRecord
 
   def start_date=(str)
     now = ["immediate", "now", "dès que possible"]
-    date = now.include?(str.strip.downcase) ? Date.today : Date.strptime(str, "%b. %d")
+    if now.include?(str.strip.downcase)
+      date = Date.today
+    else
+      year = Date.today.year
+      month = nil
+      months.each do |month_int, regexes|
+        month = month_int if regexes.any? { |regex| regex.match(str.downcase) }
+      end
+      day = str.gsub(/[^0-9]/, "").to_i
+      date = Date.new(year, month, day)
+      date = date.next_year while date < Date.today
+    end
     super(date)
+  rescue Exception => e
+  end
+
+  def logo=(str)
+    super(str) unless /placeholder/.match(str)
   end
 
   def company_location
@@ -64,6 +80,23 @@ class Opportunity < ApplicationRecord
       full_time:        [/full.time/, /cdi/],
       fixed_term:       [/fixed.(term|time)/, /cdd/],
       apprenticeship:   [/apprenticeship/, /alternance/]
+    }
+  end
+
+  def months
+    {
+      1  => [/jan\.?/, /jan\.?/],
+      2  => [/fév\.?/, /feb\.?/],
+      3  => [/mar\.?/, /mar\.?/],
+      4  => [/avr\.?/, /apr\.?/],
+      5  => [/mai/, /may/],
+      6  => [/juin/, /jun\.?/],
+      7  => [/juil\.?/, /jul\.?/],
+      8  => [/août/, /aug\.?/],
+      9  => [/sept\.?/, /sep\.?/],
+      10 => [/oct\.?/, /oct\.?/],
+      11 => [/nov\.?/, /nov\.?/],
+      12 => [/déc\.?/, /dec\.?/]
     }
   end
 end

@@ -38,12 +38,16 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     job = Job.find_by(name: p[:job_name])
     job = create_job if job.nil?
 
+    sector = Sector.find_by(name: p[:job_name])
+    sector = create_job if job.nil?
+
     company = Company.find_by(name: p[:company_name])
     company = create_company if company.nil?
 
     create_opportunity_params = {
       job:     job,
-      company: company
+      company: company,
+      sector:  sector
     }
 
     opportunity_params.each do |param|
@@ -63,8 +67,18 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     )
   end
 
+  def create_sector
+    sector_category = SectorCategory.find_by(name: :other)
+    sector_category = SectorCategory.create(name: :other) if sector_category.nil?
+
+    Sector.create(sector_category: sector_category, name: p[:job_name])
+  end
+
   def create_job
-    Job.create(name: p[:job_name])
+    job_category = JobCategory.find_by(name: :other)
+    job_category = JobCategory.create(name: :other) if job_category.nil?
+
+    Job.create(job_category: job_category, name: p[:job_name])
   end
 
   def p
