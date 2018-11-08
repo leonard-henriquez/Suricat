@@ -12,13 +12,13 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     puts "Opportunity -->"
     opportunity = Opportunity.find_by(url: p[:url])
     opportunity = create_opportunity if opportunity.nil?
-    puts opportunity
+    puts opportunity.errors unless opportunity.nil?
 
     puts "UserOpportunity -->"
     user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user).first
     puts user_opportunity
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
-    puts user_opportunity
+    puts user_opportunity.errors unless user_opportunity.nil?
 
     response = {
       status:           true,
@@ -61,31 +61,39 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       create_opportunity_params[param] = p[param] if p.key?(param)
     end
 
-    Opportunity.create(create_opportunity_params)
+    opportunity = Opportunity.create(create_opportunity_params)
+    puts opportunity.errors unless opportunity.nil?
+    opportunity
   end
 
   def create_company
     structure = p[:company_structure].to_sym
     structures = Company.structures.reject { |s| s == :others }
     structure = :others unless structures.include?(structure)
-    Company.create(
+    company = Company.create(
       name:      p[:company_name],
       structure: structure
     )
+    puts company.errors unless company.nil?
+    company
   end
 
   def create_sector
     sector_category = SectorCategory.find_by(name: :other)
     sector_category = SectorCategory.create(name: :other) if sector_category.nil?
 
-    Sector.create(sector_category: sector_category, name: p[:sector_name])
+    sector = Sector.create(sector_category: sector_category, name: p[:sector_name])
+    puts sector.errors unless sector.nil?
+    sector
   end
 
   def create_job
     job_category = JobCategory.find_by(name: :other)
     job_category = JobCategory.create(name: :other) if job_category.nil?
 
-    Job.create(job_category: job_category, name: p[:job_name])
+    job = Job.create(job_category: job_category, name: p[:job_name])
+    puts job.errors unless job.nil?
+    job
   end
 
   def p

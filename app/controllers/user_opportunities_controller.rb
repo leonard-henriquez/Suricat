@@ -13,7 +13,7 @@ class UserOpportunitiesController < ApplicationController
     end
     @status = params[:status]
     @user_opportunities_displayed = @user_opportunities.where(status: @status) unless @status.nil?
-    @user_opportunities_displayed = @user_opportunities_displayed.sort_by { |op| [op.personnal_grade, op.automatic_grade] || 0 }.reverse
+    @user_opportunities_displayed = @user_opportunities_displayed.sort_by { |op| [op.personnal_grade, op.automatic_grade] || 0 }.reverse unless @user_opportunities_displayed.nil?
   end
 
   def show
