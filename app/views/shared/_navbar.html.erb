@@ -12,11 +12,11 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav">
           <!-- Links when logged in -->
-            <li class="nav-item active">
+            <li class="nav-item active ml-3">
               <%= link_to "Home", opportunities_review_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Recommandation", user_opportunities_path, class: "nav-link" %>
+              <%= link_to "Recommandations", user_opportunities_path, class: "nav-link" %>
             </li>
         </ul>
       <% end %>
