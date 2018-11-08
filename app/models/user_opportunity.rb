@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "criterium"
-require_relative "importance"
-
 class UserOpportunity < ApplicationRecord
   enum status: %i[review pending applied trash]
   belongs_to :user
@@ -52,7 +49,10 @@ class UserOpportunity < ApplicationRecord
   end
 
   def criteria
-    user.importances.map { |i| i.criteria.map(&:value.to_proc) }
+    criteria_list = user.importances.map { |i| i.criteria.map(&:value.to_proc) }
+    str = criteria_list[4].first
+    hash = JSON.parse(str)
+    criteria_list[4] = [hash["lat"], hash["lng"]]
   end
 
   def user_opportunity_criteria
@@ -61,7 +61,7 @@ class UserOpportunity < ApplicationRecord
       company_structure,
       sector_name,
       job_name,
-      location,
+      [latitude, longitude],
       salary
     ]
   end
@@ -75,7 +75,13 @@ class UserOpportunity < ApplicationRecord
   end
 
   def test(criteria_values, value)
-    is_number?(criteria_values.first) ? (value.to_i || 0) >= criteria_values.first.to_i : criteria_values.include?(value)
+    if is_number?(criteria_values.first) && criteria_values.length == 2
+      criteria_values[0]
+    elsif is_number?(criteria_values.first)
+      (value.to_i || 0) >= criteria_values.first.to_i
+    else
+      criteria_values.include?(value)
+    end
   end
 
   def test_to_int(criteria_values, value)
@@ -86,5 +92,9 @@ class UserOpportunity < ApplicationRecord
     true if Float(value)
   rescue StandardError
     false
+  end
+
+  def in_circle?(point1, point2, radius)
+    Geocoder::Calculations.distance_between(point1, point2) < radius
   end
 end
