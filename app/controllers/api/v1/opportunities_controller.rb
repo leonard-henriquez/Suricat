@@ -9,11 +9,16 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       render json: response
     end
 
+    puts "Opportunity -->"
     opportunity = Opportunity.find_by(url: p[:url])
     opportunity = create_opportunity if opportunity.nil?
+    puts opportunity
 
+    puts "UserOpportunity -->"
     user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user).first
+    puts user_opportunity
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
+    puts user_opportunity
 
     response = {
       status:           true,

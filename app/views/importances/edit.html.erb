@@ -8,10 +8,22 @@
     <h3> <%= @importance.name_for_display %> </h3>
     <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
-      <%= f.simple_fields_for :criteria, Criterium.new do |criterium| %>
-
+      <div class="form-group">
+        <label for="importance_value">Value</label>
         <% if @importance.name.to_sym == :contract_type %>
-          <%= criterium.input :value, multiple: true,
+          <select class="form-control select optional"
+            title="Pick one or more items"
+            multiple="multiple"
+            name="importance[value][]"
+            id="importance__value">
+            <% Opportunity.contract_types.each do |type, value| %>
+              <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
+                <%= t("opportunity.contract_type.#{type}") %>
+              </option>
+            <% end %>
+          </select>
+
+          <%#= criterium.input :value, multiple: true,
             collection: Opportunity.contract_types,
             selected: @current_values,
             input_html: {
@@ -20,7 +32,19 @@
             } %>
 
         <% elsif @importance.name.to_sym == :company_structure %>
-          <%= criterium.input :value, multiple: true,
+          <select class="form-control select optional"
+            title="Pick one or more items"
+            multiple="multiple"
+            name="importance[value][]"
+            id="importance__value">
+            <% Company.structures.each do |type, value| %>
+              <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
+                <%= t("opportunity.contract_type.#{type}") %>
+              </option>
+            <% end %>
+          </select>
+
+          <%#= criterium.input :value, multiple: true,
             collection: Company.structures,
             selected: @current_values,
             as: :select,
@@ -30,7 +54,23 @@
             } %>
 
         <% elsif @importance.name.to_sym == :sector_name %>
-          <%= criterium.input :value, multiple: true,
+          <select class="form-control select optional"
+            title="Pick one or more items"
+            multiple="multiple"
+            name="importance[value][]"
+            id="importance__value">
+            <% SectorCategory.all.each do |category| %>
+              <optgroup label="<%= sanitize category.name %>">
+                <% category.sectors.each do |sector| %>
+                  <option value="<%= sector.id %>" <%= 'selected="selected"' if @current_values.include?(sector.id) %>>
+                    <%= sanitize sector.name %>
+                  </option>
+                <% end %>
+              </optgroup>
+            <% end %>
+          </select>
+
+          <%#= criterium.input :value, multiple: true,
             collection: SectorCategory.all,
             selected: @current_values,
             as: :grouped_select,
@@ -41,7 +81,23 @@
             } %>
 
         <% elsif @importance.name.to_sym == :job %>
-          <%= criterium.input :value, multiple: true,
+          <select class="form-control select optional"
+            title="Pick one or more items"
+            multiple="multiple"
+            name="importance[value][]"
+            id="importance__value">
+            <% JobCategory.all.each do |category| %>
+              <optgroup label="<%= sanitize category.name %>">
+                <% category.jobs.each do |job| %>
+                  <option value="<%= job.id %>" <%= 'selected="selected"' if @current_values.include?(job.id) %>>
+                    <%= sanitize job.name %>
+                  </option>
+                <% end %>
+              </optgroup>
+            <% end %>
+          </select>
+
+          <%#= criterium.input :value, multiple: true,
             collection: JobCategory.all,
             selected: @current_values,
             as: :grouped_select,
@@ -52,17 +108,13 @@
             } %>
 
         <% elsif @importance.name.to_sym == :location %>
-          <div class="form-group">
-            <input type="text" class="form-control" id="location">
-          </div>
+          <input type="text" class="form-control" name="importance[value][]" id="importance__value">
 
         <% else %>
-
-          <%= criterium.input :value %>
+          <input type="text" class="form-control" name="importance[value][]" id="importance__value">
 
         <% end %>
-
-      <% end %>
+      </div>
 
       <%= f.button :submit, class: "btn-primary" %>
     <% end %>
