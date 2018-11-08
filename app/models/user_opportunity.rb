@@ -50,11 +50,15 @@ class UserOpportunity < ApplicationRecord
 
   def criteria
     criteria_list = user.importances.map { |i| i.criteria.map(&:value.to_proc) }
-    if !criteria_list[4].first.nil?
-      str = criteria_list[4].first
-      hash = JSON.parse(str)
-      criteria_list[4] = [hash["lat"], hash["lng"]]
+
+    coords_list = []
+    unless criteria_list[4].first.nil?
+      criteria_list[4].each do |json|
+        hash = JSON.parse(json)
+        coords_list.push [hash["lat"], hash["lng"]]
+      end
     end
+    criteria_list[4] = coords_list
     criteria_list
   end
 
@@ -78,9 +82,9 @@ class UserOpportunity < ApplicationRecord
   end
 
   def test(criteria_values, value)
-    if is_number?(criteria_values.first) && criteria_values.length == 2
-      radius = 30000
-      in_circle?(criteria_values, value, radius)
+    if criteria_values.first.is_a? Array
+      radius = 30
+      criteria_values.any? { |criteria_value| in_circle?(criteria_value, value, radius) }
     elsif is_number?(criteria_values.first)
       (value.to_i || 0) >= criteria_values.first.to_i
     else

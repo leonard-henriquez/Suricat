@@ -6,7 +6,7 @@ class ImportancePolicy < ApplicationPolicy
   end
 
   def update_importances?
-    @record.user == @user
+    true
   end
 
   def update?
