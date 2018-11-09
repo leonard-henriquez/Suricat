@@ -66,6 +66,8 @@ class UserOpportunity < ApplicationRecord
     end
     criteria_list[4] = coords_list
     criteria_list
+  rescue => e
+    puts criteria_list.inspect
   end
 
   def user_opportunity_criteria
