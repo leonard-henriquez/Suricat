@@ -69,7 +69,7 @@ class UserOpportunity < ApplicationRecord
     criteria_list[4] = coords_list
     criteria_list
   rescue => e
-    puts "%%%%%% Grade calculation failed %%%%%%"
+    puts "%%%%%% Criteria failed %%%%%%"
     puts e.inspect
     puts criteria_list.inspect
   end
