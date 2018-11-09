@@ -38,10 +38,12 @@ class UserOpportunity < ApplicationRecord
   # ! start methods for automatic_grade calculation !
   def grade_calculation
     grade = 0
+    total_importances_values = 0
     criterium_matching.each_with_index do |_, i|
+      total_importances_values += importances_value[i]
       grade += criterium_matching[i] * importances_value[i]
     end
-    self.automatic_grade = grade.fdiv(6).to_i
+    self.automatic_grade = (grade * 100).fdiv(total_importances_values).to_i
   rescue => e
     puts "%%%%%% Grade calculation failed %%%%%%"
     puts e.inspect
