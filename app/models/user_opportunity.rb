@@ -45,6 +45,8 @@ class UserOpportunity < ApplicationRecord
   rescue => e
     puts "%%%%%% Grade calculation failed %%%%%%"
     puts e.inspect
+    puts "criterium_matching: #{criterium_matching}"
+    puts "importances_value: #{importances_value}"
     self.automatic_grade = 0
   end
 
@@ -67,6 +69,8 @@ class UserOpportunity < ApplicationRecord
     criteria_list[4] = coords_list
     criteria_list
   rescue => e
+    puts "%%%%%% Grade calculation failed %%%%%%"
+    puts e.inspect
     puts criteria_list.inspect
   end
 
