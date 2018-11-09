@@ -3,6 +3,7 @@
 class ProfilesController < ApplicationController
   def index
     @importances = policy_scope(Importance)
+    @importances = @importance.order(:name) unless @importance.nil?
     @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h
 
     @markers_pending = @user_opportunities.where(status: :pending).map do |u_op|
