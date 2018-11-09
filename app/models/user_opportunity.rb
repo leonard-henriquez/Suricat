@@ -42,6 +42,10 @@ class UserOpportunity < ApplicationRecord
       grade += criterium_matching[i] * importances_value[i]
     end
     self.automatic_grade = grade.fdiv(6).to_i
+  rescue => e
+    puts "%%%%%% Grade calculation failed %%%%%%"
+    puts e.inspect
+    self.automatic_grade = 0
   end
 
   def importances_value
@@ -55,7 +59,9 @@ class UserOpportunity < ApplicationRecord
     unless criteria_list[4].first.nil?
       criteria_list[4].each do |json|
         hash = JSON.parse(json)
-        coords_list.push [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f]
+        if hash.key?("lat") && hash.key?("lng")
+          coords_list.push [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f]
+        end
       end
     end
     criteria_list[4] = coords_list

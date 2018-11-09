@@ -12,13 +12,13 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     puts "Opportunity -->"
     opportunity = Opportunity.find_by(url: p[:url])
     opportunity = create_opportunity if opportunity.nil?
-    puts opportunity.errors unless opportunity.nil?
+    puts opportunity.errors.inspect unless opportunity.nil?
 
     puts "UserOpportunity -->"
     user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user).first
     puts user_opportunity
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
-    puts user_opportunity.errors unless user_opportunity.nil?
+    puts user_opportunity.errors.inspect unless user_opportunity.nil?
 
     response = {
       status:           true,
@@ -62,7 +62,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     end
 
     opportunity = Opportunity.create(create_opportunity_params)
-    puts opportunity.errors unless opportunity.nil?
+    puts opportunity.errors.inspect unless opportunity.nil?
     opportunity
   end
 
@@ -74,7 +74,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
       name:      p[:company_name],
       structure: structure
     )
-    puts company.errors unless company.nil?
+    puts company.errors.inspect unless company.nil?
     company
   end
 
@@ -83,7 +83,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     sector_category = SectorCategory.create(name: :other) if sector_category.nil?
 
     sector = Sector.create(sector_category: sector_category, name: p[:sector_name])
-    puts sector.errors unless sector.nil?
+    puts sector.errors.inspect unless sector.nil?
     sector
   end
 
@@ -92,7 +92,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     job_category = JobCategory.create(name: :other) if job_category.nil?
 
     job = Job.create(job_category: job_category, name: p[:job_name])
-    puts job.errors unless job.nil?
+    puts job.errors.inspect unless job.nil?
     job
   end
 
