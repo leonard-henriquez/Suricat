@@ -6,5 +6,7 @@ class PagesController < ApplicationController
 
   def home; end
 
+  def extension; end
+
   def styleguide; end
 end
