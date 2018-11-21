@@ -39,12 +39,16 @@ class UserOpportunity < ApplicationRecord
   def grade_calculation
     grade = 0
     total_importances_values = 0
-    criterium_matching.each_with_index do |_, i|
-      total_importances_values += importances_value[i]
-      grade += criterium_matching[i] * importances_value[i]
+    matching = criterium_matching
+    matching.each do |key, value|
+      next unless importances_value.key?(key)
+
+      puts "key: #{key}, value: #{value ? 1 : 0}, importance: #{importances_value[key]}"
+      total_importances_values += importances_value[key]
+      grade += (value ? 1 : 0) * importances_value[key]
     end
     self.automatic_grade = (grade * 100).fdiv(total_importances_values).to_i
-  rescue => e
+  rescue StandardError => e
     puts "%%%%%% Grade calculation failed %%%%%%"
     puts e.inspect
     puts "criterium_matching: #{criterium_matching}"
@@ -53,24 +57,21 @@ class UserOpportunity < ApplicationRecord
   end
 
   def importances_value
-    user.importances.map { |i| i.value || 0 }
+    importances_value = {}
+    user.importances.each { |i| importances_value[i.name.to_sym] = i.value || 0 }
+    importances_value
   end
 
   def criteria
-    criteria_list = user.importances.map { |i| i.criteria.map(&:value.to_proc) }
-
-    coords_list = []
-    unless criteria_list[4].first.nil?
-      criteria_list[4].each do |json|
-        hash = JSON.parse(json)
-        if hash.key?("lat") && hash.key?("lng")
-          coords_list.push [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f]
-        end
-      end
+    criteria_list = {}
+    user.importances.each do |i|
+      name = i.name.to_sym
+      value = i.criteria.map(&:value.to_proc)
+      criteria_list[name] = value
     end
-    criteria_list[4] = coords_list
+
     criteria_list
-  rescue => e
+  rescue StandardError => e
     puts "%%%%%% Criteria failed %%%%%%"
     puts e.inspect
     puts criteria_list.inspect
@@ -78,43 +79,73 @@ class UserOpportunity < ApplicationRecord
 
   def user_opportunity_criteria
     location = [(latitude || 0).to_f, (longitude || 0).to_f]
-    [
-      contract_type,
-      company_structure,
-      sector_name,
-      job_name,
-      location,
-      salary
-    ]
+    {
+      contract_type:     contract_type,
+      company_structure: company_structure,
+      sector_name:       sector_name,
+      job_name:          job_name,
+      location:          location,
+      salary:            salary
+    }
+  end
+
+  def self.criteria_type
+    {
+      contract_type:     :enum,
+      company_structure: :enum,
+      sector_name:       :enum,
+      job_name:          :enum,
+      location:          :location,
+      salary:            :integer
+    }
   end
 
   def criterium_matching
-    criterium_matching = []
-    criteria.each_with_index do |_, i|
-      criterium_matching.push(test_to_int(criteria[i], user_opportunity_criteria[i]))
+    op_criteria = user_opportunity_criteria
+    user_criteria = criteria
+    matching = {}
+
+    self.class.criteria_type.each do |criterium, type|
+      next unless op_criteria.key?(criterium) && user_criteria.key?(criterium)
+
+      value = op_criteria[criterium]
+      range = user_criteria[criterium]
+      next if value.nil? || range.nil?
+      match = check_matching(type, value, range)
+
+      matching[criterium] = match unless match.nil?
     end
-    criterium_matching
+
+    matching
   end
 
-  def test(criteria_values, value)
-    if criteria_values.first.is_a? Array
+  def check_matching(type, value, range)
+    if type == :integer
+      value = value.first if value.is_a? Array
+      value = value.to_i
+
+      range = range.first if range.is_a? Array
+      range = range.to_i
+      return value > range
+    elsif type == :enum
+      value = value.to_i
+      range.map!(&:to_i)
+      return range.include?(value)
+    elsif type == :string
+      value = value.to_s
+      range.map!(&:to_s)
+      return range.include?(value)
+    elsif type == :location
+      return nil unless value.is_a? Array
+
+      range = range.map do |json|
+        hash = JSON.parse(json)
+        [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f] if hash.key?("lat") && hash.key?("lng")
+      end
+      range = range.compact
       radius = 30
-      criteria_values.any? { |criteria_value| in_circle?(criteria_value, value, radius) }
-    elsif is_number?(criteria_values.first)
-      (value.to_i || 0) >= criteria_values.first.to_i
-    else
-      criteria_values.include?(value)
+      return range.any? { |criteria_value| in_circle?(criteria_value, value, radius) }
     end
-  end
-
-  def test_to_int(criteria_values, value)
-    test(criteria_values, value) ? 1 : 0
-  end
-
-  def is_number?(value)
-    true if Float(value)
-  rescue StandardError
-    false
   end
 
   def in_circle?(point1, point2, radius)

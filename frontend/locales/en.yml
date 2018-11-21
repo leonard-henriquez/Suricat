@@ -56,7 +56,7 @@ en:
       contract_type: "Contract type"
       company_structure: "Company structure"
       sector_name: "Sector name"
-      job: "Job"
+      job_name: "Job"
       location: "Location"
       salary: "Salary"
   intro:
