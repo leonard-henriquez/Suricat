@@ -47,6 +47,8 @@ class UserOpportunity < ApplicationRecord
       total_importances_values += importances_value[key]
       grade += (value ? 1 : 0) * importances_value[key]
     end
+    puts "total importances: #{total_importances_values}"
+    puts "grade: #{(grade * 100).fdiv(total_importances_values).to_i}"
     self.automatic_grade = (grade * 100).fdiv(total_importances_values).to_i
   rescue StandardError => e
     puts "%%%%%% Grade calculation failed %%%%%%"
@@ -78,15 +80,14 @@ class UserOpportunity < ApplicationRecord
   end
 
   def user_opportunity_criteria
-    location = [(latitude || 0).to_f, (longitude || 0).to_f]
-    {
-      contract_type:     contract_type,
-      company_structure: company_structure,
-      sector_name:       sector_name,
-      job_name:          job_name,
-      location:          location,
-      salary:            salary
-    }
+    hash = {}
+    hash[:contract_type] = opportunity.nil? ? nil : opportunity.contract_type_id
+    hash[:company_structure] = company.nil? ? nil : company.structure_id
+    hash[:sector_name] = sector.nil? ? nil : sector.id
+    hash[:job_name] = job.nil? ? nil : job.id
+    hash[:location] = [(latitude || 0).to_f, (longitude || 0).to_f]
+    hash[:salary] = salary || nil
+    hash
   end
 
   def self.criteria_type

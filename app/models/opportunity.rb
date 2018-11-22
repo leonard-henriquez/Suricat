@@ -30,6 +30,10 @@ class Opportunity < ApplicationRecord
     self.salary ||= 0
   end
 
+  def contract_type_id
+    contract_type_before_type_cast
+  end
+
   def contract_type=(value)
     unless value.is_a? Symbol
       sanitizer = ApiSanitizerService.new(value, contract_types_format, :other)
