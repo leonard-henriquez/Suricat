@@ -6,14 +6,15 @@ class UserOpportunitiesController < ApplicationController
   def index
     if current_user.intro
       @intro = false
+      @status = params[:status]
+      @user_opportunities_displayed = @user_opportunities.where(status: @status) unless @status.nil?
+      @user_opportunities_displayed = @user_opportunities_displayed.sort_by { |op| [op.personnal_grade || 0, op.automatic_grade || 0] }.reverse unless @user_opportunities_displayed.nil?
     else
       @intro = true
       current_user.intro = true
       current_user.save
+      @user_opportunities_displayed = [UserOpportunity.first]
     end
-    @status = params[:status]
-    @user_opportunities_displayed = @user_opportunities.where(status: @status) unless @status.nil?
-    @user_opportunities_displayed = @user_opportunities_displayed.sort_by { |op| [op.personnal_grade, op.automatic_grade] || 0 }.reverse unless @user_opportunities_displayed.nil?
   end
 
   def show
@@ -31,7 +32,6 @@ class UserOpportunitiesController < ApplicationController
   end
 
   def update
-
     @user_opportunity.status = params[:status]
     @user_opportunity.save
     authorize @user_opportunity

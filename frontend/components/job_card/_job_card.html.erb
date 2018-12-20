@@ -1,56 +1,56 @@
-  <div class="jobcard" data-job-id="<%= @opportunity.id %>">
-    <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
-    <div class="jobcard-img img-center">
-      <% if @opportunity.logo.nil? %>
-        <%= image_tag asset_pack_path("images/company.png") %>
-      <% else %>
-        <%= image_tag @opportunity.logo %>
-      <% end %>
-    </div>
-    <div class="jobcard-title"><%= sanitize @opportunity.title %> @<%= sanitize @opportunity.company_name %></div>
-    <div class="jobcard-date d-none d-md-block"><%= sanitize @opportunity.deadline %></div>
-    <div class="jobcard-perso-grade"><%= @opportunity.personnal_grade %>/5</div>
-    <div class="jobcard-auto-grade"><%= @opportunity.automatic_grade %>%</div>
-
-    <% case @opportunity.status %>
-    <% when 'review' %>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :pending), method: :patch, remote: true do %>
-          <i class="fas fa-flag text-danger"></i>
-        <% end %>
-      </div>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
-          <i class="fas fa-trash text-gray"></i>
-        <% end %>
-      </div>
-    <% when 'pending' %>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :applied), method: :patch, remote: true do %>
-          <i class="far fa-check-circle text-success"></i>
-        <% end %>
-      </div>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
-          <i class="fas fa-trash text-gray"></i>
-        <% end %>
-      </div>
-    <% when 'applied' %>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
-          <i class="fas fa-trash text-gray"></i>
-        <% end %>
-      </div>
-    <% when 'trash' %>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity, status: :review), method: :patch, remote: true do %>
-          <i class="fas fa-redo text-dark"></i>
-        <% end %>
-      </div>
-      <div class="jobcard-action zoom">
-        <%= link_to user_opportunity_path(@opportunity), method: :delete, remote: true do %>
-          <i class="fas fa-trash text-gray"></i>
-        <% end %>
-      </div>
+<div class="jobcard" data-job-id="<%= @opportunity.id %>">
+  <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
+  <div class="jobcard-img img-center">
+    <% if @opportunity.logo.nil? %>
+      <%= image_tag asset_pack_path("images/company.png") %>
+    <% else %>
+      <%= image_tag @opportunity.logo %>
     <% end %>
   </div>
+  <div class="jobcard-title d-none d-sm-block"><%= sanitize @opportunity.title %> @<%= sanitize @opportunity.company_name %></div>
+  <div class="jobcard-date d-none d-md-block"><%= sanitize @opportunity.deadline %></div>
+  <div class="jobcard-perso-grade"><%= @opportunity.personnal_grade %>/5</div>
+  <div class="jobcard-auto-grade"><%= @opportunity.automatic_grade %>%</div>
+
+  <% case @opportunity.status %>
+  <% when 'review' %>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :pending), method: :patch, remote: true do %>
+        <i class="fas fa-flag text-danger"></i>
+      <% end %>
+    </div>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
+        <i class="fas fa-trash text-gray"></i>
+      <% end %>
+    </div>
+  <% when 'pending' %>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :applied), method: :patch, remote: true do %>
+        <i class="far fa-check-circle text-success"></i>
+      <% end %>
+    </div>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
+        <i class="fas fa-trash text-gray"></i>
+      <% end %>
+    </div>
+  <% when 'applied' %>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :trash), method: :patch, remote: true do %>
+        <i class="fas fa-trash text-gray"></i>
+      <% end %>
+    </div>
+  <% when 'trash' %>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity, status: :review), method: :patch, remote: true do %>
+        <i class="fas fa-redo text-dark"></i>
+      <% end %>
+    </div>
+    <div class="jobcard-action zoom">
+      <%= link_to user_opportunity_path(@opportunity), method: :delete, remote: true do %>
+        <i class="fas fa-trash text-gray"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -23,7 +23,6 @@ ActiveStorage.start();
 $.fn.selectpicker.Constructor.BootstrapVersion = "4";
 
 const importancesValues = {};
-let intro;
 
 $(document).on("turbolinks:load", () => {
   if ($("#map").length) {
@@ -44,12 +43,19 @@ $(document).on("turbolinks:load", () => {
     });
   }
 
-  List("job-cards", {
-    valueNames: ["jobcard-title", "jobcard-date", "jobcard-auto-grade"]
-  });
+  if ($(".jobcard").length) {
+    List("job-cards", {
+      valueNames: ["jobcard-title", "jobcard-date", "jobcard-auto-grade"]
+    });
+  }
 
-  if (intro) {
+  if (typeof intro !== 'undefined' && intro) {
+    introJs()
+      .setOption("overlayOpacity", 0)
+      .setOption("hidePrev", true)
+      .setOption("hideNext", true)
+      .setOption("highlightClass", "bg-transparent")
+      .start();
     intro = false;
-    introJs().start();
   }
 });

@@ -12,7 +12,7 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav">
           <!-- Links when logged in -->
-            <li class="nav-item active ml-3" data-step="1" data-intro="<%= t('intro.home') %>">
+            <li class="nav-item active" data-step="1" data-intro="<%= t('intro.home') %>">
               <%= link_to "Home", opportunities_review_path, class: "nav-link" %>
             </li>
             <li class="nav-item">

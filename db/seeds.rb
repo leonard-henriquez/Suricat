@@ -140,6 +140,26 @@ sectors_seed.each do |sector_category, sectors|
   end
 end
 
+
+
+job = Job.find_by(name: 'Corporate Finance')
+sector = Sector.find(name: 'Recruitment / Training')
+company = Company.create(
+  name: 'Suricat',
+  structure: :start_up
+)
+
+opportunity_intro = Opportunity.create(
+  job: job,
+  company: company,
+  sector: sector,
+  salary: 3000,
+  job_description: 'Best job in the world!',
+  contract_type: :full_time,
+  location: 'paris',
+  url: 'https://www.suricat.co/'
+)
+
 # user_1 = User.create(
 #   first_name: 'test',
 #   last_name: 'test_1',

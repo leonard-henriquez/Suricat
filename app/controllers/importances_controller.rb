@@ -17,7 +17,12 @@ class ImportancesController < ApplicationController
       @user_opportunities.each(&:save)
       authorize importance
     end
-    redirect_to extension_path
+
+    if current_user.intro
+      redirect_to profile_path
+    else
+      redirect_to extension_path
+    end
   end
 
   def edit

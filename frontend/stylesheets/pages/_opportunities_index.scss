@@ -1,6 +1,7 @@
 #job-cards {
   .search {
-    width: 300px;
+    max-width: 300px;
+    margin-right: 4px;
     display: inline-block;
   }
 
@@ -12,6 +13,8 @@
 
   .controls {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 

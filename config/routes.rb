@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
-  devise_for :users,  path: 'profile', controllers: { registrations: "registrations" }
-  get '/profile', to: 'profiles#index'
-
-  root to: 'pages#home'
-  get '/styleguide', to: 'pages#styleguide'
-  get '/extension', to: 'pages#extension'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # namespace 'api'
-    # namespace 'v1'
-      # POST 'opportunities/'
-      # POST 'users/sign_in'
+  ## AUTHENTICATION
+  devise_for :users,  path: 'profile', controllers: { registrations: "registrations" }
 
+  ## HOMEPAGE
+  authenticated do
+    root to: 'user_opportunities#index', :defaults => { :status => :review }
+  end
+  root to: 'pages#home'
+
+  ## STATIC PAGES
+  get '/styleguide', to: 'pages#styleguide'
+  get '/extension', to: 'pages#extension'
+
+  ## USER PROFILE
+  get '/profile', to: 'profiles#index'
+
+  ## OPPORTUNITIES
   # Build the following routes
   # GET ['review', 'pending', 'applied', 'trash']
   statuses = UserOpportunity.statuses.keys.map(&:to_sym)
@@ -28,10 +34,11 @@ Rails.application.routes.draw do
     path: 'opportunities',
     only: [:index, :show, :update, :destroy]
 
-
+  ## EVENTS
   resources :events,
     only: [:index, :create, :update, :destroy]
 
+  ## CRITERIA & IMPORTANCES
   resources :importances,
     only: [:index, :edit, :update] do
       resources :criteria,
@@ -39,6 +46,7 @@ Rails.application.routes.draw do
     end
   put '/importances/', to: 'importances#update_importances', as: :update_importances
 
+  ## API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :sessions, only: [ :create ]
