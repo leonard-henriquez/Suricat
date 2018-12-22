@@ -50,7 +50,7 @@ en:
       large_company: "Large company"
       sme: "Small or Medium Enterprise"
       start_up: "Start-up"
-      others: "Other"
+      others: "Non profit, governmental or other"
   importance:
     name:
       contract_type: "Contract type"

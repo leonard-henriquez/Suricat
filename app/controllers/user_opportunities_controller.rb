@@ -45,10 +45,6 @@ class UserOpportunitiesController < ApplicationController
     authorize @user_opportunity
   end
 
-  def sidebar?
-    true
-  end
-
   private
 
   def set_user_opportunity

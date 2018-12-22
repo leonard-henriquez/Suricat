@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  layout "homepage"
+  layout "no_sidebar"
+
   skip_before_action :authenticate_user!, only: [:home]
 
   def home; end

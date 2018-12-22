@@ -12,10 +12,10 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav">
           <!-- Links when logged in -->
-            <li class="nav-item active" data-step="1" data-intro="<%= t('intro.home') %>">
+            <li class="nav-item <%= 'active' if current_page?(root_path) %>" data-step="1" data-intro="<%= t('intro.home') %>">
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <%= 'active' if current_page?(user_opportunities_path) %>">
               <%= link_to "Recommandations", user_opportunities_path, class: "nav-link" %>
             </li>
         </ul>
@@ -23,7 +23,7 @@
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <!-- Links when logged in -->
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(profile_path) %>">
             <%= link_to "#{current_user.first_name} #{current_user.last_name}", profile_path, class: "nav-link" %>
           </li>
 

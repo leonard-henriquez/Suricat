@@ -12,10 +12,10 @@
   }
 
   #subtitle-banner .content {
-    color: $gray-800;
-    font-weight: thin;
-    width: 680px;
+    font-family: $body-font;
     text-align: center;
+    color: $gray-800;
+    width: 680px;
     margin: auto;
   }
 
@@ -35,5 +35,6 @@
   .home-img {
     display: flex;
     justify-content: center;
+    opacity: 0.8;
   }
 }

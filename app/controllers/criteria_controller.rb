@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CriteriaController < ApplicationController
+  layout "no_sidebar"
+
   before_action :set_importance, only: %i[new create edit update destroy]
   before_action :set_criterium, only: %i[edit update destroy]
 

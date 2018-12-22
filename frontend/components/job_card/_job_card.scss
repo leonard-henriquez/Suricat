@@ -3,12 +3,10 @@
   justify-content: space-between;
   align-items: center;
   height: $jobcard-height;
-  border: 1px solid $gray-200;
-  box-shadow: 1px 1px 10px $gray-200;
+  border: 1px solid $gray-200 !important;
   transition: transform .2s;
   margin-bottom: 8px;
   padding-right: 8px;
-  background-color: $gray-100;
   position: relative;
 
   &-link {

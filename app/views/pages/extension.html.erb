@@ -1,5 +1,18 @@
-<div id="extension" class="content-wrapper">
-  <div class="wrapper">
-    <%= link_to 'Click here to install the Chrome extension', 'https://chrome.google.com/webstore/detail/suricat/chiagibhddnikihmbifjjgobimgmbhlm', target: "_blank", class:'btn btn-primary' %>
+<div id="extension" class="center-content-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= image_tag asset_pack_path("images/extension.png"), id: "img-extension", class: "img-center", width: "100%" %>
+      </div>
+      <div class="col-12 col-md-6 col-lg-8">
+        <div id="text-extension">
+          <h2>Suricat for Chrome</h2>
+          <p>
+            Install the chrome extension to add new offers to your dashboard in <strong>one</strong> click!
+          </p>
+          <%= link_to 'Download extension', 'https://chrome.google.com/webstore/detail/suricat/chiagibhddnikihmbifjjgobimgmbhlm', target: "_blank", class:'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

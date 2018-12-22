@@ -39,6 +39,7 @@ class UserOpportunity < ApplicationRecord
   def grade_calculation
     grade = 0
     total_importances_values = 0
+    importances_value = user.importances_value
     matching = criterium_matching
     matching.each do |key, value|
       next unless importances_value.key?(key)
@@ -58,28 +59,7 @@ class UserOpportunity < ApplicationRecord
     self.automatic_grade = 0
   end
 
-  def importances_value
-    importances_value = {}
-    user.importances.each { |i| importances_value[i.name.to_sym] = i.value || 0 }
-    importances_value
-  end
-
-  def criteria
-    criteria_list = {}
-    user.importances.each do |i|
-      name = i.name.to_sym
-      value = i.criteria.map(&:value.to_proc)
-      criteria_list[name] = value
-    end
-
-    criteria_list
-  rescue StandardError => e
-    puts "%%%%%% Criteria failed %%%%%%"
-    puts e.inspect
-    puts criteria_list.inspect
-  end
-
-  def user_opportunity_criteria
+  def characteristics
     hash = {}
     hash[:contract_type] = opportunity.nil? ? nil : opportunity.contract_type_id
     hash[:company_structure] = company.nil? ? nil : company.structure_id
@@ -90,26 +70,15 @@ class UserOpportunity < ApplicationRecord
     hash
   end
 
-  def self.criteria_type
-    {
-      contract_type:     :enum,
-      company_structure: :enum,
-      sector_name:       :enum,
-      job_name:          :enum,
-      location:          :location,
-      salary:            :integer
-    }
-  end
-
   def criterium_matching
-    op_criteria = user_opportunity_criteria
-    user_criteria = criteria
+    op_characteristics = characteristics
+    user_criteria = user.criteria
     matching = {}
 
-    self.class.criteria_type.each do |criterium, type|
-      next unless op_criteria.key?(criterium) && user_criteria.key?(criterium)
+    Criterium.types.each do |criterium, type|
+      next unless op_characteristics.key?(criterium) && user_criteria.key?(criterium)
 
-      value = op_criteria[criterium]
+      value = op_characteristics[criterium]
       range = user_criteria[criterium]
       next if value.nil? || range.nil?
       match = check_matching(type, value, range)

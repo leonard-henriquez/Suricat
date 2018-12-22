@@ -1,4 +1,9 @@
 <div class="radar">
-  <script>importancesValues = <%= @importances_values.nil? ? '{}' : @importances_values.to_json.html_safe %></script>
+  <% if @importances_values.nil? %>
+    <script>importancesValues = 0:</script>
+  <% else %>
+    <% values = Hash[@importances_values.map { |k,v| [t("importance.name.#{k}"),v] }] %>
+    <script>importancesValues = <%= values.to_json.html_safe %>;</script>
+  <% end %>
   <canvas id="chartjs"></canvas>
 </div>

@@ -1,98 +1,102 @@
-<div class="flex-sign">
-  <h1> Your Criteria </h1>
-  <h2> Let us know more about you to build your profil: </h2>
+<div id="criterium" class="center-content-wrapper">
+  <div class="container-fluid">
+    <div class="flex-sign">
+      <h1>Your Criteria</h1>
+      <h2>Let us know more about you to build your profil</h2>
 
 
-  <div id="mydiv" class="card-question section-content">
+      <div id="mydiv" class="card-question section-content">
 
-    <h3> <%= @importance.name_for_display %> </h3>
-    <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
+        <h3><%= @importance.name_for_display %></h3>
+        <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
-      <div class="form-group">
-        <label for="importance_value">Value</label>
-        <% if @importance.name.to_sym == :contract_type %>
-          <select class="form-control select optional"
-            title="Pick one or more items"
-            multiple="multiple"
-            name="importance[values][]"
-            id="importance__value">
-            <% Opportunity.contract_types.each do |type, value| %>
-              <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
-                <%= t("opportunity.contract_type.#{type}") %>
-              </option>
-            <% end %>
-          </select>
-
-        <% elsif @importance.name.to_sym == :company_structure %>
-          <select class="form-control select optional"
-            title="Pick one or more items"
-            multiple="multiple"
-            name="importance[values][]"
-            id="importance__value">
-            <% Company.structures.each do |type, value| %>
-              <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
-                <%= t("opportunity.contract_type.#{type}") %>
-              </option>
-            <% end %>
-          </select>
-
-        <% elsif @importance.name.to_sym == :sector_name %>
-          <select class="form-control select optional"
-            title="Pick one or more items"
-            multiple="multiple"
-            name="importance[values][]"
-            id="importance__value">
-            <% SectorCategory.all.each do |category| %>
-              <optgroup label="<%= sanitize category.name %>">
-                <% category.sectors.each do |sector| %>
-                  <option value="<%= sector.id %>" <%= 'selected="selected"' if @current_values.include?(sector.id.to_s) %>>
-                    <%= sanitize sector.name %>
+          <div class="form-group">
+            <label for="importance_value">Pick what you prefer ordered by priority</label>
+            <% if @importance.name.to_sym == :contract_type %>
+              <select class="form-control select optional"
+                title="Pick one or more items"
+                multiple="multiple"
+                name="importance[values][]"
+                id="importance__value">
+                <% Opportunity.contract_types.each do |type, value| %>
+                  <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
+                    <%= t("opportunity.contract_type.#{type}") %>
                   </option>
                 <% end %>
-              </optgroup>
-            <% end %>
-          </select>
+              </select>
 
-        <% elsif @importance.name.to_sym == :job_name %>
-          <select class="form-control select optional"
-            title="Pick one or more items"
-            multiple="multiple"
-            name="importance[values][]"
-            id="importance__value">
-            <% JobCategory.all.each do |category| %>
-              <optgroup label="<%= sanitize category.name %>">
-                <% category.jobs.each do |job| %>
-                  <option value="<%= job.id %>" <%= 'selected="selected"' if @current_values.include?(job.id.to_s) %>>
-                    <%= sanitize job.name %>
+            <% elsif @importance.name.to_sym == :company_structure %>
+              <select class="form-control select optional"
+                title="Pick one or more items"
+                multiple="multiple"
+                name="importance[values][]"
+                id="importance__value">
+                <% Company.structures.each do |type, value| %>
+                  <option value="<%= value %>" <%= 'selected="selected"' if @current_values.include?(value.to_s) %>>
+                    <%= t("company.structure.#{type}") %>
                   </option>
                 <% end %>
-              </optgroup>
+              </select>
+
+            <% elsif @importance.name.to_sym == :sector_name %>
+              <select class="form-control select optional"
+                title="Pick one or more items"
+                multiple="multiple"
+                name="importance[values][]"
+                id="importance__value">
+                <% SectorCategory.all.each do |category| %>
+                  <optgroup label="<%= sanitize category.name %>">
+                    <% category.sectors.each do |sector| %>
+                      <option value="<%= sector.id %>" <%= 'selected="selected"' if @current_values.include?(sector.id.to_s) %>>
+                        <%= sanitize sector.name %>
+                      </option>
+                    <% end %>
+                  </optgroup>
+                <% end %>
+              </select>
+
+            <% elsif @importance.name.to_sym == :job_name %>
+              <select class="form-control select optional"
+                title="Pick one or more items"
+                multiple="multiple"
+                name="importance[values][]"
+                id="importance__value">
+                <% JobCategory.all.each do |category| %>
+                  <optgroup label="<%= sanitize category.name %>">
+                    <% category.jobs.each do |job| %>
+                      <option value="<%= job.id %>" <%= 'selected="selected"' if @current_values.include?(job.id.to_s) %>>
+                        <%= sanitize job.name %>
+                      </option>
+                    <% end %>
+                  </optgroup>
+                <% end %>
+              </select>
+
+            <% elsif @importance.name.to_sym == :location %>
+              <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
+
+            <% else %>
+              <input type="text" class="form-control" name="importance[values][]" id="importance__value" value=<%= @current_values.first %>>
+
             <% end %>
-          </select>
+          </div>
 
-        <% elsif @importance.name.to_sym == :location %>
-          <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
-
-        <% else %>
-          <input type="text" class="form-control" name="importance[values][]" id="importance__value" value=<%= @current_values.first %>>
-
+          <%= f.button :submit, class: "btn-primary" %>
         <% end %>
       </div>
 
-      <%= f.button :submit, class: "btn-primary" %>
-    <% end %>
-  </div>
+      <div class="section-content">
+        <ul class="list-unstyled multi-steps">
+          <% Importance.names.each do |name, value| %>
+            <% if name == @importance.name %>
+              <li class="is-active"><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
+            <% else %>
+              <li><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
 
-  <div class="section-content">
-    <ul class="list-unstyled multi-steps">
-      <% Importance.names.each do |name, value| %>
-        <% if name == @importance.name %>
-          <li class="is-active"><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
-        <% else %>
-          <li><%= link_to t("importance.name.#{name}"), edit_importance_path(id: name) %></li>
-        <% end %>
-      <% end %>
-    </ul>
+    </div>
   </div>
-
 </div>

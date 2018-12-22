@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
+  layout "no_sidebar"
+
   def index
     @importances = policy_scope(Importance)
     @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h
+  end
 
+  def map
     @markers_pending = @user_opportunities.where(status: :pending).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
@@ -16,6 +20,7 @@ class ProfilesController < ApplicationController
         }
       }
     end
+
     @markers_applied = @user_opportunities.where(status: :applied).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
@@ -27,5 +32,7 @@ class ProfilesController < ApplicationController
         }
       }
     end
+
+    authorize @user_opportunities
   end
 end

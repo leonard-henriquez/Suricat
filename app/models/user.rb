@@ -11,6 +11,17 @@ class User < ApplicationRecord
   has_many :user_opportunities, dependent: :destroy
   has_many :opportunities, through: :user_opportunities
 
+  # turn the field authentication_token into a working authentication token
+  acts_as_token_authenticatable
+
+  def first_name=(value)
+    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
+  end
+
+  def last_name=(value)
+    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
+  end
+
   after_create :create_importances
 
   def create_importances
@@ -21,14 +32,24 @@ class User < ApplicationRecord
     end
   end
 
-  # turn the field authentication_token into a working authentication token
-  acts_as_token_authenticatable
-
-  def first_name=(value)
-    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
+  def importances_value
+    importances_value = {}
+    importances.each { |i| importances_value[i.name.to_sym] = i.value || 0 }
+    importances_value
   end
 
-  def last_name=(value)
-    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
+  def criteria
+    criteria_list = {}
+    importances.each do |i|
+      name = i.name.to_sym
+      value = i.criteria.map(&:value.to_proc)
+      criteria_list[name] = value
+    end
+
+    criteria_list
+  rescue StandardError => e
+    puts "%%%%%% Criteria failed %%%%%%"
+    puts e.inspect
+    puts criteria_list.inspect
   end
 end

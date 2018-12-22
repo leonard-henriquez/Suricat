@@ -13,6 +13,10 @@ class UserOpportunityPolicy < ApplicationPolicy
     @record.user == @user
   end
 
+  def map?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.where(user: user)

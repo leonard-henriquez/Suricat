@@ -24,36 +24,38 @@ const addScript = location => {
 const autocomplete = () => {
   document.addEventListener("turbolinks:load", () => {
     const input = $("#importance__value[data-location='true']")[0];
+    if (!input) {
+      return;
+    }
+
     let location;
 
-    if (input) {
-      const autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ["geocode"]
-      });
-      google.maps.event.addDomListener(input, "keydown", e => {
-        if (e.key === "Enter") {
-          e.preventDefault(); // Do not submit the form on Enter.
-        }
-      });
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ["geocode"]
+    });
+    google.maps.event.addDomListener(input, "keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault(); // Do not submit the form on Enter.
+      }
+    });
 
-      autocomplete.addListener("place_changed", () => {
-        input.value = "";
-        const place = autocomplete.getPlace();
-        console.log(place);
+    autocomplete.addListener("place_changed", () => {
+      input.value = "";
+      const place = autocomplete.getPlace();
+      console.log(place);
 
-        if ("place_id" in place) {
-          location = {
-            city: place.name,
-            id: place.place_id,
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
-          };
+      if ("place_id" in place) {
+        location = {
+          city: place.name,
+          id: place.place_id,
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        };
 
-          input.insertAdjacentHTML("beforebegin", tagGenerator(location));
-          addScript(location);
-        }
-      });
-    }
+        input.insertAdjacentHTML("beforebegin", tagGenerator(location));
+        addScript(location);
+      }
+    });
   });
 };
 

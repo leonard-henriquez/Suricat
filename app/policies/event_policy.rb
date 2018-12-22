@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 class EventPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.where(user: user)
-    end
-  end
-
   def create?
     true
   end
 
   def update?
-    true
+    @record.user == @user
   end
 
   def destroy?
-    true
+    @record.user == @user
+  end
+
+  class Scope < Scope
+    def resolve
+      scope.where(user: user)
+    end
   end
 end

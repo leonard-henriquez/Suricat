@@ -1,9 +1,19 @@
-.zoom {
-  transition: transform .2s; /* Animation */
+.center-content-wrapper {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - #{$navbar-height});
+  align-items: center;
+  justify-content: center;
 }
 
-.zoom:hover {
-  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+.shadow {
+  box-shadow: 1px 1px 10px $gray-200;
+}
+
+.light-box {
+  box-shadow: 1px 1px 10px $gray-200;
+  background-color: $gray-100;
+  border: 1px solid $primary;
 }
 
 .img-center {
@@ -11,4 +21,12 @@
   object-fit: cover;
   object-position: 50% 50%;
   padding: 0;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

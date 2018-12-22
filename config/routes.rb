@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   ## USER PROFILE
   get '/profile', to: 'profiles#index'
+  get '/map', to: 'profiles#map'
 
   ## OPPORTUNITIES
   # Build the following routes

@@ -30,10 +30,6 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
-  def sidebar?
-    true
-  end
-
   private
 
   def set_event

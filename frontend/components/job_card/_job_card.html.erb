@@ -1,4 +1,4 @@
-<div class="jobcard" data-job-id="<%= @opportunity.id %>">
+<div class="jobcard light-box" data-job-id="<%= @opportunity.id %>">
   <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
   <div class="jobcard-img img-center">
     <% if @opportunity.logo.nil? %>

@@ -52,11 +52,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_constants
-    @sidebar = sidebar?
     @user_opportunities = policy_scope(UserOpportunity)
-  end
-
-  def sidebar?
-    false
   end
 end

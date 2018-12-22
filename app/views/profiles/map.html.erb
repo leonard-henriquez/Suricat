@@ -1,0 +1,20 @@
+<section class="row">
+  <div class="p-1 col-lg-12">
+    <div>
+      <div class="p-3 border border-primary bg-white">
+        <h4>Your Opportunity Map</h4>
+        <div class="map-legend d-flex m-2">
+          <div class="map-legend-applied m-2">
+            <i class="fas fa-map-marker-alt fa-2x" style="color: #0b409c"></i>
+            <span class="align-bottom">Pending</span>
+          </div>
+          <div class="map-legend-pending m-2">
+            <i class="fas fa-map-marker-alt fa-2x" style="color: #dd0a35"></i>
+            <span class="align-bottom">Applied</span>
+          </div>
+        </div>
+        </div>
+      <div id="map" class="rounded" style="width: 100%; height: 50%;" data-pending="<%= @markers_pending.to_json %>" data-applied="<%= @markers_applied.to_json %>"></div>
+    </div>
+  </div>
+</section>

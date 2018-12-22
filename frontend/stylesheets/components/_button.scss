@@ -26,6 +26,10 @@ a:focus {
 .btn-primary {
   color: $body-bg;
 
+  &:active {
+    color: $body-bg !important;
+  }
+
   &:hover {
     color: $primary;
     background: $body-bg;
@@ -34,6 +38,10 @@ a:focus {
 .btn-secondary {
   color: $primary;
   background: $body-bg;
+
+  &:active {
+    color: $primary !important;
+  }
 
   &:hover {
     color: $body-bg;
