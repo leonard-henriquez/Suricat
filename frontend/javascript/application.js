@@ -12,7 +12,6 @@ import List from "list.js";
 import introJs from "intro.js";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
-import initSlider from "./slider";
 import autocomplete from "./autocomplete";
 
 require.context("../images", true);
@@ -32,10 +31,6 @@ $(document).on("turbolinks:load", () => {
   if ($(".simple-calendar").length) {
     initCalendar();
   }
-
-  // if ($(".form-group").length) {
-  //   initSlider();
-  // }
 
   if ($("select").length) {
     $("select").selectpicker({
