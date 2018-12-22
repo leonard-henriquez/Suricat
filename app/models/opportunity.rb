@@ -74,6 +74,17 @@ class Opportunity < ApplicationRecord
     company.nil? ? location : [company.name, location].compact.join(", ")
   end
 
+  def characteristics
+    hash = {}
+    hash[:contract_type] = contract_type_id
+    hash[:company_structure] = company.nil? ? nil : company.structure_id
+    hash[:sector_name] = sector.nil? ? nil : sector.id
+    hash[:job_name] = job.nil? ? nil : job.id
+    hash[:location] = [(latitude || 0).to_f, (longitude || 0).to_f]
+    hash[:salary] = salary || nil
+    hash
+  end
+
   protected
 
   def contract_types_format

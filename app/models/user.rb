@@ -46,10 +46,7 @@ class User < ApplicationRecord
       criteria_list[name] = value
     end
 
-    criteria_list
-  rescue StandardError => e
-    puts "%%%%%% Criteria failed %%%%%%"
-    puts e.inspect
-    puts criteria_list.inspect
+    cleaned_list = CleanCriteriaListService.new(criteria_list, true)
+    cleaned_list.call
   end
 end
