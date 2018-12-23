@@ -11,8 +11,9 @@
         <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
           <div class="form-group">
-            <label for="importance_value">Pick what you prefer ordered by priority</label>
-            <% if @importance.name.to_sym == :contract_type %>
+            <label for="importance_value">Select your criteria of search <strong>ordered</strong> by preference</label>
+            <% case @importance.name.to_sym %>
+            <% when :contract_type %>
               <select class="form-control select optional"
                 title="Pick one or more items"
                 multiple="multiple"
@@ -25,7 +26,7 @@
                 <% end %>
               </select>
 
-            <% elsif @importance.name.to_sym == :company_structure %>
+            <% when :company_structure %>
               <select class="form-control select optional"
                 title="Pick one or more items"
                 multiple="multiple"
@@ -38,7 +39,7 @@
                 <% end %>
               </select>
 
-            <% elsif @importance.name.to_sym == :sector_name %>
+            <% when :sector_name %>
               <select class="form-control select optional"
                 title="Pick one or more items"
                 multiple="multiple"
@@ -55,7 +56,7 @@
                 <% end %>
               </select>
 
-            <% elsif @importance.name.to_sym == :job_name %>
+            <% when :job_name %>
               <select class="form-control select optional"
                 title="Pick one or more items"
                 multiple="multiple"
@@ -72,16 +73,23 @@
                 <% end %>
               </select>
 
-            <% elsif @importance.name.to_sym == :location %>
+            <% when :location %>
+              <br>
+              <% @current_values.each do |json| %>
+                <% hash = JSON.parse(json) %>
+                <div id="<%= hash["id"] %>" class="tags"><%= hash["city"] %></div>
+                <input type="hidden" id="hidden-<%= hash["id"] %>" name="importance[values][]" value='<%= json %>'>
+              <% end %>
               <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
 
-            <% else %>
+            <% when :salary %>
               <input type="text" class="form-control" name="importance[values][]" id="importance__value" value=<%= @current_values.first %>>
 
             <% end %>
+            <input type="hidden" name="importance[values][]">
           </div>
 
-          <%= f.button :submit, class: "btn-primary" %>
+          <%= f.button :submit, "Save criteria", class: "btn-primary" %>
         <% end %>
       </div>
 

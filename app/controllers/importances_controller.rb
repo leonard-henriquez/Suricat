@@ -3,16 +3,14 @@
 class ImportancesController < ApplicationController
   layout "no_sidebar"
 
-  before_action :clean_params, only: %i[update]
   before_action :set_importance, only: %i[edit update]
 
   def index
-    @importances = policy_scope(Importance)
-    @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h
+    @importances_values = current_user.importances_value
   end
 
   def update_importances
-    importance_params.each do |name, value|
+    importance_values_params.each do |name, value|
       importance = Importance.find_by(name: name, user: current_user)
       importance.value = value
       importance.save
@@ -20,6 +18,7 @@ class ImportancesController < ApplicationController
       authorize importance
     end
 
+    # proposes to download the extension if the user is new (intro==true)
     if current_user.intro
       redirect_to profile_path
     else
@@ -28,13 +27,11 @@ class ImportancesController < ApplicationController
   end
 
   def edit
-    @current_values = current_criteria
-    authorize @importance
+    @current_values = current_criteria_values
   end
 
   def update
-    authorize @importance
-    values = importances_params[:values]
+    values = criterium_values_params
 
     # delete previous values
     @importance.criteria.destroy_all
@@ -56,25 +53,17 @@ class ImportancesController < ApplicationController
 
   private
 
-  def clean_params
-    return if params[:importance].nil?
-
-    values = params[:importance][:values]
-    values = [values] unless values.is_a? Array # makes sure values is an array
-    values = values.reject(&:empty?)
-    params[:importance][:values] = values
-  end
-
   def set_importance
     @importance = Importance.find_by(user: current_user, name: params[:id].to_sym)
+    authorize @importance
   end
 
-  def importance_params
-    params.require(:importance).permit!()
+  def importance_values_params
+    params.require(:importance).permit!
   end
 
-  def importances_params
-    params.require(:importance).permit(values: [])
+  def criterium_values_params
+    params.require(:importance).permit(values: [])["values"].compact
   end
 
   def redirect_next
@@ -83,12 +72,13 @@ class ImportancesController < ApplicationController
       next_importance = Importance.names.keys.at(index + 1).to_sym
       redirect_to edit_importance_path(id: next_importance)
     else
+      # reset params
       params = []
       redirect_to importances_path
     end
   end
 
-  def current_criteria
-    @importance.criteria.map { |criterium| criterium.value }
+  def current_criteria_values
+    @importance.criteria.map(&:value)
   end
 end

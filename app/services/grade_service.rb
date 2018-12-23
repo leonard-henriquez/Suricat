@@ -59,9 +59,9 @@ class GradeService
     when :integer
       distance(value, range)
     when :enum
-      range.include?(value) ? 1: 0
+      range.include?(value) ? 1 : 0
     when :string
-      range.include?(value) ? 1: 0
+      range.include?(value) ? 1 : 0
     when :location
       dist = range.map { |criteria_value| Geocoder::Calculations.distance_between(criteria_value, value) }.min
       distance(dist, MAX_DISTANCE, true)

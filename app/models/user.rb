@@ -33,9 +33,7 @@ class User < ApplicationRecord
   end
 
   def importances_value
-    importances_value = {}
-    importances.each { |i| importances_value[i.name.to_sym] = i.value || 0 }
-    importances_value
+    importances.map { |i| [i.name.to_sym, i.value || 0] }.to_h
   end
 
   def criteria

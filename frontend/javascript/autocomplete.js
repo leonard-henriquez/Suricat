@@ -30,6 +30,12 @@ const autocomplete = () => {
 
     let location;
 
+    $("div.tags").click((e) => {
+      const tag = e.currentTarget;
+      $(`#hidden-${tag.id}`).remove();
+      $(tag).remove();
+    });
+
     const autocomplete = new google.maps.places.Autocomplete(input, {
       types: ["geocode"]
     });
