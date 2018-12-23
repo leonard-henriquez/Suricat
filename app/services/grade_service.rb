@@ -55,6 +55,8 @@ class GradeService
   private
 
   def check_matching(type, value, range)
+    return 0 if range.is_a?(Array) && range.empty?
+
     case type
     when :integer
       distance(value, range)

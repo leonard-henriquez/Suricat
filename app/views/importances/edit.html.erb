@@ -80,7 +80,7 @@
                 <div id="<%= hash["id"] %>" class="tags"><%= hash["city"] %></div>
                 <input type="hidden" id="hidden-<%= hash["id"] %>" name="importance[values][]" value='<%= json %>'>
               <% end %>
-              <input type="text" class="form-control" name="importance[values][]" id="importance__value" data-location="true">
+              <input type="text" class="form-control" id="importance__value" data-location="true">
 
             <% when :salary %>
               <input type="text" class="form-control" name="importance[values][]" id="importance__value" value=<%= @current_values.first %>>
