@@ -42,7 +42,7 @@ class CleanCriteriaListService
     when :integer
       @is_array ? value.first : value
     else
-      @is_array ? value.compact : value
+      @is_array ? value.reject{ |x| x.nil? || x == "" } : value
     end
   end
 end

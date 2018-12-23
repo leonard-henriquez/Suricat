@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GradeService
-  CALCULATION_CONSTANT = Math::log(2)
+  CALCULATION_CONSTANT = Math.log(2)
   MAX_DISTANCE = 30
 
   def initialize(user, opportunity)
@@ -61,13 +61,20 @@ class GradeService
     when :integer
       distance(value, range)
     when :enum
-      range.include?(value) ? 1 : 0
+      position(value, range)
     when :string
-      range.include?(value) ? 1 : 0
+      position(value, range)
     when :location
       dist = range.map { |criteria_value| Geocoder::Calculations.distance_between(criteria_value, value) }.min
       distance(dist, MAX_DISTANCE, true)
     end
+  end
+
+  def position(value, range)
+    return 0 unless range.include?(value)
+
+    pseudo_rank = 0.9 ** range.index(value)
+    Math.exp(CALCULATION_CONSTANT * pseudo_rank) - 1
   end
 
   def distance(value, reference, negative=false)
@@ -79,6 +86,6 @@ class GradeService
     return 1 if value >= reference
     return 0 if value <= 0
 
-    Math::exp(CALCULATION_CONSTANT * value.fdiv(reference)) - 1
+    Math.exp(CALCULATION_CONSTANT * value.fdiv(reference)) - 1
   end
 end

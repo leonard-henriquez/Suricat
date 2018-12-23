@@ -63,7 +63,7 @@ class ImportancesController < ApplicationController
   end
 
   def criterium_values_params
-    params.require(:importance).permit(values: [])["values"].reject(&:empty?)
+    params.require(:importance).permit(values: [])["values"].reject{ |x| x.nil? || x == "" }
   end
 
   def redirect_next
