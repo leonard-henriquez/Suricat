@@ -2,6 +2,7 @@
 
 class GradeService
   CALCULATION_CONSTANT = Math.log(2)
+  POSITION_CONSTANT = 0.9
   MAX_DISTANCE = 30
 
   def initialize(user, opportunity)
@@ -73,7 +74,7 @@ class GradeService
   def position(value, range)
     return 0 unless range.include?(value)
 
-    pseudo_rank = 0.9 ** range.index(value)
+    pseudo_rank = POSITION_CONSTANT ** range.index(value)
     Math.exp(CALCULATION_CONSTANT * pseudo_rank) - 1
   end
 
