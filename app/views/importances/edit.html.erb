@@ -75,6 +75,7 @@
 
             <% when :location %>
               <br>
+              <script>let tags = <%= @current_values.to_json.html_safe %>;</script>
               <% @current_values.each do |json| %>
                 <% hash = JSON.parse(json) %>
                 <div id="<%= hash["id"] %>" class="tags"><%= hash["city"] %></div>

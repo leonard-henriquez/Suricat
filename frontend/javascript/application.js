@@ -13,6 +13,7 @@ import introJs from "intro.js";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
 import autocomplete from "./autocomplete";
+import test from "./tags";
 
 require.context("../images", true);
 
@@ -53,4 +54,6 @@ $(document).on("turbolinks:load", () => {
       .start();
     intro = false;
   }
+
+  test();
 });
