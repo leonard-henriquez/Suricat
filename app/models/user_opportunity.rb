@@ -9,6 +9,8 @@ class UserOpportunity < ApplicationRecord
   has_one :sector, through: :opportunity
   after_initialize :init
 
+  validates :user, presence: true
+  validates :opportunity, presence: true
   validates :personnal_grade, presence: true
 
   before_save :grade_calculation

@@ -3,29 +3,32 @@
 class Api::V1::OpportunitiesController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User
 
+  before_action :set_params, only: %i[create]
+
   def create
     unless current_user
       response = {status: false, errors: "Unable to find user"}
       render json: response
     end
+    logger.info "API called to create new opportunity..."
+    logger.info "Parameters: #{p}"
 
-    puts "Opportunity -->"
-    opportunity = Opportunity.find_by(url: p[:url])
+    opportunity = Opportunity.find_by(url: @params[:url])
     opportunity = create_opportunity if opportunity.nil?
-    puts opportunity.errors.inspect unless opportunity.nil?
 
-    puts "UserOpportunity -->"
     user_opportunity = UserOpportunity.where(opportunity: opportunity, user: current_user).first
-    puts user_opportunity
     user_opportunity = create_user_opportunity(opportunity) if user_opportunity.nil?
-    puts user_opportunity.errors.inspect unless user_opportunity.nil?
 
     response = {
       status:           true,
       user:             current_user,
       user_opportunity: user_opportunity,
-      opportunity:      opportunity
+      opportunity:      opportunity,
+      company:          opportunity.company,
+      job:              opportunity.job,
+      sector:           opportunity.sector
     }
+    logger.debug "API response: #{response}"
     render json: response
   end
 
@@ -35,71 +38,39 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     UserOpportunity.create(
       user:            current_user,
       opportunity:     opportunity,
-      personnal_grade: p[:stars]
+      personnal_grade: @params[:stars]
     )
   end
 
   def create_opportunity
-    job = Job.find_by(name: p[:job_name])
-    job = create_job if job.nil?
-
-    company = Company.find_by(name: p[:company_name])
-    company = create_company if company.nil?
+    company = Company.find_or_create(name: @params[:company_name], structure: @params[:company_structure])
+    job = Job.find_or_create(name: @params[:job_name], category: @params[:job_category])
+    sector = Sector.find_or_create(name: @params[:sector_name], category: @params[:sector_category])
 
     create_opportunity_params = {
+      company: company,
       job:     job,
-      company: company
+      sector:  sector
     }
 
-    unless p[:sector_name].nil?
-      sector = Sector.find_by(name: p[:sector_name])
-      sector = create_sector if sector.nil?
-      create_opportunity_params[sector] = sector
-    end
-
     opportunity_params.each do |param|
-      create_opportunity_params[param] = p[param] if p.key?(param)
+      create_opportunity_params[param] = @params[param] if @params.key?(param)
     end
 
-    opportunity = Opportunity.create(create_opportunity_params)
-    puts opportunity.errors.inspect unless opportunity.nil?
-    opportunity
+    Opportunity.create(create_opportunity_params)
   end
 
-  def create_company
-    structure = p[:company_structure].to_sym
-    structures = Company.structures.reject { |s| s == :others }
-    structure = :others unless structures.include?(structure)
-    company = Company.create(
-      name:      p[:company_name],
-      structure: structure
-    )
-    puts company.errors.inspect unless company.nil?
-    company
-  end
-
-  def create_sector
-    sector_category = SectorCategory.find_by(name: :other)
-    sector_category = SectorCategory.create(name: :other) if sector_category.nil?
-
-    sector = Sector.create(sector_category: sector_category, name: p[:sector_name])
-    puts sector.errors.inspect unless sector.nil?
-    sector
-  end
-
-  def create_job
-    job_category = JobCategory.find_by(name: :other)
-    job_category = JobCategory.create(name: :other) if job_category.nil?
-
-    job = Job.create(job_category: job_category, name: p[:job_name])
-    puts job.errors.inspect unless job.nil?
-    job
-  end
-
-  def p
-    # (required_params + optional_params).each { |field| p[field] = sanitize(field) }
+  def set_params
     params.require(:opportunity).require(required_params)
-    params.require(:opportunity).permit(required_params + optional_params)
+    sanitized_params = {}
+    received_params = params.require(:opportunity).permit(required_params + optional_params).each do |key, value|
+      if key == :job_description
+        sanitized_params[key.to_sym] = ReverseMarkdown.convert(value, unknown_tags: :drop, tag_border: "")
+      else
+        sanitized_params[key.to_sym] = Sanitize.fragment(value)
+      end
+    end
+    @params = default_params.merge(sanitized_params)
   end
 
   def required_params
@@ -120,10 +91,21 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     %i[
       company_structure
       sector_name
+      sector_category
+      job_category
       start_date
       salary
       email
     ]
+  end
+
+  def default_params
+    {
+      company_structure: "Other",
+      sector_name:       "Other",
+      sector_category:   "Other",
+      job_category:      "Other"
+    }
   end
 
   def opportunity_params

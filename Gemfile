@@ -34,3 +34,6 @@ end
 
 # Gem for the API
 gem "simple_token_authentication"
+gem "kramdown"
+gem "sanitize"
+gem "reverse_markdown"

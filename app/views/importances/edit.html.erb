@@ -7,7 +7,7 @@
 
       <div id="mydiv" class="card-question section-content">
 
-        <h3><%= @importance.name_for_display %></h3>
+        <h3><%= t("importance.name.#{@importance.name}") %></h3>
         <%= simple_form_for @importance, url: importance_path(id: @importance.name) do |f| %>
 
           <div class="form-group">

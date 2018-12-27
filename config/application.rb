@@ -46,5 +46,13 @@ module Suricat
     config.autoload_paths << config.root.join('frontend/components')
     config.komponent.root = Rails.root.join('frontend')
     config.komponent.stylesheet_engine = :scss
+
+    # activate logs
+    config.log_level = :error
+    config.log_formatter = proc do |severity, time, progname, msg|
+      formatted_severity = sprintf("%-5s",severity.to_s)
+      formatted_time = time.strftime("%Y-%m-%d %H:%M:%S")
+      "[#{formatted_severity} #{formatted_time}] #{msg}\n"
+    end
   end
 end
