@@ -15,11 +15,11 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   def first_name=(value)
-    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
+    self[:first_name] = value.split.map(&:capitalize).join(" ")
   end
 
   def last_name=(value)
-    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
+    self[:last_name] = value.split.map(&:capitalize).join(" ")
   end
 
   after_create :create_importances

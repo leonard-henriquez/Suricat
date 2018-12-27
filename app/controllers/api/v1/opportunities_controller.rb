@@ -64,11 +64,11 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     params.require(:opportunity).require(required_params)
     sanitized_params = {}
     received_params = params.require(:opportunity).permit(required_params + optional_params).each do |key, value|
-      if key == :job_description
-        sanitized_params[key.to_sym] = ReverseMarkdown.convert(value, unknown_tags: :drop, tag_border: "")
-      else
-        sanitized_params[key.to_sym] = Sanitize.fragment(value)
-      end
+      sanitized_params[key.to_sym] = if key == :job_description
+                                       ReverseMarkdown.convert(value, unknown_tags: :drop, tag_border: "")
+                                     else
+                                       Sanitize.fragment(value)
+                                     end
     end
     @params = default_params.merge(sanitized_params)
   end

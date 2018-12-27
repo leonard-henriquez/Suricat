@@ -5,16 +5,16 @@ class ProfilesController < ApplicationController
 
   def index
     @importances = policy_scope(Importance)
-    @importances_values = @importances.all.map {|i| [i.name, i.value] }.to_h
+    @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h
   end
 
   def map
     @markers_pending = @user_opportunities.where(status: :pending).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
-        title: title,
-        lat: u_op.opportunity.latitude,
-        lng: u_op.opportunity.longitude,
+        title:      title,
+        lat:        u_op.opportunity.latitude,
+        lng:        u_op.opportunity.longitude,
         infoWindow: {
           content: "<p>#{title}</p>"
         }
@@ -24,11 +24,11 @@ class ProfilesController < ApplicationController
     @markers_applied = @user_opportunities.where(status: :applied).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
-        title: title,
-        lat: u_op.opportunity.latitude,
-        lng: u_op.opportunity.longitude,
+        title:      title,
+        lat:        u_op.opportunity.latitude,
+        lng:        u_op.opportunity.longitude,
         infoWindow: {
-          content: "<p>#{title}</p>",
+          content: "<p>#{title}</p>"
         }
       }
     end

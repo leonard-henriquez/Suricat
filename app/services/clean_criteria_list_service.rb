@@ -10,11 +10,11 @@ class CleanCriteriaListService
     cleaned_list = {}
     criterium_types = Criterium.types
     @criteria_list.each do |criterium, values|
-      if criterium_types.key?(criterium)
-        type = criterium_types[criterium]
-        clean_value = @is_array ? values.map { |value| clean_value(value, type) } : clean_value(values, type)
-        cleaned_list[criterium] = clean_type(clean_value, type)
-      end
+      next unless criterium_types.key?(criterium)
+
+      type = criterium_types[criterium]
+      clean_value = @is_array ? values.map { |value| clean_value(value, type) } : clean_value(values, type)
+      cleaned_list[criterium] = clean_type(clean_value, type)
     end
     cleaned_list
   end
@@ -42,7 +42,7 @@ class CleanCriteriaListService
     when :integer
       @is_array ? value.first : value
     else
-      @is_array ? value.reject{ |x| x.nil? || x == "" } : value
+      @is_array ? value.reject { |x| x.nil? || x == "" } : value
     end
   end
 end

@@ -32,8 +32,10 @@ group :development, :test do
   gem "spring-watcher-listen", "~> 2.0.0"
 end
 
+# Gem for sanitizing
+gem "kramdown"
+gem "reverse_markdown"
+gem "sanitize"
+
 # Gem for the API
 gem "simple_token_authentication"
-gem "kramdown"
-gem "sanitize"
-gem "reverse_markdown"
