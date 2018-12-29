@@ -6,14 +6,9 @@ class Company < ApplicationRecord
   has_many :user_opportunities, through: :opportunities
   validates :name, presence: true, uniqueness: true
   validates :structure, presence: true
-  before_validation :sanitize, on: %i[create update]
 
   def structure_id
     structure_before_type_cast
-  end
-
-  def sanitize
-    self.name = Sanitize.fragment(name)
   end
 
   def self.find_or_create(name:, structure: :others)

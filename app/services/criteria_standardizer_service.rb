@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class CleanCriteriaListService
-  def initialize(criteria_list, is_array=false)
+class CriteriaStandardizerService
+  def initialize(criteria_list, has_multiple_values=false)
     @criteria_list = criteria_list
-    @is_array = is_array
+    @has_multiple_values = has_multiple_values
   end
 
   def call
@@ -13,7 +13,7 @@ class CleanCriteriaListService
       next unless criterium_types.key?(criterium)
 
       type = criterium_types[criterium]
-      clean_value = @is_array ? values.map { |value| clean_value(value, type) } : clean_value(values, type)
+      clean_value = @has_multiple_values ? values.map { |value| clean_value(value, type) } : clean_value(values, type)
       cleaned_list[criterium] = clean_type(clean_value, type)
     end
     cleaned_list
@@ -28,7 +28,7 @@ class CleanCriteriaListService
     when :string
       value.to_s
     when :location
-      if @is_array
+      if @has_multiple_values
         hash = JSON.parse(value)
         [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f] if hash.key?("lat") && hash.key?("lng")
       else
@@ -40,9 +40,9 @@ class CleanCriteriaListService
   def clean_type(value, type)
     case type
     when :integer
-      @is_array ? value.first : value
+      @has_multiple_values ? value.first : value
     else
-      @is_array ? value.reject { |x| x.nil? || x == "" } : value
+      @has_multiple_values ? value.reject { |x| x.nil? || x == "" } : value
     end
   end
 end

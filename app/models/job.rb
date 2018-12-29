@@ -8,14 +8,8 @@ class Job < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  before_validation :sanitize, on: %i[create update]
-
   def self.category
     (to_s + "Category").constantize
-  end
-
-  def sanitize
-    self.name = Sanitize.fragment(name)
   end
 
   def self.find_or_create(name:, category: nil)

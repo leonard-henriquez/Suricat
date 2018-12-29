@@ -29,12 +29,19 @@ class UserOpportunity < ApplicationRecord
   def init
     self.status ||= :review
     self.personnal_grade ||= 0
-    self.automatic_grade ||= 0
   end
 
-  def personnal_grade=(value)
-    value = value.to_s.gsub(/\D/, "").to_i
-    super(value)
+  def self.find_or_create(user:, opportunity:, params: nil)
+    item = find_by(user: user, opportunity: opportunity)
+    return item unless item.nil?
+
+    raise ArgumentError.new("Missing params") if params.nil?
+
+    UserOpportunity.create(
+      user:            user,
+      opportunity:     opportunity,
+      personnal_grade: params[:stars]
+    )
   end
 
   # ! start methods for automatic_grade calculation !

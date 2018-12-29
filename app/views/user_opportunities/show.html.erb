@@ -53,7 +53,7 @@
           <div class="job-offer-job--description">
             <h4>Job description</h4>
             <p class="text-justify">
-              <%= sanitize @user_opportunity.job_description %>
+              <%= Kramdown::Document.new(@user_opportunity.job_description).to_html.html_safe %>
             </p>
           </div>
         </div>
