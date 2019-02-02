@@ -2,46 +2,64 @@
 
 class GradeService
   CALCULATION_CONSTANT = Math.log(2)
+  POSITION_CONSTANT = 0.9
   MAX_DISTANCE = 30
+
+  attr_accessor :user, :opportunity
 
   def initialize(user, opportunity)
     @user = user
-    @criteria = @user.criteria
     @opportunity = opportunity
-    @characteristics = @opportunity.characteristics
+  end
+
+  def criteria
+    @user.criteria
+  end
+
+  def characteristics
+    @opportunity.characteristics
+  end
+
+  def importances_value
+    @user.importances_value
   end
 
   def call
     grade = 0
     total_importances_values = 0
-    importances_value = @user.importances_value
     matching = criterium_matching
     matching.each do |key, value|
       next unless importances_value.key?(key)
 
-      puts "key: #{key}, value: #{value}, importance: #{importances_value[key]}"
+      Rails.logger.info "key: #{key}, value: #{value}, importance: #{importances_value[key]}"
       total_importances_values += importances_value[key]
       grade += value * importances_value[key]
     end
-    puts "total importances: #{total_importances_values}"
-    puts "grade: #{(grade * 100).fdiv(total_importances_values)}"
+    Rails.logger.info "total importances: #{total_importances_values}"
+    Rails.logger.info "grade: #{(grade * 100).fdiv(total_importances_values)}"
     (grade * 100).fdiv(total_importances_values).to_i
   rescue StandardError => e
-    puts "%%%%%% Grade calculation failed %%%%%%"
-    puts e.inspect
-    puts "criterium_matching: #{criterium_matching}"
-    puts "importances_value: #{importances_value}"
-    return 0
+    Rails.logger.info "%%%%%% Grade calculation failed %%%%%%"
+    Rails.logger.info e.inspect
+    debug
+    0
+  end
+
+  def debug
+    Rails.logger.info "characteristics: #{characteristics}"
+    Rails.logger.info "criteria: #{criteria}"
+    Rails.logger.info "criterium_matching: #{criterium_matching}"
+    Rails.logger.info "importances_value: #{importances_value}"
   end
 
   def criterium_matching
     matching = {}
 
     Criterium.types.each do |criterium, type|
-      next unless @characteristics.key?(criterium) && @criteria.key?(criterium)
+      next unless characteristics.key?(criterium) && criteria.key?(criterium)
 
-      value = @characteristics[criterium]
-      range = @criteria[criterium]
+      value = characteristics[criterium]
+      range = criteria[criterium]
       next if value.nil? || range.nil?
 
       match = check_matching(type, value, range)
@@ -73,7 +91,7 @@ class GradeService
   def position(value, range)
     return 0 unless range.include?(value)
 
-    pseudo_rank = 0.9 ** range.index(value)
+    pseudo_rank = POSITION_CONSTANT**range.index(value)
     Math.exp(CALCULATION_CONSTANT * pseudo_rank) - 1
   end
 

@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   # prepend_view_path Rails.root.join("frontend","views")
 
   def default_url_options
-    { host: ENV["www.suricat.co"] || "localhost:3000" }
+    {host: ENV["www.suricat.co"] || "localhost:3000"}
   end
 
   def set_locale

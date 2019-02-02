@@ -13,9 +13,7 @@ class Opportunity < ApplicationRecord
   validates :job_description, presence: true
   validates :contract_type, presence: true
   validates :location, presence: true
-  validates :salary, presence: true
 
-  after_initialize :init
   geocoded_by :company_location
   after_validation :geocode, if: :will_save_change_to_location?
 
@@ -26,48 +24,8 @@ class Opportunity < ApplicationRecord
     end
   end
 
-  def init
-    self.salary ||= 0
-  end
-
   def contract_type_id
     contract_type_before_type_cast
-  end
-
-  def contract_type=(value)
-    unless value.is_a? Symbol
-      sanitizer = ApiSanitizerService.new(value, contract_types_format, :other)
-      value = sanitizer.call
-    end
-    super(value)
-  end
-
-  def salary=(value)
-    value ||= 0
-    value = value.to_s.gsub(/\D/, "").to_i
-    super(value)
-  end
-
-  def start_date=(str)
-    now = ["immediate", "now", "dès que possible"]
-    if now.include?(str.strip.downcase)
-      date = Date.today
-    else
-      year = Date.today.year
-      month = nil
-      months.each do |month_int, regexes|
-        month = month_int if regexes.any? { |regex| regex.match(str.downcase) }
-      end
-      day = str.gsub(/[^0-9]/, "").to_i
-      date = Date.new(year, month, day)
-      date = date.next_year while date < Date.today
-    end
-    super(date)
-  rescue Exception => e
-  end
-
-  def logo=(str)
-    super(str) unless /placeholder/.match(str)
   end
 
   def company_location
@@ -75,43 +33,36 @@ class Opportunity < ApplicationRecord
   end
 
   def characteristics
-    hash = {}
-    hash[:contract_type] = contract_type_id
-    hash[:company_structure] = company.nil? ? nil : company.structure_id
-    hash[:sector_name] = sector.nil? ? nil : sector.id
-    hash[:job_name] = job.nil? ? nil : job.id
-    hash[:location] = [(latitude || 0).to_f, (longitude || 0).to_f]
-    hash[:salary] = salary || nil
-    hash
-  end
-
-  protected
-
-  def contract_types_format
     {
-      internship:       [/internship/, /stage/],
-      vie:              /vie/,
-      graduate_program: /graduate program/,
-      full_time:        [/full.time/, /cdi/],
-      fixed_term:       [/fixed.(term|time)/, /cdd/],
-      apprenticeship:   [/apprenticeship/, /alternance/]
+      contract_type:     contract_type_id,
+      company_structure: company.nil? ? nil : company.structure_id,
+      sector_name:       sector_id,
+      job_name:          job_id,
+      location:          [(latitude || 0).to_f, (longitude || 0).to_f],
+      salary:            salary
     }
   end
 
-  def months
-    {
-      1  => [/jan\.?/, /jan\.?/],
-      2  => [/fév\.?/, /feb\.?/],
-      3  => [/mar\.?/, /mar\.?/],
-      4  => [/avr\.?/, /apr\.?/],
-      5  => [/mai/, /may/],
-      6  => [/juin/, /jun\.?/],
-      7  => [/juil\.?/, /jul\.?/],
-      8  => [/août/, /aug\.?/],
-      9  => [/sept\.?/, /sep\.?/],
-      10 => [/oct\.?/, /oct\.?/],
-      11 => [/nov\.?/, /nov\.?/],
-      12 => [/déc\.?/, /dec\.?/]
+  def self.find_or_create(url:, params: nil)
+    item = find_by(url: url)
+    return item unless item.nil?
+
+    raise ArgumentError.new("Missing params") if params.nil?
+
+    company = Company.find_or_create(name: params[:company_name], structure: params[:company_structure])
+    job     =     Job.find_or_create(name: params[:job_name],     category:  params[:job_category])
+    sector  =  Sector.find_or_create(name: params[:sector_name],  category:  params[:sector_category])
+
+    create_opportunity_params = {
+      company: company,
+      job:     job,
+      sector:  sector
     }
+
+    # try to fill all the attributes different than id, company_id, job_id, and sector_id with the $params
+    other_params = new.attributes.keys.map(&:to_sym).reject { |x| /^(.*_)?id$/i.match(x) }
+    other_params.each { |param| create_opportunity_params[param] = params[param] if params.key?(param) }
+
+    create(create_opportunity_params)
   end
 end

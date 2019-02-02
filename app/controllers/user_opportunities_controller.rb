@@ -20,24 +20,21 @@ class UserOpportunitiesController < ApplicationController
   def show
     authorize @user_opportunity
     @opportunity = UserOpportunity.find(params[:id])
-    if @opportunity.nil?
-      @marker = {lat: nil, lng: nil}
-    else
-      @marker =
-        {
-          lat: @opportunity.latitude,
-          lng: @opportunity.longitude
-        }
-    end
+    @marker = if @opportunity.nil?
+                {lat: nil, lng: nil}
+              else
+                {
+                  lat: @opportunity.latitude,
+                  lng: @opportunity.longitude
+                }
+              end
   end
 
   def update
     @user_opportunity.status = params[:status]
     @user_opportunity.save
     authorize @user_opportunity
-    if params[:from] == 'show'
-      redirect_to opportunities_review_path
-    end
+    redirect_to opportunities_review_path if params[:from] == "show"
   end
 
   def destroy

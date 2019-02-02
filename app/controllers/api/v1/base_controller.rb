@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::BaseController < ActionController::API
   # include Pundit
 
@@ -13,16 +15,16 @@ class Api::V1::BaseController < ActionController::API
   private
 
   def internal_server_error(exception)
-    if Rails.env.development?
-      response = { type: exception.class.to_s, message: exception.message, backtrace: exception.backtrace }
-    else
-      response = { error: "Internal Server Error" }
-    end
+    response = if Rails.env.development?
+                 {type: exception.class.to_s, message: exception.message, backtrace: exception.backtrace}
+               else
+                 {error: "Internal Server Error"}
+               end
     render json: response, status: :internal_server_error
   end
 
   def not_found(exception)
-    render json: { error: exception.message }, status: :not_found
+    render json: {error: exception.message}, status: :not_found
   end
 
   # def user_not_authorized(exception)

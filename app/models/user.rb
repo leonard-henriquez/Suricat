@@ -14,15 +14,13 @@ class User < ApplicationRecord
   # turn the field authentication_token into a working authentication token
   acts_as_token_authenticatable
 
-  def first_name=(value)
-    write_attribute(:first_name, value.split.map(&:capitalize).join(' '))
-  end
-
-  def last_name=(value)
-    write_attribute(:last_name, value.split.map(&:capitalize).join(' '))
-  end
-
+  before_validation :sanitize_content, :on => [:create, :update]
   after_create :create_importances
+
+  def sanitize_content
+    self.first_name = value.split.map(&:capitalize).join(" ")
+    self.last_name = value.split.map(&:capitalize).join(" ")
+  end
 
   def create_importances
     importance_names = Importance.names.keys.map(&:to_sym)
@@ -44,7 +42,7 @@ class User < ApplicationRecord
       criteria_list[name] = value
     end
 
-    cleaned_list = CleanCriteriaListService.new(criteria_list, true)
+    cleaned_list = CriteriaStandardizerService.new(criteria_list, true)
     cleaned_list.call
   end
 end
