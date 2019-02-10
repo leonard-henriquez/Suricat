@@ -18,8 +18,8 @@ class User < ApplicationRecord
   after_create :create_importances
 
   def sanitize_content
-    self.first_name = value.split.map(&:capitalize).join(" ")
-    self.last_name = value.split.map(&:capitalize).join(" ")
+    self.first_name = first_name.split.map(&:capitalize).join(" ")
+    self.last_name = last_name.split.map(&:capitalize).join(" ")
   end
 
   def create_importances
