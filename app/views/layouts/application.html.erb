@@ -4,7 +4,7 @@
     <%= render 'shared/meta'%>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
     <%= yield(:head_tags) %>
@@ -12,20 +12,6 @@
   <body>
     <%= render 'shared/navbar'%>
     <%= render 'shared/flashes' %>
-    <div id="page-content-wrapper">
-      <div id="sidebar" class="sidebar d-none d-md-block" data-step="2" data-intro="<%= t('intro.left_menu') %>">
-        <div class="sidebar-inner position-fixed">
-          <%= component 'left_menu' %>
-        </div>
-      </div>
-      <div id="content" class="content">
-        <div id="mobile-nav" class="d-md-none">
-          <%= component 'left_menu' %>
-        </div>
-        <div class="container-fluid" id="content-container">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+    <%= yield %>
   </body>
 </html>

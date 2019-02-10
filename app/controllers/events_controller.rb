@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  layout "sidebar"
+
   before_action :set_event, only: %i[update destroy]
 
   def index

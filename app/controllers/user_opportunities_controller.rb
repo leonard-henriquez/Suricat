@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserOpportunitiesController < ApplicationController
+  layout "sidebar"
+
   before_action :set_user_opportunity, only: %i[show update destroy]
 
   def index

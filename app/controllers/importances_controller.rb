@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ImportancesController < ApplicationController
-  layout "no_sidebar"
-
   before_action :set_importance, only: %i[edit update]
 
   def index

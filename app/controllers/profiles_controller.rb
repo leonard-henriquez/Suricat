@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  layout "no_sidebar"
-
   def index
     @importances = policy_scope(Importance)
     @importances_values = @importances.all.map { |i| [i.name, i.value] }.to_h
