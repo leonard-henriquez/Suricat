@@ -1,9 +1,6 @@
 import GMaps from "gmaps/gmaps";
 import blue from "../images/map-marker-blue.svg";
 import red from "../images/map-marker-red.svg";
-import { autocomplete } from './autocomplete';
-
-autocomplete();
 
 let map;
 let markers;

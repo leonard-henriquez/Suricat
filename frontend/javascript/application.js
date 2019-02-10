@@ -9,11 +9,11 @@ import "stylesheets/application.scss";
 import "components";
 import "bootstrap-select";
 import List from "list.js";
-import introJs from "intro.js";
 import initMap from "./gmaps";
 import initCalendar from "./calendar";
 import autocomplete from "./autocomplete";
-import test from "./tags";
+import { loadTags } from "./tags";
+import introductionTutorial from "./intro";
 
 require.context("../images", true);
 
@@ -22,7 +22,9 @@ Turbolinks.start();
 ActiveStorage.start();
 $.fn.selectpicker.Constructor.BootstrapVersion = "4";
 
-const importancesValues = {};
+if (typeof SuricatGlobalObject === "undefined") {
+  const SuricatGlobalObject = {};
+}
 
 $(document).on("turbolinks:load", () => {
   if ($("#map").length) {
@@ -45,15 +47,18 @@ $(document).on("turbolinks:load", () => {
     });
   }
 
-  if (typeof intro !== 'undefined' && intro) {
-    introJs()
-      .setOption("overlayOpacity", 0)
-      .setOption("hidePrev", true)
-      .setOption("hideNext", true)
-      .setOption("highlightClass", "bg-transparent")
-      .start();
-    intro = false;
+  if (
+    typeof SuricatGlobalObject.tags !== "undefined" &&
+    SuricatGlobalObject.tags &&
+    $("#importance__value[data-location='true']").length
+  ) {
+    const input = $("#importance__value[data-location='true']")[0];
+    loadTags(SuricatGlobalObject.tags, input, "city");
+    autocomplete(input);
   }
 
-  test();
+  if (typeof SuricatGlobalObject.intro !== "undefined" && SuricatGlobalObject.intro) {
+    introductionTutorial();
+    SuricatGlobalObject.intro = false;
+  }
 });

@@ -1,9 +1,9 @@
 <div class="radar">
   <% if @importances_values.nil? %>
-    <script>importancesValues = 0:</script>
+    <script>SuricatGlobalObject.importancesValues = {}:</script>
   <% else %>
     <% values = Hash[@importances_values.map { |k,v| [t("importance.name.#{k}"),v] }] %>
-    <script>importancesValues = <%= values.to_json.html_safe %>;</script>
+    <script>SuricatGlobalObject.importancesValues = <%= values.to_json.html_safe %>;</script>
   <% end %>
   <canvas id="chartjs"></canvas>
 </div>

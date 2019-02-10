@@ -75,12 +75,7 @@
 
             <% when :location %>
               <br>
-              <script>let tags = <%= @current_values.to_json.html_safe %>;</script>
-              <% @current_values.each do |json| %>
-                <% hash = JSON.parse(json) %>
-                <div id="<%= hash["id"] %>" class="tags"><%= hash["city"] %></div>
-                <input type="hidden" id="hidden-<%= hash["id"] %>" name="importance[values][]" value='<%= json %>'>
-              <% end %>
+              <script>SuricatGlobalObject.tags = (<%= @current_values.to_json.html_safe %>).map(JSON.parse);</script>
               <input type="text" class="form-control" id="importance__value" data-location="true">
 
             <% when :salary %>

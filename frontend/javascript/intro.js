@@ -1,6 +1,6 @@
 import introJs from "intro.js";
 
-const intro = () => {
+const introductionTutorial = () => {
   introJs()
     .setOption("overlayOpacity", 0)
     .setOption("hidePrev", true)
@@ -8,3 +8,5 @@ const intro = () => {
     .setOption("highlightClass", "bg-transparent")
     .start();
 };
+
+export default introductionTutorial;

@@ -1,6 +1,6 @@
 import Chart from "chart.js";
 
-const initRadar = () => {
+const initRadar = (importancesValues) => {
   const chartElem = document.getElementById("chartjs");
   if (chartElem !== null) {
     const labels = Object.keys(importancesValues);
@@ -69,7 +69,7 @@ const updateChart = () => {
 
 $(document).on("turbolinks:load", () => {
   if ($("#chartjs").length) {
-    initRadar();
+    initRadar(SuricatGlobalObject.importancesValues);
     initSlider();
   }
 });

@@ -1,68 +1,37 @@
-const tagGenerator = location => `
-    <div id="${location.id}" class="tags">${location.city}</div>
-    <input type="hidden" id="hidden-${
-      location.id
-    }" name="importance[values][]" value='${JSON.stringify(location)}'>
-  `;
+import { addTag } from "./tags";
 
-const scriptGenerator = location => `
-    tag = document.getElementById('${location.id}');
-    tag_input = document.getElementById('hidden-${location.id}');
-    tag.addEventListener('click', (e) => {
-      tag.remove();
-      tag_input.remove();
-    });
-  `;
+const autocomplete = input => {
+  if (!input) {
+    return;
+  }
 
-const addScript = location => {
-  const newScript = document.createElement("script");
-  const inlineScript = document.createTextNode(scriptGenerator(location));
-  newScript.appendChild(inlineScript);
-  document.querySelector("body").appendChild(newScript);
-};
+  let location;
 
-const autocomplete = () => {
-  document.addEventListener("turbolinks:load", () => {
-    const input = $("#importance__value[data-location='true']")[0];
-    if (!input) {
-      return;
+  const autocompleteObject = new google.maps.places.Autocomplete(input, {
+    types: ["geocode"]
+  });
+  google.maps.event.addDomListener(input, "keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Do not submit the form on Enter.
     }
+  });
 
-    let location;
+  autocompleteObject.addListener("place_changed", () => {
+    input.value = "";
+    const place = autocompleteObject.getPlace();
+    console.log(place);
 
-    $("div.tags").click((e) => {
-      const tag = e.currentTarget;
-      $(`#hidden-${tag.id}`).remove();
-      $(tag).remove();
-    });
+    if ("place_id" in place) {
+      location = {
+        city: place.name,
+        id: place.place_id,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
 
-    const autocomplete = new google.maps.places.Autocomplete(input, {
-      types: ["geocode"]
-    });
-    google.maps.event.addDomListener(input, "keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault(); // Do not submit the form on Enter.
-      }
-    });
-
-    autocomplete.addListener("place_changed", () => {
-      input.value = "";
-      const place = autocomplete.getPlace();
-      console.log(place);
-
-      if ("place_id" in place) {
-        location = {
-          city: place.name,
-          id: place.place_id,
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
-        };
-
-        input.insertAdjacentHTML("beforebegin", tagGenerator(location));
-        addScript(location);
-      }
-    });
+      addTag(input, location, "city");
+    }
   });
 };
 
-export { autocomplete };
+export default autocomplete;
