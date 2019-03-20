@@ -143,7 +143,7 @@ end
 
 
 job = Job.find_by(name: 'Corporate Finance')
-sector = Sector.find(name: 'Recruitment / Training')
+sector = Sector.find_by(name: 'Recruitment / Training')
 company = Company.create(
   name: 'Suricat',
   structure: :start_up
