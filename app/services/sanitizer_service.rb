@@ -84,10 +84,6 @@ class SanitizerService
       date = Date.today
     else
       year = Date.today.year
-      # month = nil
-      # REGEXP_MONTHS.each do |month_int, regexes|
-      #   month = month_int if regexes.any? { |regex| regex.match(value.downcase) }
-      # end
       reg_sanitizer = RegexSanitizerService.new(value, REGEXP_MONTHS, nil)
       month reg_sanitizer.call
       day = value.gsub(/\D/, "").to_i
@@ -99,7 +95,7 @@ class SanitizerService
   end
 
   def md(value)
-    value = ReverseMarkdown.convert(value, unknown_tags: "drop", tag_border: " ")
+    value = ReverseMarkdown.convert(value, tag_border: " ")
     value.gsub("&nbsp;", " ").gsub(/\ {2,}/, "\n").gsub(/\n{3,}/, "\n\n").strip
   end
 

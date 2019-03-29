@@ -29,7 +29,9 @@
         Contract
       </td>
       <td>
-        <%= t("opportunity.contract_type.#{opportunity.contract_type}") %>
+        <% unless opportunity.contract_type.nil? %>
+          <%= t("opportunity.contract_type.#{opportunity.contract_type}") %>
+        <% end %>
       </td>
     </tr>
     <tr>
@@ -37,7 +39,9 @@
         Structure
       </td>
       <td>
-        <%= t("company.structure.#{opportunity.company_structure}") %>
+        <% unless opportunity.company_structure.nil? %>
+          <%= t("company.structure.#{opportunity.company_structure}") %>
+        <% end %>
       </td>
     </tr>
     <tr>

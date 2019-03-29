@@ -160,12 +160,12 @@ opportunity_intro = Opportunity.create(
   url: 'https://www.suricat.co/'
 )
 
-# user_1 = User.create(
-#   first_name: 'test',
-#   last_name: 'test_1',
-#   email: 'test@test.com',
-#   password: '123456'
-# )
+user_1 = User.create(
+  first_name: 'test',
+  last_name: 'test_1',
+  email: 'leonard.henriquez@edhec.com',
+  password: '123456'
+)
 
 # user_2 = User.create(
 #   first_name: 'testy',
