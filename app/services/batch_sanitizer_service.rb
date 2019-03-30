@@ -9,7 +9,7 @@ class BatchSanitizerService
 
   def call
     values = @default_values.merge(@values)
-    types_and_values = values.merge(@parameters_types) { |key, value, type| {type: type, value: value} }
+    types_and_values = values.merge(@parameters_types) { |_key, value, type| {type: type, value: value} }
     types_and_values.map { |k, v| [k, sanitizer(v)] }.compact.to_h
   end
 

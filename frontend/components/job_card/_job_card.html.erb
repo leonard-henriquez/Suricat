@@ -2,7 +2,7 @@
   <%= link_to "", user_opportunity_path(@opportunity), class: "jobcard-link" %>
   <div class="jobcard-img img-center">
     <% if @opportunity.logo.nil? %>
-      <%= image_tag asset_pack_path("images/company.png") %>
+      <%= image_tag asset_pack_path("media/images/company.png") %>
     <% else %>
       <%= image_tag @opportunity.logo %>
     <% end %>
