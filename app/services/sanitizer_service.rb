@@ -70,7 +70,7 @@ class SanitizerService
 
   def url(value)
     value = default(value)
-    regex_url = /https?:\/\/[\S]+/i
+    regex_url = %r{https?://[\S]+}i
     regex_url.match?(value) ? value : nil
   end
 
