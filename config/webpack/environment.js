@@ -29,5 +29,6 @@ module.exports = {
   }
 };
 
-environment.loaders.append("erb", erb);
+environment.loaders.prepend("erb", erb);
+environment.loaders.delete("nodeModules");
 module.exports = environment;

@@ -9,7 +9,7 @@
             <div class="col">
               <div class="job-offer-top">
                 <% if @user_opportunity.logo.nil? %>
-                  <%= image_tag asset_pack_path("images/company.png"), class: 'img-center' %>
+                  <%= image_tag asset_pack_path("media/images/company.png"), class: 'img-center' %>
                 <% else %>
                   <%= image_tag @user_opportunity.logo, class: 'img-center' %>
                 <% end %>
