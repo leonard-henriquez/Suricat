@@ -16,9 +16,7 @@ class Job < ApplicationRecord
     item = find_by(name: name)
     return item unless item.nil?
 
-    raise ArgumentError.new("Missing category") if category.nil?
-
-    category = self.category.find_or_create(name: category)
+    category = self.category.find_or_create(name: category) unless category.nil?
     create(name: name, category: category)
   end
 end

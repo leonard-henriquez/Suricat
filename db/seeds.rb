@@ -143,7 +143,7 @@ end
 
 
 job = Job.find_by(name: 'Corporate Finance')
-sector = Sector.find(name: 'Recruitment / Training')
+sector = Sector.find_by(name: 'Recruitment / Training')
 company = Company.create(
   name: 'Suricat',
   structure: :start_up
@@ -160,12 +160,12 @@ opportunity_intro = Opportunity.create(
   url: 'https://www.suricat.co/'
 )
 
-# user_1 = User.create(
-#   first_name: 'test',
-#   last_name: 'test_1',
-#   email: 'test@test.com',
-#   password: '123456'
-# )
+user_1 = User.create(
+  first_name: 'test',
+  last_name: 'test_1',
+  email: 'leonard.henriquez@edhec.com',
+  password: '123456'
+)
 
 # user_2 = User.create(
 #   first_name: 'testy',
