@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class UserOpportunitiesController < ApplicationController
-  layout "sidebar"
+  layout 'sidebar'
 
-  before_action :set_user_opportunity, only: %i[show update destroy]
+  before_action :set_user_opportunity, only: [:show, :update, :destroy]
 
   def index
     if current_user.intro
@@ -23,7 +23,7 @@ class UserOpportunitiesController < ApplicationController
     authorize @user_opportunity
     @opportunity = UserOpportunity.find(params[:id])
     @marker = if @opportunity.nil?
-                {lat: nil, lng: nil}
+                { lat: nil, lng: nil }
               else
                 {
                   lat: @opportunity.latitude,
@@ -36,7 +36,7 @@ class UserOpportunitiesController < ApplicationController
     @user_opportunity.status = params[:status]
     @user_opportunity.save
     authorize @user_opportunity
-    redirect_to opportunities_review_path if params[:from] == "show"
+    redirect_to opportunities_review_path if params[:from] == 'show'
   end
 
   def destroy

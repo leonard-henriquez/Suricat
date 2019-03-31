@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportancesController < ApplicationController
-  before_action :set_importance, only: %i[edit update]
+  before_action :set_importance, only: [:edit, :update]
 
   def index
     @importances_values = current_user.importances_value
@@ -61,7 +61,7 @@ class ImportancesController < ApplicationController
   end
 
   def criterium_values_params
-    params.require(:importance).permit(values: [])["values"].reject { |x| x.nil? || x == "" }
+    params.require(:importance).permit(values: [])['values'].reject { |x| x.nil? || x == '' }
   end
 
   def redirect_next

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to(root_path)
   end
 
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   # prepend_view_path Rails.root.join("frontend","views")
 
   def default_url_options
-    {host: ENV["www.suricat.co"] || "localhost:3000"}
+    { host: ENV['www.suricat.co'] || 'localhost:3000' }
   end
 
   def set_locale
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   end
 
   def skip_pundit?

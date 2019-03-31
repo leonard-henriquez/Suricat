@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserOpportunity < ApplicationRecord
-  enum status: %i[review pending applied trash]
+  enum status: [:review, :pending, :applied, :trash]
   belongs_to :user
   belongs_to :opportunity
   has_one :job, through: :opportunity
@@ -35,11 +35,11 @@ class UserOpportunity < ApplicationRecord
     item = find_by(user: user, opportunity: opportunity)
     return item unless item.nil?
 
-    raise ArgumentError.new("Missing params") if params.nil?
+    raise ArgumentError, 'Missing params' if params.nil?
 
     UserOpportunity.create(
-      user:            user,
-      opportunity:     opportunity,
+      user: user,
+      opportunity: opportunity,
       personnal_grade: params[:stars]
     )
   end

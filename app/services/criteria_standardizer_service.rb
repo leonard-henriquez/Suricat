@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CriteriaStandardizerService
-  def initialize(criteria_list, has_multiple_values=false)
+  def initialize(criteria_list, has_multiple_values = false)
     @criteria_list = criteria_list
     @has_multiple_values = has_multiple_values
   end
@@ -30,7 +30,7 @@ class CriteriaStandardizerService
     when :location
       if @has_multiple_values
         hash = JSON.parse(value)
-        [(hash["lat"] || 0).to_f, (hash["lng"] || 0).to_f] if hash.key?("lat") && hash.key?("lng")
+        [(hash['lat'] || 0).to_f, (hash['lng'] || 0).to_f] if hash.key?('lat') && hash.key?('lng')
       else
         [(value[0] || 0).to_f, (value[1] || 0).to_f]
       end
@@ -42,7 +42,7 @@ class CriteriaStandardizerService
     when :integer
       @has_multiple_values ? value.first : value
     else
-      @has_multiple_values ? value.reject { |x| x.nil? || x == "" } : value
+      @has_multiple_values ? value.reject { |x| x.nil? || x == '' } : value
     end
   end
 end

@@ -14,12 +14,12 @@ class User < ApplicationRecord
   # turn the field authentication_token into a working authentication token
   acts_as_token_authenticatable
 
-  before_validation :sanitize_content, on: %i[create update]
+  before_validation :sanitize_content, on: [:create, :update]
   after_create :create_importances
 
   def sanitize_content
-    self.first_name = first_name.split.map(&:capitalize).join(" ")
-    self.last_name = last_name.split.map(&:capitalize).join(" ")
+    self.first_name = first_name.split.map(&:capitalize).join(' ')
+    self.last_name = last_name.split.map(&:capitalize).join(' ')
   end
 
   def create_importances

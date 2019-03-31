@@ -9,7 +9,7 @@ class Sector < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def self.category
-    (to_s + "Category").constantize
+    (to_s + 'Category').constantize
   end
 
   def self.find_or_create(name:, category: nil)

@@ -10,9 +10,9 @@ class ProfilesController < ApplicationController
     @markers_pending = @user_opportunities.where(status: :pending).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
-        title:      title,
-        lat:        u_op.opportunity.latitude,
-        lng:        u_op.opportunity.longitude,
+        title: title,
+        lat: u_op.opportunity.latitude,
+        lng: u_op.opportunity.longitude,
         infoWindow: {
           content: "<p>#{title}</p>"
         }
@@ -22,9 +22,9 @@ class ProfilesController < ApplicationController
     @markers_applied = @user_opportunities.where(status: :applied).map do |u_op|
       title = "#{u_op.title} @#{u_op.company_name}"
       {
-        title:      title,
-        lat:        u_op.opportunity.latitude,
-        lng:        u_op.opportunity.longitude,
+        title: title,
+        lat: u_op.opportunity.latitude,
+        lng: u_op.opportunity.longitude,
         infoWindow: {
           content: "<p>#{title}</p>"
         }
