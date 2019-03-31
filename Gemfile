@@ -9,7 +9,7 @@ gem "jbuilder"
 gem "pg"
 gem "puma"
 gem "pundit"
-gem "rails", "5.2.1"
+gem "rails", "5.2.3"
 gem "redis"
 gem "webpacker"
 
