@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  layout "sidebar"
+  layout 'sidebar'
 
-  before_action :set_event, only: %i[update destroy]
+  before_action :set_event, only: [:update, :destroy]
 
   def index
     @events = policy_scope(Event)

@@ -39,7 +39,7 @@ class GradeService
     Rails.logger.info "grade: #{(grade * 100).fdiv(total_importances_values)}"
     (grade * 100).fdiv(total_importances_values).to_i
   rescue StandardError => e
-    Rails.logger.info "%%%%%% Grade calculation failed %%%%%%"
+    Rails.logger.info '%%%%%% Grade calculation failed %%%%%%'
     Rails.logger.info e.inspect
     debug
     0
@@ -95,7 +95,7 @@ class GradeService
     Math.exp(CALCULATION_CONSTANT * pseudo_rank) - 1
   end
 
-  def distance(value, reference, negative=false)
+  def distance(value, reference, negative = false)
     if negative
       value = -value
       reference = -reference

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Opportunity < ApplicationRecord
-  enum contract_type: %i[internship vie graduate_program fixed_term full_time apprenticeship other]
+  enum contract_type: [:internship, :vie, :graduate_program, :fixed_term, :full_time, :apprenticeship, :other]
 
   belongs_to :job, optional: true
   belongs_to :company, optional: true
@@ -31,17 +31,17 @@ class Opportunity < ApplicationRecord
   end
 
   def company_location
-    company.nil? ? location : [company.name, location].compact.join(", ")
+    company.nil? ? location : [company.name, location].compact.join(', ')
   end
 
   def characteristics
     {
-      contract_type:     contract_type_id,
+      contract_type: contract_type_id,
       company_structure: company.nil? ? nil : company.structure_id,
-      sector_name:       sector_id,
-      job_name:          job_id,
-      location:          [(latitude || 0).to_f, (longitude || 0).to_f],
-      salary:            salary
+      sector_name: sector_id,
+      job_name: job_id,
+      location: [(latitude || 0).to_f, (longitude || 0).to_f],
+      salary: salary
     }
   end
 
@@ -49,7 +49,7 @@ class Opportunity < ApplicationRecord
     item = find_by(url: url)
     return item unless item.nil?
 
-    raise ArgumentError.new("Missing params") if params.nil?
+    raise ArgumentError, 'Missing params' if params.nil?
 
     opportunity_params = filter_params(params)
     dependencies_params = create_dependencies(params)
@@ -61,21 +61,21 @@ class Opportunity < ApplicationRecord
 
     unless params[:company_name].nil?
       dependencies[:company] = Company.find_or_create(
-        name:      params[:company_name],
+        name: params[:company_name],
         structure: params[:company_structure]
       )
     end
 
     unless params[:job_name].nil?
       dependencies[:job] = Job.find_or_create(
-        name:     params[:job_name],
+        name: params[:job_name],
         category: params[:job_category]
       )
     end
 
     unless params[:sector_name].nil?
       dependencies[:sector] = Sector.find_or_create(
-        name:     params[:sector_name],
+        name: params[:sector_name],
         category: params[:sector_category]
       )
     end
@@ -95,6 +95,6 @@ class Opportunity < ApplicationRecord
   protected
 
   def set_default_values
-    self.logo ||= "/images/default_company_logo.png"
+    self.logo ||= '/images/default_company_logo.png'
   end
 end

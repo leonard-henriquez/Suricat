@@ -5,12 +5,12 @@ class Criterium < ApplicationRecord
 
   def self.types
     {
-      contract_type:     :enum,
+      contract_type: :enum,
       company_structure: :enum,
-      sector_name:       :enum,
-      job_name:          :enum,
-      location:          :location,
-      salary:            :integer
+      sector_name: :enum,
+      job_name: :enum,
+      location: :location,
+      salary: :integer
     }
   end
 end
