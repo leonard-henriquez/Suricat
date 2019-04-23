@@ -1,5 +1,5 @@
 
-# The project
+# Suricat
 
 During their search for internships or first jobs, students face difficulties to organize the follow-up of their applications but also to find offers that really correspond to their criteria.
 
@@ -9,7 +9,7 @@ Having met these different issues ourselves, we decided to develop a tool to fac
 
 The originality of the application lies on the one hand in the centralization of online offers for which the user has shown interest via a chrome extension. On the other hand, in its user-centric structure allowing it to efficiently sort its offers, to have a note of relevance relative to its criteria, as well as other features allowing it to have an overview in time and in the space of his opportunities
 
-## The technology stack
+## Technology stack
 
 ### Backend
 
