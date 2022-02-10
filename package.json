@@ -15,7 +15,7 @@
     "intro.js": "^2.9.3",
     "jquery": "^3.3.1",
     "list.js": "^1.5.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.14.4",
     "postcss-loader": "^3.0.0",
     "rails-erb-loader": "^5.5.0",
